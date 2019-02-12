@@ -1,0 +1,5 @@
+.pioenvs
+.piolibdeps
+tags
+*.swp
+tmp
