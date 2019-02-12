@@ -1,0 +1,64 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/45968eff/
+AUTOMATA_INIT	src/automata.h	/^#define AUTOMATA_INIT(/;"	d
+AUTOMATA_STEP	src/automata.h	/^#define AUTOMATA_STEP(/;"	d
+DATA_PIN	src/main.cpp	/^#define DATA_PIN /;"	d	file:
+INITIAL	src/automata.h	/^#define INITIAL(/;"	d
+MAX_BRIGHT	src/main.cpp	/^#define MAX_BRIGHT /;"	d	file:
+MIN_BRIGHT	src/main.cpp	/^#define MIN_BRIGHT /;"	d	file:
+NUM_LEDS	src/main.cpp	/^#define NUM_LEDS /;"	d	file:
+N_STATES	src/logic.h	/^#define N_STATES /;"	d
+OFF	src/main.cpp	/^  OFF = (int)'f',$/;"	e	enum:cmds	file:
+ON	src/main.cpp	/^  ON = (int)'n',$/;"	e	enum:cmds	file:
+PI	src/effects.h	/^#define PI /;"	d
+SETBRIGHTNESS	src/main.cpp	/^  SETBRIGHTNESS = (int)'b',$/;"	e	enum:cmds	file:
+SETCOLOR	src/main.cpp	/^  SETCOLOR = (int)'c',$/;"	e	enum:cmds	file:
+SETMODE	src/main.cpp	/^  SETMODE = (int)'m',$/;"	e	enum:cmds	file:
+STATE_INIT	src/automata.h	/^#define STATE_INIT(/;"	d
+STEP	src/main.cpp	/^#define STEP /;"	d	file:
+States	src/logic.h	/^enum States{$/;"	g
+TIMESTEP	src/main.cpp	/^#define TIMESTEP /;"	d	file:
+WAIT	src/main.cpp	/^  WAIT = (int)'w'$/;"	e	enum:cmds	file:
+__AUTOMATA_H__	src/automata.h	/^#define __AUTOMATA_H__$/;"	d
+__EFFECTS_H__	src/effects.h	/^#define __EFFECTS_H__$/;"	d
+__LOGIC_H__	src/logic.h	/^#define __LOGIC_H__$/;"	d
+_change	src/logic.cpp	/^int _change(struct int_vars_t * vars){$/;"	f	typeref:typename:int
+_off	src/logic.cpp	/^int _off(struct int_vars_t * vars){$/;"	f	typeref:typename:int
+_on	src/logic.cpp	/^int _on(struct int_vars_t * vars){$/;"	f	typeref:typename:int
+_wait	src/logic.cpp	/^int _wait(struct int_vars_t * vars){$/;"	f	typeref:typename:int
+bright	src/logic.h	/^    uint8_t bright;$/;"	m	struct:int_vars_t	typeref:typename:uint8_t
+change	src/logic.h	/^    change,$/;"	e	enum:States
+cmds	src/main.cpp	/^enum cmds{$/;"	g	file:
+color	src/logic.h	/^    uint32_t color;$/;"	m	struct:int_vars_t	typeref:typename:uint32_t
+counter	src/logic.h	/^    uint32_t counter;$/;"	m	struct:int_vars_t	typeref:typename:uint32_t
+current	src/automata.h	/^static int current = 0;$/;"	v	typeref:typename:int
+cycle_half	src/effects.h	/^    float cycle_half;$/;"	m	struct:effects_attr_t	typeref:typename:float
+delay	src/logic.h	/^    uint8_t delay;$/;"	m	struct:int_vars_t	typeref:typename:uint8_t
+effects_attr_init	src/effects.cpp	/^void effects_attr_init(struct effects_attr_t * attr){$/;"	f	typeref:typename:void
+effects_attr_t	src/effects.h	/^struct effects_attr_t{$/;"	s
+effects_breath	src/effects.cpp	/^float effects_breath(struct effects_attr_t * attr){$/;"	f	typeref:typename:float
+effects_smooth	src/effects.cpp	/^int effects_smooth(int t, bool down){$/;"	f	typeref:typename:int
+input_handler	src/main.cpp	/^void input_handler(void){$/;"	f	typeref:typename:void
+int_vars_t	src/logic.h	/^struct int_vars_t{$/;"	s
+last_cmd	src/logic.h	/^    uint8_t last_cmd;$/;"	m	struct:int_vars_t	typeref:typename:uint8_t
+leds	src/main.cpp	/^CRGB leds[NUM_LEDS];$/;"	v	typeref:typename:CRGB[]
+loop	src/main.cpp	/^void loop() { $/;"	f	typeref:typename:void
+mode	src/logic.h	/^    uint8_t mode;$/;"	m	struct:int_vars_t	typeref:typename:uint8_t
+off	src/logic.h	/^    off,$/;"	e	enum:States
+on	src/logic.h	/^    on,$/;"	e	enum:States
+parse_cmd	src/main.cpp	/^int parse_cmd(char *cmd, uint8_t *cmd_c, long *param){$/;"	f	typeref:typename:int
+position	src/effects.h	/^    uint32_t position;$/;"	m	struct:effects_attr_t	typeref:typename:uint32_t
+process_cmd	src/main.cpp	/^int process_cmd(uint8_t cmd_c, uint32_t param){$/;"	f	typeref:typename:int
+range	src/effects.h	/^    uint32_t range;$/;"	m	struct:effects_attr_t	typeref:typename:uint32_t
+setColor	src/main.cpp	/^void inline setColor(int i, CRGB color){$/;"	f	typeref:typename:void
+setColors	src/main.cpp	/^void setColors(CRGB color, uint16_t bright){$/;"	f	typeref:typename:void
+setup	src/main.cpp	/^void setup() { $/;"	f	typeref:typename:void
+shift	src/effects.h	/^    uint8_t shift;$/;"	m	struct:effects_attr_t	typeref:typename:uint8_t
+states	src/main.cpp	/^static int (*states[4])(struct int_vars_t * vars);$/;"	v	typeref:typename:int (* [4])(struct int_vars_t * vars)	file:
+vars	src/main.cpp	/^static struct int_vars_t vars;$/;"	v	typeref:struct:int_vars_t	file:
+wait	src/logic.h	/^    wait$/;"	e	enum:States
