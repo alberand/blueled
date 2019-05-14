@@ -1,0 +1,30 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# LM1117IMP-3.3
+#
+DEF LM1117IMP-3.3 U 0 40 Y Y 1 L N
+F0 "U" -182 252 50 H V L BNN
+F1 "LM1117IMP-3.3" -216 -500 50 H V L BNN
+F2 "SOT230P696X180-4N" 0 0 50 H I L BNN
+F3 "Unavailable" 0 0 50 H I L BNN
+F4 "None" 0 0 50 H I L BNN
+F5 "Rohm" 0 0 50 H I L BNN
+F6 "The LM1117 is a series of low dropout voltage regulators with a dropout of 1.2V at 800mA of load current. It has the ..." 0 0 50 H I L BNN
+F7 "LM1117IMP-3.3" 0 0 50 H I L BNN
+F8 "None" 0 0 50 H I L BNN
+DRAW
+P 2 0 0 16 -600 200 -600 -400 N
+P 2 0 0 16 -600 -400 600 -400 N
+P 2 0 0 16 600 -400 600 200 N
+P 2 0 0 16 600 200 -600 200 N
+X VIN 3 -800 0 200 R 40 40 0 0 I 
+X ADJ/GND 1 -800 -200 200 R 40 40 0 0 P 
+X VOUT_2 4 800 -100 200 L 40 40 0 0 O 
+X VOUT 2 800 0 200 L 40 40 0 0 O 
+ENDDRAW
+ENDDEF
+#
+# End Library
