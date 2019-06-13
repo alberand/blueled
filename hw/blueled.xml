@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/home/andrew/Projects/ambient/hw/ambient/ambient.sch</source>
+    <source>/home/andrew/Projects/blueled/hw/blueled.sch</source>
     <date>Sat 11 May 2019 05:35:09 PM CEST</date>
     <tool>Eeschema 5.1.1</tool>
     <sheet number="1" name="/" tstamps="/">
@@ -10,7 +10,7 @@
         <company/>
         <rev/>
         <date/>
-        <source>ambient.sch</source>
+        <source>blueled.sch</source>
         <comment number="1" value=""/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
@@ -378,7 +378,7 @@
       <uri>/home/andrew/Documents/KiCAD/kicad-symbols/MCU_Microchip_ATmega.lib</uri>
     </library>
     <library logical="MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_">
-      <uri>/home/andrew/Projects/ambient/hw/libs/MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_.lib</uri>
+      <uri>/home/andrew/Projects/blueled/hw/libs/MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_.lib</uri>
     </library>
     <library logical="Regulator_Linear">
       <uri>/home/andrew/Documents/KiCAD/kicad-symbols/Regulator_Linear.lib</uri>
