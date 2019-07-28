@@ -1,8 +1,15 @@
 Author: Andrey Albershteyn
 Date: 28.07.19
-Phase: Solution
+Status: Open
+Tags: feature, circuit-power-off
 
-### Task
+### Brief 
+
+How to power off the whole device? With switch, relay or something else?
+
+### Timeline - Analysis & Solution
+
+**[28.07.19]**
 
 I want to completely power off the circuit as I assume it more safe. No current
 no problems. The following factors play role:
@@ -13,7 +20,7 @@ no problems. The following factors play role:
     * Bug in the software (not fully disable led strip)
     * etc????
 
-### Analysis
+**[28.07.19]**
 
 I find a few way how to power off the circuit:
 
@@ -29,7 +36,3 @@ of them are quite big for such a small device.
 functionality. The disadvantage is the *cwak* noise.
 
 **MOSFET** - requires radiator which quite big.
-
-### Solution
-
-[Status] Investigation
