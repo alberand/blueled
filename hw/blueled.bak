@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:ambient-cache
+LIBS:blueled-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -208,12 +208,10 @@ Wire Wire Line
 	6150 4050 5900 4050
 Wire Wire Line
 	5900 3950 6150 3950
-Text GLabel 8150 2450 0    50   Input ~ 0
+Text GLabel 7600 2450 0    50   Input ~ 0
 RX
 Text GLabel 8150 2550 0    50   Input ~ 0
 TX
-Wire Wire Line
-	8150 2450 8300 2450
 Wire Wire Line
 	8300 2550 8150 2550
 Text GLabel 8150 3550 0    50   Input ~ 0
@@ -357,9 +355,6 @@ NoConn ~ 5900 3450
 NoConn ~ 5900 3350
 NoConn ~ 5900 3250
 NoConn ~ 5900 3150
-NoConn ~ 5900 2750
-NoConn ~ 5900 2650
-NoConn ~ 5900 2550
 NoConn ~ 5900 2450
 NoConn ~ 5900 2350
 NoConn ~ 5900 2250
@@ -477,4 +472,107 @@ F 3 "~" H 7000 3750 50  0001 C CNN
 	1    7000 3750
 	1    0    0    -1  
 $EndComp
+Text Notes 7350 7500 0    50   ~ 0
+Bluetooth Ledstrip controller
+Text Notes 8150 7650 0    50   ~ 0
+14/05/2019
+Text Notes 8200 7750 0    50   ~ 0
+alberand
+$Comp
+L Connector_Generic:Conn_02x03_Top_Bottom J3
+U 1 1 5D06C568
+P 7000 5050
+F 0 "J3" H 7050 5367 50  0000 C CNN
+F 1 "ICSP" H 7050 5276 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 7000 5050 50  0001 C CNN
+F 3 "~" H 7000 5050 50  0001 C CNN
+	1    7000 5050
+	1    0    0    -1  
+$EndComp
+Text GLabel 6550 5150 0    50   Input ~ 0
+RESET
+Text GLabel 7500 4950 2    50   Input ~ 0
++3V3
+Wire Wire Line
+	7500 4950 7300 4950
+Text GLabel 7500 5050 2    50   Input ~ 0
+MOSI
+Text GLabel 6550 4950 0    50   Input ~ 0
+MISO
+Text GLabel 6550 5050 0    50   Input ~ 0
+SCK
+Wire Wire Line
+	6550 5050 6800 5050
+Wire Wire Line
+	6550 4950 6800 4950
+Wire Wire Line
+	7300 5050 7500 5050
+$Comp
+L power:GND #PWR01
+U 1 1 5D07BC0F
+P 7350 5250
+F 0 "#PWR01" H 7350 5000 50  0001 C CNN
+F 1 "GND" H 7355 5077 50  0000 C CNN
+F 2 "" H 7350 5250 50  0001 C CNN
+F 3 "" H 7350 5250 50  0001 C CNN
+	1    7350 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7300 5150 7350 5150
+Wire Wire Line
+	7350 5150 7350 5250
+Text Label 6550 5150 0    50   ~ 0
+RESET
+Wire Wire Line
+	6550 5150 6800 5150
+Text GLabel 6050 2650 2    50   Input ~ 0
+MISO
+Text GLabel 6050 2550 2    50   Input ~ 0
+MOSI
+Text GLabel 6050 2750 2    50   Input ~ 0
+SCK
+Wire Wire Line
+	5900 2550 6050 2550
+Wire Wire Line
+	5900 2650 6050 2650
+Wire Wire Line
+	5900 2750 6050 2750
+$Comp
+L Device:R_Small R3
+U 1 1 5D089425
+P 7750 2250
+F 0 "R3" H 7809 2296 50  0000 L CNN
+F 1 "1k" H 7809 2205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0201_0603Metric" H 7750 2250 50  0001 C CNN
+F 3 "~" H 7750 2250 50  0001 C CNN
+	1    7750 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 5D08942B
+P 7750 1950
+F 0 "D2" V 7789 1833 50  0000 R CNN
+F 1 "LED" V 7698 1833 50  0000 R CNN
+F 2 "LED_SMD:LED_0201_0603Metric" H 7750 1950 50  0001 C CNN
+F 3 "~" H 7750 1950 50  0001 C CNN
+	1    7750 1950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7600 2450 7750 2450
+Text GLabel 7700 1750 0    50   Input ~ 0
++3V3
+Wire Wire Line
+	7750 2100 7750 2150
+Wire Wire Line
+	7750 2350 7750 2450
+Connection ~ 7750 2450
+Wire Wire Line
+	7750 2450 8300 2450
+Wire Wire Line
+	7700 1750 7750 1750
+Wire Wire Line
+	7750 1750 7750 1800
 $EndSCHEMATC

@@ -291,19 +291,19 @@ Wire Wire Line
 Connection ~ 4150 3450
 Wire Wire Line
 	4150 3450 4250 3450
-Text Label 2800 4700 0    50   ~ 0
+Text Label 2400 4800 0    50   ~ 0
 VIN
-Text Label 2800 4900 0    50   ~ 0
+Text Label 2400 5000 0    50   ~ 0
 GND
 $Comp
 L power:GND #PWR0109
 U 1 1 5CC59A0A
-P 2800 4900
-F 0 "#PWR0109" H 2800 4650 50  0001 C CNN
-F 1 "GND" H 2805 4727 50  0000 C CNN
-F 2 "" H 2800 4900 50  0001 C CNN
-F 3 "" H 2800 4900 50  0001 C CNN
-	1    2800 4900
+P 2400 5000
+F 0 "#PWR0109" H 2400 4750 50  0001 C CNN
+F 1 "GND" H 2405 4827 50  0000 C CNN
+F 2 "" H 2400 5000 50  0001 C CNN
+F 3 "" H 2400 5000 50  0001 C CNN
+	1    2400 5000
 	1    0    0    -1  
 $EndComp
 Text Label 2500 3450 0    50   ~ 0
@@ -396,15 +396,15 @@ Wire Wire Line
 $Comp
 L Connector:Barrel_Jack J1
 U 1 1 5CDBC439
-P 2500 4800
-F 0 "J1" H 2557 5125 50  0000 C CNN
-F 1 "Barrel_Jack" H 2557 5034 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal" H 2550 4760 50  0001 C CNN
-F 3 "~" H 2550 4760 50  0001 C CNN
-	1    2500 4800
+P 2100 4900
+F 0 "J1" H 2157 5225 50  0000 C CNN
+F 1 "Barrel_Jack" H 2157 5134 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal" H 2150 4860 50  0001 C CNN
+F 3 "~" H 2150 4860 50  0001 C CNN
+	1    2100 4900
 	1    0    0    -1  
 $EndComp
-Text GLabel 2800 4700 2    50   Input ~ 0
+Text GLabel 2900 4800 2    50   Input ~ 0
 VIN
 Text GLabel 4400 4700 2    50   Input ~ 0
 VIN
@@ -589,4 +589,19 @@ Wire Wire Line
 Wire Wire Line
 	5900 4250 6150 4250
 NoConn ~ 5900 4550
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5D27732D
+P 2650 4800
+F 0 "SW1" H 2650 5085 50  0000 C CNN
+F 1 "SW_Push" H 2650 4994 50  0000 C CNN
+F 2 "" H 2650 5000 50  0001 C CNN
+F 3 "~" H 2650 5000 50  0001 C CNN
+	1    2650 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2850 4800 2900 4800
+Wire Wire Line
+	2400 4800 2450 4800
 $EndSCHEMATC
