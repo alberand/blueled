@@ -31,3 +31,5 @@ and following disadvantages:
 
 I decided to stick with solution A as it has theme park with blackjack and
 hookers.
+
+### References:
