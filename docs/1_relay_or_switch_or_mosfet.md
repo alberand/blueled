@@ -36,3 +36,18 @@ of them are quite big for such a small device.
 functionality. The disadvantage is the *cwak* noise.
 
 **MOSFET** - requires radiator which quite big.
+
+**[29.07.19]**
+
+According to this [1] using relay we get unwanted electromagnetic radiation
+which is can be a problem for Bluetooth. I don't think it will broke it
+completely but can decrease distance and quality of signal. The most of the
+advantages of the relay doesn't suite for this application (such as AC
+switching, isolation, robustness)
+
+Mosfet is small and cheap and looks like it can be used as a switch. So, I don't
+see why not use for this project.
+
+### References
+
+[1]: https://electronics.stackexchange.com/questions/10092/relay-vs-transistor
