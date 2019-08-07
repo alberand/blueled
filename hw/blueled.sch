@@ -74,24 +74,20 @@ Wire Wire Line
 	3700 3750 3700 3850
 Wire Wire Line
 	3250 3850 3700 3850
-Text GLabel 2450 3450 0    50   Input ~ 0
-VIN
 Text GLabel 4250 3450 2    50   Input ~ 0
 +3V3
-Connection ~ 3700 3450
 $Comp
 L MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_:MOUDLE-BLUETOOTH-HC-05(34P-27X13MM) U2
 U 1 1 5CB7CCE4
 P 9400 3100
 F 0 "U2" H 9400 4017 50  0000 C CNN
 F 1 "HC-05" H 9400 3926 50  0000 C CNN
-F 2 "hc-05:HC-05" H 9400 3100 50  0001 L BNN
-F 3 "" H 9400 3100 50  0001 L BNN
+F 2 "USR-Footprints:HC-05" H 9400 3100 50  0001 L BNN
+F 3 "https://components101.com/sites/default/files/component_datasheet/HC-05%20Datasheet.pdf" H 9400 3100 50  0001 L BNN
 F 4 "Unavailable" H 9400 3100 50  0001 L BNN "Field4"
-F 5 "" H 9400 3100 50  0001 L BNN "Field5"
-F 6 "SOIC-14" H 9400 3100 50  0001 L BNN "Field6"
-F 7 "HuiCheng" H 9400 3100 50  0001 L BNN "Field7"
-F 8 "None" H 9400 3100 50  0001 L BNN "Field8"
+F 5 "SOIC-14" H 9400 3100 50  0001 L BNN "Field6"
+F 6 "HuiCheng" H 9400 3100 50  0001 L BNN "Field7"
+F 7 "None" H 9400 3100 50  0001 L BNN "Field8"
 	1    9400 3100
 	1    0    0    -1  
 $EndComp
@@ -291,19 +287,17 @@ Wire Wire Line
 Connection ~ 4150 3450
 Wire Wire Line
 	4150 3450 4250 3450
-Text Label 2800 4700 0    50   ~ 0
-VIN
-Text Label 2800 4900 0    50   ~ 0
+Text Label 1200 4450 0    50   ~ 0
 GND
 $Comp
 L power:GND #PWR0109
 U 1 1 5CC59A0A
-P 2800 4900
-F 0 "#PWR0109" H 2800 4650 50  0001 C CNN
-F 1 "GND" H 2805 4727 50  0000 C CNN
-F 2 "" H 2800 4900 50  0001 C CNN
-F 3 "" H 2800 4900 50  0001 C CNN
-	1    2800 4900
+P 1200 4450
+F 0 "#PWR0109" H 1200 4200 50  0001 C CNN
+F 1 "GND" H 1205 4277 50  0000 C CNN
+F 2 "" H 1200 4450 50  0001 C CNN
+F 3 "" H 1200 4450 50  0001 C CNN
+	1    1200 4450
 	1    0    0    -1  
 $EndComp
 Text Label 2500 3450 0    50   ~ 0
@@ -320,14 +314,10 @@ Text Label 5300 1750 0    50   ~ 0
 +3V3
 Text Label 4250 2650 0    50   ~ 0
 GND
-Text Label 4200 4900 0    50   ~ 0
-GND
 Text Label 4200 4800 0    50   ~ 0
 DATA
 Text GLabel 6150 4650 2    50   Input ~ 0
 DATA
-Text Label 4200 4700 0    50   ~ 0
-VIN
 $Comp
 L Connector:Screw_Terminal_01x03 J2
 U 1 1 5CC5BA14
@@ -337,7 +327,7 @@ F 1 "Screw_Terminal_01x03" H 4080 4751 50  0000 L CNN
 F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 4000 4800 50  0001 C CNN
 F 3 "~" H 4000 4800 50  0001 C CNN
 	1    4000 4800
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 NoConn ~ 5900 3650
 NoConn ~ 5900 3550
@@ -345,9 +335,6 @@ NoConn ~ 5900 3450
 NoConn ~ 5900 3350
 NoConn ~ 5900 3250
 NoConn ~ 5900 3150
-NoConn ~ 5900 2450
-NoConn ~ 5900 2350
-NoConn ~ 5900 2250
 NoConn ~ 8300 2650
 NoConn ~ 8300 2750
 NoConn ~ 8300 2850
@@ -384,45 +371,22 @@ NoConn ~ 9700 4050
 Text Label 7200 3750 0    50   ~ 0
 RESET_GND
 Wire Wire Line
-	7200 3750 7450 3750
-Wire Wire Line
 	6350 3750 6800 3750
 Wire Wire Line
 	6800 2750 7000 2750
 NoConn ~ 4700 2450
 NoConn ~ 4700 2550
-Wire Wire Line
-	3550 3450 3700 3450
 $Comp
 L Connector:Barrel_Jack J1
 U 1 1 5CDBC439
-P 2500 4800
-F 0 "J1" H 2557 5125 50  0000 C CNN
-F 1 "Barrel_Jack" H 2557 5034 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal" H 2550 4760 50  0001 C CNN
-F 3 "~" H 2550 4760 50  0001 C CNN
-	1    2500 4800
+P 900 4350
+F 0 "J1" H 957 4675 50  0000 C CNN
+F 1 "Barrel_Jack" H 957 4584 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal" H 950 4310 50  0001 C CNN
+F 3 "~" H 950 4310 50  0001 C CNN
+	1    900  4350
 	1    0    0    -1  
 $EndComp
-Text GLabel 2800 4700 2    50   Input ~ 0
-VIN
-Text GLabel 4400 4700 2    50   Input ~ 0
-VIN
-Wire Wire Line
-	4400 4700 4200 4700
-$Comp
-L power:GND #PWR0108
-U 1 1 5CDC439C
-P 4400 4900
-F 0 "#PWR0108" H 4400 4650 50  0001 C CNN
-F 1 "GND" H 4405 4727 50  0000 C CNN
-F 2 "" H 4400 4900 50  0001 C CNN
-F 3 "" H 4400 4900 50  0001 C CNN
-	1    4400 4900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4200 4900 4400 4900
 Text GLabel 4400 4800 2    50   Input ~ 0
 DATA
 Wire Wire Line
@@ -444,17 +408,6 @@ Wire Wire Line
 	4150 4050 4150 4100
 Wire Wire Line
 	3250 3850 3250 4100
-$Comp
-L Connector:TestPoint_2Pole TP1
-U 1 1 5CDDBD9F
-P 7000 3750
-F 0 "TP1" H 7000 3945 50  0000 C CNN
-F 1 "TestPoint_2Pole" H 7000 3854 50  0000 C CNN
-F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 7000 3750 50  0001 C CNN
-F 3 "~" H 7000 3750 50  0001 C CNN
-	1    7000 3750
-	1    0    0    -1  
-$EndComp
 Text Notes 7350 7500 0    50   ~ 0
 Bluetooth Ledstrip controller
 Text Notes 8150 7650 0    50   ~ 0
@@ -589,4 +542,256 @@ Wire Wire Line
 Wire Wire Line
 	5900 4250 6150 4250
 NoConn ~ 5900 4550
+$Comp
+L Device:Q_PMOS_SDG Q1
+U 1 1 5D461D8C
+P 2200 4550
+F 0 "Q1" H 2406 4596 50  0000 L CNN
+F 1 "Q_PMOS_SDG" H 2406 4505 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 2400 4650 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 2200 4550 50  0001 C CNN
+	1    2200 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 4750 2300 4800
+Wire Wire Line
+	2300 4800 2400 4800
+Wire Wire Line
+	2300 4250 2300 4350
+$Comp
+L power:GND #PWR0110
+U 1 1 5D474D63
+P 1450 4900
+F 0 "#PWR0110" H 1450 4650 50  0001 C CNN
+F 1 "GND" H 1455 4727 50  0000 C CNN
+F 2 "" H 1450 4900 50  0001 C CNN
+F 3 "" H 1450 4900 50  0001 C CNN
+	1    1450 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push_SPDT SW1
+U 1 1 5D47AFC5
+P 1750 4550
+F 0 "SW1" H 1750 4835 50  0000 C CNN
+F 1 "SW_Push_SPDT" H 1750 4744 50  0000 C CNN
+F 2 "USR-Footprints:XKB7070-Z" H 1750 4550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1811191808_XKB-XKB7070-Z_C318863.pdf" H 1750 4550 50  0001 C CNN
+	1    1750 4550
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1950 4550 2000 4550
+Wire Wire Line
+	1200 4250 1450 4250
+Wire Wire Line
+	1550 4650 1450 4650
+Wire Wire Line
+	1450 4650 1450 4900
+Wire Wire Line
+	1550 4450 1450 4450
+Wire Wire Line
+	1450 4450 1450 4250
+Connection ~ 1450 4250
+Wire Wire Line
+	1450 4250 2300 4250
+Text GLabel 6700 3750 3    50   Input ~ 0
+RESET
+Wire Wire Line
+	3550 3450 3700 3450
+Connection ~ 3700 3450
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5D4A1496
+P 1450 3450
+F 0 "#FLG0101" H 1450 3525 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 3623 50  0000 C CNN
+F 2 "" H 1450 3450 50  0001 C CNN
+F 3 "~" H 1450 3450 50  0001 C CNN
+	1    1450 3450
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0103
+U 1 1 5D4A3D51
+P 2000 3450
+F 0 "#FLG0103" H 2000 3525 50  0001 C CNN
+F 1 "PWR_FLAG" H 2000 3623 50  0000 C CNN
+F 2 "" H 2000 3450 50  0001 C CNN
+F 3 "~" H 2000 3450 50  0001 C CNN
+	1    2000 3450
+	-1   0    0    1   
+$EndComp
+Text GLabel 2000 3250 1    50   Input ~ 0
++3V3
+Text GLabel 1450 3250 1    50   Input ~ 0
+VIN
+Wire Wire Line
+	2000 3450 2000 3250
+Wire Wire Line
+	1450 3450 1450 3250
+Wire Wire Line
+	1700 3550 1700 3700
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5D4A1B11
+P 1700 3550
+F 0 "#FLG0102" H 1700 3625 50  0001 C CNN
+F 1 "PWR_FLAG" H 1700 3723 50  0000 C CNN
+F 2 "" H 1700 3550 50  0001 C CNN
+F 3 "~" H 1700 3550 50  0001 C CNN
+	1    1700 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0111
+U 1 1 5D4ADA6B
+P 1700 3700
+F 0 "#PWR0111" H 1700 3450 50  0001 C CNN
+F 1 "GND" H 1705 3527 50  0000 C CNN
+F 2 "" H 1700 3700 50  0001 C CNN
+F 3 "" H 1700 3700 50  0001 C CNN
+	1    1700 3700
+	1    0    0    -1  
+$EndComp
+Text GLabel 2450 3450 0    50   Input ~ 0
+VIN
+Text GLabel 2400 4800 2    50   Input ~ 0
+VIN
+Wire Wire Line
+	4200 4900 4400 4900
+$Comp
+L power:GND #PWR0108
+U 1 1 5CDC439C
+P 4400 4900
+F 0 "#PWR0108" H 4400 4650 50  0001 C CNN
+F 1 "GND" H 4405 4727 50  0000 C CNN
+F 2 "" H 4400 4900 50  0001 C CNN
+F 3 "" H 4400 4900 50  0001 C CNN
+	1    4400 4900
+	1    0    0    -1  
+$EndComp
+Text Label 4200 4900 0    50   ~ 0
+GND
+Text Label 1200 4250 0    50   ~ 0
+VINJACK
+Wire Wire Line
+	4400 4700 4200 4700
+Text GLabel 4400 4700 2    50   Input ~ 0
+VIN
+Text Label 4200 4700 0    50   ~ 0
+VIN
+$Comp
+L Connector:TestPoint TP1
+U 1 1 5D573650
+P 6200 2250
+F 0 "TP1" V 6154 2438 50  0000 L CNN
+F 1 "Debug" V 6245 2438 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm" H 6400 2250 50  0001 C CNN
+F 3 "~" H 6400 2250 50  0001 C CNN
+	1    6200 2250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5900 2250 6200 2250
+$Comp
+L _electromech:PUSH SW2
+U 1 1 5D576BAE
+P 6950 3750
+F 0 "SW2" H 6950 3970 50  0000 C CNN
+F 1 "PUSH" H 6950 3879 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_FSMSM" H 6950 3750 60  0001 C CNN
+F 3 "" H 6950 3750 60  0000 C CNN
+	1    6950 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7100 3750 7450 3750
+$Comp
+L Memory_Flash:AT25DF041x-UxN-x U4
+U 1 1 5D593F0F
+P 3150 1700
+F 0 "U4" H 3794 1746 50  0000 L CNN
+F 1 "AT25DF512x-UxN-x" H 3794 1655 50  0000 L CNN
+F 2 "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm" H 2950 1100 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Adesto-Technologies-AT25DF512C-MAHN-T_C226099.pdf" H 3150 2400 50  0001 C CNN
+	1    3150 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5D59ADFA
+P 3150 2300
+F 0 "#PWR02" H 3150 2050 50  0001 C CNN
+F 1 "GND" H 3155 2127 50  0000 C CNN
+F 2 "" H 3150 2300 50  0001 C CNN
+F 3 "" H 3150 2300 50  0001 C CNN
+	1    3150 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 2300 3150 2200
+Text GLabel 3150 1100 1    50   Input ~ 0
++3V3
+Wire Wire Line
+	3150 1100 3150 1150
+Text GLabel 3900 1500 2    50   Input ~ 0
+MISO
+Wire Wire Line
+	3900 1500 3750 1500
+Text GLabel 2400 1500 0    50   Input ~ 0
+MOSI
+Wire Wire Line
+	2400 1500 2550 1500
+Text GLabel 2400 1600 0    50   Input ~ 0
+SCK
+Wire Wire Line
+	2400 1600 2550 1600
+Wire Wire Line
+	2550 1900 2400 1900
+Wire Wire Line
+	1900 1150 1900 1900
+Connection ~ 3150 1150
+Wire Wire Line
+	3150 1150 3150 1200
+Wire Wire Line
+	2550 1800 2400 1800
+Wire Wire Line
+	2400 1800 2400 1900
+Connection ~ 2400 1900
+Text GLabel 2400 1700 0    50   Input ~ 0
+FLASH_CSN
+Wire Wire Line
+	2400 1700 2500 1700
+Wire Wire Line
+	1900 1900 2400 1900
+Wire Wire Line
+	1900 1150 2500 1150
+$Comp
+L Device:R_Small R4
+U 1 1 5D5C158E
+P 2500 1300
+F 0 "R4" H 2559 1346 50  0000 L CNN
+F 1 "1k" H 2559 1255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0201_0603Metric" H 2500 1300 50  0001 C CNN
+F 3 "~" H 2500 1300 50  0001 C CNN
+	1    2500 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 1200 2500 1150
+Connection ~ 2500 1150
+Wire Wire Line
+	2500 1150 3150 1150
+Wire Wire Line
+	2500 1400 2500 1700
+Connection ~ 2500 1700
+Wire Wire Line
+	2500 1700 2550 1700
+Text GLabel 6050 2450 2    50   Input ~ 0
+FLASH_CSN
+NoConn ~ 5900 2350
+Wire Wire Line
+	5900 2450 6050 2450
 $EndSCHEMATC

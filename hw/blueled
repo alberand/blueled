@@ -1,0 +1,28 @@
+Source,/home/andrew/Projects/blueled/hw/blueled.sch
+Kicad Rev,Eeschema 5.1.2
+Generated Date,Sun 04 Aug 2019 08:19:25 PM CEST
+
+Title,Not Set
+Company,Not Set
+Revision,Not Set
+Date Issue,Not Set
+
+Reference,Value,Field4,Field6,Field7,Field8,Library,Library Ref
+U1,ATmega328P-AU,MCU_Microchip_ATmega,ATmega328P-AU
+C1,10uF,Device,CP1
+C2,10uF,Device,CP1
+U2,HC-05,Unavailable,SOIC-14,HuiCheng,None,MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_,MOUDLE-BLUETOOTH-HC-05(34P-27X13MM)
+U3,LM1117-3.3,Regulator_Linear,LM1117-3.3
+X1,RESON-MURATA-CSTCE,pasv-xtal,RESON-MURATA-CSTCE
+R1,1k,Device,R_Small
+C3,0.1u,Device,C
+R2,1k,Device,R_Small
+D1,LED,Device,LED
+J2,Screw_Terminal_01x03,Connector,Screw_Terminal_01x03
+J1,Barrel_Jack,Connector,Barrel_Jack
+TP1,TestPoint_2Pole,Connector,TestPoint_2Pole
+J3,ICSP,Connector_Generic,Conn_02x03_Top_Bottom
+R3,1k,Device,R_Small
+D2,LED,Device,LED
+Q1,Q_PMOS_SDG,Device,Q_PMOS_SDG
+SW1,SW_Push_SPDT,Switch,SW_Push_SPDT

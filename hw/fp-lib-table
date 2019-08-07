@@ -1,3 +1,2 @@
 (fp_lib_table
-  (lib (name HC-05)(type Legacy)(uri /home/andrew/TMP/hclib/HC-05.mod)(options "")(descr ""))
 )
