@@ -48,6 +48,9 @@ switching, isolation, robustness)
 Mosfet is small and cheap and looks like it can be used as a switch. So, I don't
 see why not use for this project.
 
+I decided to you P-MOSFET. AOD4185L MOSFET P Trench 40V 40A 3V @ 250uA 15 mΩ @
+20A,10V TO-252-2(DPAK) RoHS
+
 ### References
 
 [1]: https://electronics.stackexchange.com/questions/10092/relay-vs-transistor
