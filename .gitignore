@@ -6,6 +6,7 @@ tmp
 # https://platformio.org/
 .pioenvs
 .piolibdeps
+.pio
 
 # Kicad
 # For PCBs designed using KiCad: http://www.kicad-pcb.org/
