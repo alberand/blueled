@@ -1,6 +1,6 @@
 Author: Andrey Albershteyn
 Date: 28.07.19
-Status: Open
+Status: Good Enough
 Tags: feature, circuit-power-off
 
 ### Brief 
