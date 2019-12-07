@@ -17,6 +17,7 @@
 void test_size(void) {
     FIFO<uint8_t>* f = new FIFO<uint8_t>(BUFFER_SIZE);
     TEST_ASSERT_EQUAL(f->getsize(), BUFFER_SIZE);
+    delete f;
 }
 
 void test_available(void){
@@ -28,6 +29,7 @@ void test_available(void){
     f->put(4);
     f->put(5);
     TEST_ASSERT_EQUAL(f->available(), 5);
+    delete f;
 }
 
 void test_clear(void){
@@ -42,6 +44,7 @@ void test_clear(void){
     f->clear();
     TEST_ASSERT_EQUAL(f->available(), 0);
     TEST_ASSERT_EQUAL(f->get(), 0);
+    delete f;
 }
 
 void test_basic(void) {
@@ -55,6 +58,7 @@ void test_basic(void) {
     for(int i = 0; i < count; i++){
         TEST_ASSERT_EQUAL(f->get(), i);
     }
+    delete f;
 }
 
 void testsuite(){
@@ -74,19 +78,21 @@ void setup() {
     // NOTE!!! Wait for >2 secs
     // if board doesn't support software reset via Serial.DTR/RTS
     delay(2000);
+
     UNITY_BEGIN();
     RUN_TEST(test_size);
     RUN_TEST(test_available);
     RUN_TEST(test_clear);
     RUN_TEST(test_basic);
+    UNITY_END();
 }
 
 void loop() {
-    // digitalWrite(13, HIGH);
-    // delay(100);
-    // digitalWrite(13, LOW);
-    // delay(500);
-    UNITY_END();
+    digitalWrite(13, HIGH);
+    delay(100);
+    digitalWrite(13, LOW);
+    delay(500);
+    // Serial.end();
 }
 
 #else
