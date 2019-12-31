@@ -1,3 +1,6 @@
 [submodule "optiboot"]
 	path = optiboot
 	url = https://github.com/Optiboot/optiboot
+[submodule "lib/TinyFrame"]
+	path = lib/TinyFrame
+	url = git@github.com:MightyPork/TinyFrame.git
