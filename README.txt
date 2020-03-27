@@ -4,6 +4,7 @@ a lot of corrupted bytes during uploading bootloader/application with ISCP.
 
 Add bluetooth:
 
+    $ sudo systemctl start bluetooth
     $ sudo bluetoothctl
     $ power on
     $ scan on
@@ -13,6 +14,10 @@ Add bluetooth:
     $ # It will ask for pin
     $ # That's all!
 
+Load rfcomm kernel module:
+
+    sudo modprobe rfcomm 
+
 Create serial port:
 
     sudo rfcomm bind rfcomm0 <MAC>
@@ -21,3 +26,5 @@ In case of problems with PC's bluetooth module try:
 
 1. power on/off module through the bluetoothctl session
 2. sudo rfkill unblock all
+
+https://gist.github.com/0/c73e2557d875446b9603
