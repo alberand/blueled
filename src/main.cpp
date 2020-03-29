@@ -24,6 +24,11 @@
 #define STATE_GRADIENT_FINISH 0x2142
 #define STATE_CYLON 0x43
 #define STATE_RAINBOW 0x44
+#define STATE_STROBOSCOPE 0x45
+#define STATE_CONFETTI 0x46
+#define STATE_SINELON 0x47
+#define STATE_BPM 0x48
+#define STATE_JUGGLE 0x49
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -55,11 +60,26 @@ void simpap_handler(uint8_t* data, uint8_t len){
 			state_t.state = STATE_GRADIENT;
 			gradient_handler(&(data[PAYLOAD_OFFSET]), len - PAYLOAD_OFFSET);
 		break;
+		case STATE_CYLON:
+			state_t.state = STATE_CYLON;
+		break;
 		case STATE_RAINBOW:
 			state_t.state = STATE_RAINBOW;
 		break;
-		case STATE_CYLON:
-			state_t.state = STATE_CYLON;
+		case STATE_STROBOSCOPE:
+			state_t.state = STATE_STROBOSCOPE;
+		break;
+		case STATE_CONFETTI:
+			state_t.state = STATE_CONFETTI;
+		break;
+		case STATE_SINELON:
+			state_t.state = STATE_SINELON;
+		break;
+		case STATE_BPM:
+			state_t.state = STATE_BPM;
+		break;
+		case STATE_JUGGLE:
+			state_t.state = STATE_JUGGLE;
 		break;
 		default:
     		Serial.print("Don't know this command");
@@ -96,6 +116,21 @@ void process(){
 		break;
 		case STATE_RAINBOW:
 			pride(leds);
+		break;
+		case STATE_STROBOSCOPE:
+			stroboscope(leds);
+		break;
+		case STATE_CONFETTI:
+			confetti(leds);
+		break;
+		case STATE_SINELON:
+			sinelon(leds);
+		break;
+		case STATE_BPM:
+			bpm(leds);
+		break;
+		case STATE_JUGGLE:
+			juggle(leds);
 		break;
 	}
 

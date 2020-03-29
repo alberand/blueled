@@ -9,6 +9,11 @@
 
 #define NUM_LEDS 27
 
+#define BRIGHTNESS          255
+#define FRAMES_PER_SECOND   100
+
+#define ZOOMING_BEATS_PER_MINUTE 122
+
 static struct solid_params {
     uint32_t color;
 } solid_params_t;
@@ -28,5 +33,10 @@ void solid(CRGB* leds);
 void gradient(CRGB* leds);
 void pride(CRGB* leds);
 void cylon(CRGB* leds);
+void stroboscope(CRGB* leds);
+void confetti(CRGB* leds);
+void sinelon(CRGB* leds);
+void bpm(CRGB* leds);
+void juggle(CRGB* leds);
 
 #endif // __LEDS_HPP__
