@@ -1,0 +1,1 @@
+KERNEL=="rfcomm[0-9]", SUBSYSTEM=="tty", DRIVER=="", ATTR{channel}=="1", ATTR{address}=="00:13:ef:00:03:04", SYMLINK+="blueled"
