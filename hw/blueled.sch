@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:blueled-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -137,7 +136,7 @@ F 3 "" H 7250 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L pasv-xtal:RESON-MURATA-CSTCE X1
+L blueled-rescue:RESON-MURATA-CSTCE-pasv-xtal X1
 U 1 1 5CBDC71D
 P 7000 2850
 F 0 "X1" H 7078 2804 50  0000 L CNN
@@ -292,19 +291,19 @@ Text Label 5300 1750 0    50   ~ 0
 +3V3
 Text Label 4250 2650 0    50   ~ 0
 GND
-Text Label 4200 4800 0    50   ~ 0
+Text Label 3850 5850 0    50   ~ 0
 DATA
 Text GLabel 6150 4650 2    50   Input ~ 0
 DATA
 $Comp
 L Connector:Screw_Terminal_01x03 J2
 U 1 1 5CC5BA14
-P 4000 4800
-F 0 "J2" H 4080 4842 50  0000 L CNN
-F 1 "Screw_Terminal_01x03" H 4080 4751 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 4000 4800 50  0001 C CNN
-F 3 "~" H 4000 4800 50  0001 C CNN
-	1    4000 4800
+P 3650 5850
+F 0 "J2" H 3730 5892 50  0000 L CNN
+F 1 "LED Strip" H 3730 5801 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 3650 5850 50  0001 C CNN
+F 3 "~" H 3650 5850 50  0001 C CNN
+	1    3650 5850
 	-1   0    0    -1  
 $EndComp
 NoConn ~ 5900 3650
@@ -364,10 +363,10 @@ F 3 "~" H 950 4310 50  0001 C CNN
 	1    900  4350
 	1    0    0    -1  
 $EndComp
-Text GLabel 4400 4800 2    50   Input ~ 0
+Text GLabel 4050 5850 2    50   Input ~ 0
 DATA
 Wire Wire Line
-	4200 4800 4400 4800
+	3850 5850 4050 5850
 Wire Wire Line
 	5300 4950 5300 5350
 $Comp
@@ -394,51 +393,51 @@ alberand
 $Comp
 L Connector_Generic:Conn_02x03_Top_Bottom J3
 U 1 1 5D06C568
-P 7000 5050
-F 0 "J3" H 7050 5367 50  0000 C CNN
-F 1 "ICSP" H 7050 5276 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 7000 5050 50  0001 C CNN
-F 3 "~" H 7000 5050 50  0001 C CNN
-	1    7000 5050
+P 3400 5150
+F 0 "J3" H 3450 5467 50  0000 C CNN
+F 1 "ICSP" H 3450 5376 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 3400 5150 50  0001 C CNN
+F 3 "~" H 3400 5150 50  0001 C CNN
+	1    3400 5150
 	1    0    0    -1  
 $EndComp
-Text GLabel 6550 5150 0    50   Input ~ 0
+Text GLabel 2950 5250 0    50   Input ~ 0
 RESET
-Text GLabel 7500 4950 2    50   Input ~ 0
+Text GLabel 3900 5050 2    50   Input ~ 0
 +3V3
 Wire Wire Line
-	7500 4950 7300 4950
-Text GLabel 7500 5050 2    50   Input ~ 0
+	3900 5050 3700 5050
+Text GLabel 3900 5150 2    50   Input ~ 0
 MOSI
-Text GLabel 6550 4950 0    50   Input ~ 0
+Text GLabel 2950 5050 0    50   Input ~ 0
 MISO
-Text GLabel 6550 5050 0    50   Input ~ 0
+Text GLabel 2950 5150 0    50   Input ~ 0
 SCK
 Wire Wire Line
-	6550 5050 6800 5050
+	2950 5150 3200 5150
 Wire Wire Line
-	6550 4950 6800 4950
+	2950 5050 3200 5050
 Wire Wire Line
-	7300 5050 7500 5050
+	3700 5150 3900 5150
 $Comp
 L power:GND #PWR01
 U 1 1 5D07BC0F
-P 7350 5250
-F 0 "#PWR01" H 7350 5000 50  0001 C CNN
-F 1 "GND" H 7355 5077 50  0000 C CNN
-F 2 "" H 7350 5250 50  0001 C CNN
-F 3 "" H 7350 5250 50  0001 C CNN
-	1    7350 5250
+P 3750 5350
+F 0 "#PWR01" H 3750 5100 50  0001 C CNN
+F 1 "GND" H 3755 5177 50  0000 C CNN
+F 2 "" H 3750 5350 50  0001 C CNN
+F 3 "" H 3750 5350 50  0001 C CNN
+	1    3750 5350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7300 5150 7350 5150
+	3700 5250 3750 5250
 Wire Wire Line
-	7350 5150 7350 5250
-Text Label 6550 5150 0    50   ~ 0
+	3750 5250 3750 5350
+Text Label 2950 5250 0    50   ~ 0
 RESET
 Wire Wire Line
-	6550 5150 6800 5150
+	2950 5250 3200 5250
 Text GLabel 6050 2650 2    50   Input ~ 0
 MISO
 Text GLabel 6050 2550 2    50   Input ~ 0
@@ -490,7 +489,7 @@ Wire Wire Line
 	7750 1750 7750 1800
 Text GLabel 10600 3550 2    50   Input ~ 0
 HC-DISCNCT
-Text GLabel 10650 2650 2    50   Input ~ 0
+Text GLabel 10600 3450 2    50   Input ~ 0
 HC-STATE
 Wire Wire Line
 	10500 3550 10600 3550
@@ -520,20 +519,14 @@ NoConn ~ 5900 4550
 $Comp
 L Device:Q_PMOS_SDG Q1
 U 1 1 5D461D8C
-P 2200 4550
-F 0 "Q1" H 2406 4596 50  0000 L CNN
-F 1 "Q_PMOS_SDG" H 2406 4505 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 2400 4650 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 2200 4550 50  0001 C CNN
-	1    2200 4550
-	1    0    0    -1  
+P 2150 4350
+F 0 "Q1" H 2356 4396 50  0000 L CNN
+F 1 "Q_PMOS_SDG" H 2356 4305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 2350 4450 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 2150 4350 50  0001 C CNN
+	1    2150 4350
+	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	2300 4750 2300 4800
-Wire Wire Line
-	2300 4800 2400 4800
-Wire Wire Line
-	2300 4250 2300 4350
 $Comp
 L power:GND #PWR0110
 U 1 1 5D474D63
@@ -545,21 +538,6 @@ F 3 "" H 1450 4900 50  0001 C CNN
 	1    1450 4900
 	1    0    0    -1  
 $EndComp
-$Comp
-L Switch:SW_Push_SPDT SW1
-U 1 1 5D47AFC5
-P 1750 4550
-F 0 "SW1" H 1750 4835 50  0000 C CNN
-F 1 "SW_Push_SPDT" H 1750 4744 50  0000 C CNN
-F 2 "USR-Footprints:XKB7070-Z" H 1750 4550 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811191808_XKB-XKB7070-Z_C318863.pdf" H 1750 4550 50  0001 C CNN
-	1    1750 4550
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	1950 4550 2000 4550
-Wire Wire Line
-	1200 4250 1450 4250
 Wire Wire Line
 	1550 4650 1450 4650
 Wire Wire Line
@@ -568,9 +546,6 @@ Wire Wire Line
 	1550 4450 1450 4450
 Wire Wire Line
 	1450 4450 1450 4250
-Connection ~ 1450 4250
-Wire Wire Line
-	1450 4250 2300 4250
 Text GLabel 6700 3750 3    50   Input ~ 0
 RESET
 Wire Wire Line
@@ -632,30 +607,28 @@ F 3 "" H 1700 3700 50  0001 C CNN
 $EndComp
 Text GLabel 2450 3450 0    50   Input ~ 0
 VIN
-Text GLabel 2400 4800 2    50   Input ~ 0
+Text GLabel 2500 4250 2    50   Input ~ 0
 VIN
 Wire Wire Line
-	4200 4900 4400 4900
+	3850 5950 4050 5950
 $Comp
 L power:GND #PWR0108
 U 1 1 5CDC439C
-P 4400 4900
-F 0 "#PWR0108" H 4400 4650 50  0001 C CNN
-F 1 "GND" H 4405 4727 50  0000 C CNN
-F 2 "" H 4400 4900 50  0001 C CNN
-F 3 "" H 4400 4900 50  0001 C CNN
-	1    4400 4900
+P 4050 5950
+F 0 "#PWR0108" H 4050 5700 50  0001 C CNN
+F 1 "GND" H 4055 5777 50  0000 C CNN
+F 2 "" H 4050 5950 50  0001 C CNN
+F 3 "" H 4050 5950 50  0001 C CNN
+	1    4050 5950
 	1    0    0    -1  
 $EndComp
-Text Label 4200 4900 0    50   ~ 0
+Text Label 3850 5950 0    50   ~ 0
 GND
-Text Label 1200 4250 0    50   ~ 0
-VINJACK
 Wire Wire Line
-	4400 4700 4200 4700
-Text GLabel 4400 4700 2    50   Input ~ 0
+	4050 5750 3850 5750
+Text GLabel 4050 5750 2    50   Input ~ 0
 VIN
-Text Label 4200 4700 0    50   ~ 0
+Text Label 3850 5750 0    50   ~ 0
 VIN
 $Comp
 L Connector:TestPoint TP1
@@ -671,7 +644,7 @@ $EndComp
 Wire Wire Line
 	5900 2250 6200 2250
 $Comp
-L _electromech:PUSH SW2
+L blueled-rescue:PUSH-_electromech SW2
 U 1 1 5D576BAE
 P 6950 3750
 F 0 "SW2" H 6950 3970 50  0000 C CNN
@@ -715,34 +688,17 @@ Text GLabel 3900 1500 2    50   Input ~ 0
 MISO
 Wire Wire Line
 	3900 1500 3750 1500
-Text GLabel 2400 1500 0    50   Input ~ 0
+Text GLabel 2300 1500 0    50   Input ~ 0
 MOSI
-Wire Wire Line
-	2400 1500 2550 1500
-Text GLabel 2400 1600 0    50   Input ~ 0
+Text GLabel 2300 1600 0    50   Input ~ 0
 SCK
-Wire Wire Line
-	2400 1600 2550 1600
-Wire Wire Line
-	2550 1900 2400 1900
-Wire Wire Line
-	1900 1150 1900 1900
 Connection ~ 3150 1150
 Wire Wire Line
 	3150 1150 3150 1200
 Wire Wire Line
 	2550 1800 2400 1800
-Wire Wire Line
-	2400 1800 2400 1900
-Connection ~ 2400 1900
-Text GLabel 2400 1700 0    50   Input ~ 0
+Text GLabel 2300 1700 0    50   Input ~ 0
 FLASH_CSN
-Wire Wire Line
-	2400 1700 2500 1700
-Wire Wire Line
-	1900 1900 2400 1900
-Wire Wire Line
-	1900 1150 2500 1150
 $Comp
 L Device:R_Small R4
 U 1 1 5D5C158E
@@ -761,7 +717,6 @@ Wire Wire Line
 	2500 1150 3150 1150
 Wire Wire Line
 	2500 1400 2500 1700
-Connection ~ 2500 1700
 Wire Wire Line
 	2500 1700 2550 1700
 Text GLabel 6050 2450 2    50   Input ~ 0
@@ -801,13 +756,11 @@ Wire Wire Line
 Wire Wire Line
 	4800 1650 4800 1750
 Wire Wire Line
-	10500 2650 10650 2650
-Wire Wire Line
 	10500 3650 10500 4300
 Wire Wire Line
 	8300 3650 8300 4300
 $Comp
-L MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_:MOUDLE-BLUETOOTH-HC-05(34P-27X13MM) U2
+L blueled-rescue:MOUDLE-BLUETOOTH-HC-05(34P-27X13MM)-MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_ U2
 U 1 1 5CB7CCE4
 P 9400 3100
 F 0 "U2" H 9400 4017 50  0000 C CNN
@@ -821,5 +774,45 @@ F 7 "None" H 9400 3100 50  0001 L BNN "Field8"
 	1    9400 3100
 	1    0    0    -1  
 $EndComp
-NoConn ~ 10500 3450
+Wire Wire Line
+	2350 4250 2500 4250
+Wire Wire Line
+	1950 4550 2150 4550
+$Comp
+L Switch:SW_Push_SPDT SW1
+U 1 1 5D47AFC5
+P 1750 4550
+F 0 "SW1" H 1750 4835 50  0000 C CNN
+F 1 "SW_Push_SPDT" H 1750 4744 50  0000 C CNN
+F 2 "USR-Footprints:XKB7070-Z" H 1750 4550 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1811191808_XKB-XKB7070-Z_C318863.pdf" H 1750 4550 50  0001 C CNN
+	1    1750 4550
+	-1   0    0    -1  
+$EndComp
+Text Label 1200 4250 0    50   ~ 0
+VINJACK
+Wire Wire Line
+	1200 4250 1450 4250
+Connection ~ 1450 4250
+Wire Wire Line
+	1450 4250 1950 4250
+Wire Wire Line
+	2400 1900 2400 1800
+Wire Wire Line
+	2400 1900 2550 1900
+Wire Wire Line
+	2400 1150 2500 1150
+Connection ~ 2400 1800
+Wire Wire Line
+	2400 1800 2400 1150
+Wire Wire Line
+	2300 1700 2500 1700
+Connection ~ 2500 1700
+Wire Wire Line
+	2300 1600 2550 1600
+Wire Wire Line
+	2300 1500 2550 1500
+Wire Wire Line
+	10500 3450 10600 3450
+NoConn ~ 10500 2650
 $EndSCHEMATC
