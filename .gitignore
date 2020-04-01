@@ -1,6 +1,7 @@
 tags
 *.swp
 tmp
+build
 
 # PlatformIO
 # https://platformio.org/
