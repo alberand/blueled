@@ -1,3 +1,12 @@
+## Blueled - Bluetooth LED strip controller
+
+Features:
+
+* Over-The-Air Updates
+* Android Application
+* 20 different pre-set animation modes
+* Custom colors and gradients
+* Microphone
 
 Be careful with connection between programmer Arduino and target Arduino. I had
 a lot of corrupted bytes during uploading bootloader/application with ISCP.
