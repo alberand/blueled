@@ -1,2 +1,4 @@
 (fp_lib_table
+  (lib (name MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_)(type Legacy)(uri ${KIPRJMOD}/libs/MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_.mod)(options "")(descr ""))
+  (lib (name blueled)(type KiCad)(uri ${KIPRJMOD}/libs/blueled.pretty)(options "")(descr ""))
 )
