@@ -278,10 +278,10 @@ Wire Wire Line
 Text Label 10550 1400 0    50   ~ 0
 VIN
 $Comp
-L Connector:TestPoint TP1
+L Connector:TestPoint DBG0
 U 1 1 5D573650
 P 6900 1550
-F 0 "TP1" V 6854 1738 50  0000 L CNN
+F 0 "DBG0" V 6854 1738 50  0000 L CNN
 F 1 "Debug" V 6945 1738 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 7100 1550 50  0001 C CNN
 F 3 "~" H 7100 1550 50  0001 C CNN
@@ -603,39 +603,35 @@ F 3 "" H 2800 7150 50  0001 C CNN
 	1    2800 7150
 	1    0    0    -1  
 $EndComp
-Text Label 1900 7000 2    50   ~ 0
+Text Label 1200 6300 2    50   ~ 0
 +3V3
-Text Label 1200 6600 2    50   ~ 0
+Text Label 1500 5500 2    50   ~ 0
 ~HC-POWER-EN
 $Comp
 L Device:R_Small R5
 U 1 1 5E8E07EF
-P 1400 6600
-F 0 "R5" H 1459 6646 50  0000 L CNN
-F 1 "1k" H 1459 6555 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1400 6600 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 1400 6600 50  0001 C CNN
-F 4 "lcsc.com" H 1400 6600 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 1400 6600 50  0001 C CNN "Manuf. Part"
-	1    1400 6600
-	0    1    1    0   
+P 1500 5800
+F 0 "R5" H 1559 5846 50  0000 L CNN
+F 1 "1k" H 1559 5755 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1500 5800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 1500 5800 50  0001 C CNN
+F 4 "lcsc.com" H 1500 5800 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 1500 5800 50  0001 C CNN "Manuf. Part"
+	1    1500 5800
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1500 6600 1600 6600
-Wire Wire Line
-	1900 6800 1900 7000
 $Comp
 L Device:Q_PNP_EBC Q2
 U 1 1 5E8AAEF6
-P 1800 6600
-F 0 "Q2" H 1450 6900 50  0000 L CNN
-F 1 "Q_PNP_EBC" H 1450 6800 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering" H 2000 6700 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf" H 1800 6600 50  0001 C CNN
-F 4 "lcsc.com" H 1800 6600 50  0001 C CNN "Distributor"
-F 5 "UMT2907A" H 1800 6600 50  0001 C CNN "Manuf. Part"
-	1    1800 6600
-	1    0    0    -1  
+P 1500 6200
+F 0 "Q2" V 1700 6150 50  0000 L CNN
+F 1 "Q_PNP_EBC" V 1800 6150 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering" H 1700 6300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf" H 1500 6200 50  0001 C CNN
+F 4 "lcsc.com" H 1500 6200 50  0001 C CNN "Distributor"
+F 5 "UMT2907A" H 1500 6200 50  0001 C CNN "Manuf. Part"
+	1    1500 6200
+	0    1    1    0   
 $EndComp
 Wire Wire Line
 	5250 1550 5400 1550
@@ -647,12 +643,6 @@ Wire Wire Line
 	1450 3550 1300 3550
 Wire Wire Line
 	1300 3550 1300 3650
-Wire Wire Line
-	1900 6400 1900 6300
-Wire Wire Line
-	1900 6300 2100 6300
-Wire Wire Line
-	1300 6600 1200 6600
 Text Notes 8650 2250 0    89   ~ 0
 KiCAD ad-hoc
 Text Label 8850 2450 2    50   ~ 0
@@ -850,10 +840,8 @@ F 8 "aliexpress.com" H 3200 5850 50  0001 C CNN "Distributor"
 	1    3200 5850
 	1    0    0    -1  
 $EndComp
-Text Label 1900 6200 2    50   ~ 0
+Text Label 1700 6200 0    50   ~ 0
 HC-RESET
-Wire Wire Line
-	1900 6200 2100 6200
 Text Label 6700 3850 0    50   ~ 0
 HC-RESET
 Wire Wire Line
@@ -904,7 +892,7 @@ U 1 1 5EB8E526
 P 1900 1700
 F 0 "S1" H 1900 2176 45  0000 C CNN
 F 1 "SWITCH-DPDT-PTH-GPI-152-3013" H 1900 2176 45  0001 C CNN
-F 2 "blueled:XKB7070-X" H 1900 2150 20  0001 C CNN
+F 2 "blueled:XKB7070-Z" H 1900 2150 20  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf" H 1900 1700 50  0001 C CNN
 F 4 "SWCH-10554" H 1900 2081 60  0000 C CNN "Field4"
 F 5 "lcsc.com" H 1900 1700 50  0001 C CNN "Distributor"
@@ -921,4 +909,44 @@ Wire Wire Line
 Wire Wire Line
 	5250 1150 6000 1150
 Connection ~ 5250 1550
+Wire Wire Line
+	1700 6200 2100 6200
+Wire Wire Line
+	1200 6300 1300 6300
+Wire Wire Line
+	1700 6300 1950 6300
+Wire Wire Line
+	1500 5500 1500 5600
+Wire Wire Line
+	1500 5900 1500 6000
+$Comp
+L Connector:TestPoint DBG1
+U 1 1 5EA875B4
+P 1950 6400
+F 0 "DBG1" V 1950 6600 50  0000 L CNN
+F 1 "DBG-HC-PWR" V 1850 6600 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2150 6400 50  0001 C CNN
+F 3 "~" H 2150 6400 50  0001 C CNN
+	1    1950 6400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1950 6400 1950 6300
+Connection ~ 1950 6300
+Wire Wire Line
+	1950 6300 2100 6300
+Wire Wire Line
+	1500 5600 1500 5700
+Connection ~ 1500 5600
+$Comp
+L Connector:TestPoint DBG2
+U 1 1 5EAA6065
+P 1500 5600
+F 0 "DBG2" V 1500 5800 50  0000 L CNN
+F 1 "DBG-HC-RST" V 1400 5800 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 1700 5600 50  0001 C CNN
+F 3 "~" H 1700 5600 50  0001 C CNN
+	1    1500 5600
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
