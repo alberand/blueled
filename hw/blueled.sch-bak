@@ -283,7 +283,7 @@ U 1 1 5D573650
 P 6900 1550
 F 0 "DBG0" V 6854 1738 50  0000 L CNN
 F 1 "Debug" V 6945 1738 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 7100 1550 50  0001 C CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7100 1550 50  0001 C CNN
 F 3 "~" H 7100 1550 50  0001 C CNN
 	1    6900 1550
 	0    1    1    0   
@@ -846,24 +846,6 @@ Text Label 6700 3850 0    50   ~ 0
 HC-RESET
 Wire Wire Line
 	6600 3850 6700 3850
-$Comp
-L Device:C C1
-U 1 1 5EAA33DA
-P 2600 1350
-F 0 "C1" H 2400 1400 50  0000 L CNN
-F 1 "10uF" H 2300 1300 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2638 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 2600 1350 50  0001 C CNN
-F 4 "lcsc.com" H 2600 1350 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 2600 1350 50  0001 C CNN "Manuf. Part"
-	1    2600 1350
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2500 1200 2600 1200
-Connection ~ 2600 1200
-Wire Wire Line
-	2600 1200 2850 1200
 Wire Wire Line
 	1600 1400 1600 1200
 Wire Wire Line
@@ -925,7 +907,7 @@ U 1 1 5EA875B4
 P 1950 6400
 F 0 "DBG1" V 1950 6600 50  0000 L CNN
 F 1 "DBG-HC-PWR" V 1850 6600 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 2150 6400 50  0001 C CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2150 6400 50  0001 C CNN
 F 3 "~" H 2150 6400 50  0001 C CNN
 	1    1950 6400
 	-1   0    0    1   
@@ -944,9 +926,25 @@ U 1 1 5EAA6065
 P 1500 5600
 F 0 "DBG2" V 1500 5800 50  0000 L CNN
 F 1 "DBG-HC-RST" V 1400 5800 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 1700 5600 50  0001 C CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1700 5600 50  0001 C CNN
 F 3 "~" H 1700 5600 50  0001 C CNN
 	1    1500 5600
 	0    -1   -1   0   
 $EndComp
+$Comp
+L Device:CP1 C?
+U 1 1 5EA4B8BA
+P 2600 1350
+F 0 "C?" H 2715 1396 50  0000 L CNN
+F 1 "10uF" H 2715 1305 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A" H 2600 1350 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 2600 1350 50  0001 C CNN
+	1    2600 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 1200 2600 1200
+Connection ~ 2600 1200
+Wire Wire Line
+	2600 1200 2850 1200
 $EndSCHEMATC

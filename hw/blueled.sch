@@ -44,10 +44,6 @@ Wire Wire Line
 Wire Wire Line
 	2600 1600 3150 1600
 Connection ~ 3150 1600
-Wire Wire Line
-	3600 1500 3600 1600
-Wire Wire Line
-	3150 1600 3600 1600
 $Comp
 L power:GND #PWR0103
 U 1 1 5CB803CB
@@ -722,21 +718,16 @@ Wire Wire Line
 $Comp
 L Device:C C2
 U 1 1 5E94312D
-P 3600 1350
-F 0 "C2" H 3400 1400 50  0000 L CNN
-F 1 "10uF" H 3300 1300 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3638 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 3600 1350 50  0001 C CNN
-F 4 "lcsc.com" H 3600 1350 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 3600 1350 50  0001 C CNN "Manuf. Part"
-	1    3600 1350
+P 3700 1350
+F 0 "C2" H 3500 1400 50  0000 L CNN
+F 1 "10uF" H 3400 1300 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3738 1200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 3700 1350 50  0001 C CNN
+F 4 "lcsc.com" H 3700 1350 50  0001 C CNN "Distributor"
+F 5 "CL21A106MQFNNNE" H 3700 1350 50  0001 C CNN "Manuf. Part"
+	1    3700 1350
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	3450 1200 3600 1200
-Connection ~ 3600 1200
-Wire Wire Line
-	3600 1200 4050 1200
 Wire Wire Line
 	7500 3150 7500 3050
 $Comp
@@ -846,24 +837,6 @@ Text Label 6700 3850 0    50   ~ 0
 HC-RESET
 Wire Wire Line
 	6600 3850 6700 3850
-$Comp
-L Device:C C1
-U 1 1 5EAA33DA
-P 2600 1350
-F 0 "C1" H 2400 1400 50  0000 L CNN
-F 1 "10uF" H 2300 1300 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2638 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 2600 1350 50  0001 C CNN
-F 4 "lcsc.com" H 2600 1350 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 2600 1350 50  0001 C CNN "Manuf. Part"
-	1    2600 1350
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2500 1200 2600 1200
-Connection ~ 2600 1200
-Wire Wire Line
-	2600 1200 2850 1200
 Wire Wire Line
 	1600 1400 1600 1200
 Wire Wire Line
@@ -949,4 +922,29 @@ F 3 "~" H 1700 5600 50  0001 C CNN
 	1    1500 5600
 	0    -1   -1   0   
 $EndComp
+$Comp
+L Device:CP1 C1
+U 1 1 5EA4B8BA
+P 2600 1350
+F 0 "C1" H 2715 1396 50  0000 L CNN
+F 1 "10uF" H 2715 1305 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 2600 1350 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 2600 1350 50  0001 C CNN
+	1    2600 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 1200 2600 1200
+Connection ~ 2600 1200
+Wire Wire Line
+	2600 1200 2850 1200
+Connection ~ 3700 1200
+Wire Wire Line
+	3700 1200 4050 1200
+Wire Wire Line
+	3450 1200 3700 1200
+Wire Wire Line
+	3700 1600 3700 1500
+Wire Wire Line
+	3150 1600 3700 1600
 $EndSCHEMATC
