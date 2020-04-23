@@ -930,6 +930,8 @@ F 0 "C1" H 2715 1396 50  0000 L CNN
 F 1 "10uF" H 2715 1305 50  0000 L CNN
 F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 2600 1350 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 2600 1350 50  0001 C CNN
+F 4 "lcsc.com" H 2600 1350 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 2600 1350 50  0001 C CNN "Manuf. Part"
 	1    2600 1350
 	1    0    0    -1  
 $EndComp
