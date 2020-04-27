@@ -36,7 +36,7 @@ void fadeall(CRGB* leds) {
     }
 }
 
-void fadeInOut(CRGB* leds){
+void fadeinout(CRGB* leds){
     CRGB color = 0xe37d09;
 
 	animation_state_t.iteration++;
@@ -70,7 +70,7 @@ void gradient(CRGB* leds) {
     }
 }
 
-void pride(CRGB* leds)
+void rainbow(CRGB* leds)
 {
     static uint16_t sPseudotime = 0;
     static uint16_t sLastMillis = 0;
@@ -333,9 +333,9 @@ void juggle(CRGB* leds) {
     }
 }
 
-void twinkle(CRGB* leds, uint16_t step) {
+void twinkle(CRGB* leds) {
 	animation_state_t.iteration++;
-	if(animation_state_t.iteration*step == 500){
+	if(animation_state_t.iteration*25 == 500){
 		animation_state_t.iteration = 0;
     	leds[random(NUM_LEDS)] = solid_params_t.color;
 	} else {
@@ -347,7 +347,7 @@ void twinkle(CRGB* leds, uint16_t step) {
 	}
 }
 
-void snowSparkle(CRGB* leds) {
+void snowsparkle(CRGB* leds) {
 	animation_state_t.iteration++;
 
 	if(animation_state_t.iteration*25 == 1500){

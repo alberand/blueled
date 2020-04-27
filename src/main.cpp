@@ -17,21 +17,6 @@
 
 // Communication
 #define PAYLOAD_OFFSET 2
-#define STATE_SOLID 0x41
-#define STATE_GRADIENT 0x42
-#define STATE_GRADIENT_START 0x42
-#define STATE_GRADIENT_COLOR 0x42
-#define STATE_GRADIENT_FINISH 0x2142
-#define STATE_CYLON 0x43
-#define STATE_RAINBOW 0x44
-#define STATE_STROBOSCOPE 0x45
-#define STATE_CONFETTI 0x46
-#define STATE_SINELON 0x47
-#define STATE_BPM 0x48
-#define STATE_JUGGLE 0x49
-#define STATE_FADEINOUT 0x4A
-#define STATE_TWINKLE 0x4B
-#define STATE_SNOWSPARKLE 0x4C
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -44,6 +29,27 @@ struct state{
 	uint16_t delay;
 } state_t;
 
+struct state_config {
+    uint8_t id;
+    void (*payload_handler)(uint8_t*, uint8_t);
+    void (*state_update)(CRGB*);
+};
+
+static const struct state_config configs[] = {
+    {.id = 0x41, .payload_handler = solid_handler, .state_update = solid},
+    {.id = 0x42, .payload_handler = gradient_handler, .state_update = gradient},
+    {.id = 0x43, .payload_handler = NULL, .state_update = cylon},
+    {.id = 0x44, .payload_handler = NULL, .state_update = rainbow},
+    {.id = 0x45, .payload_handler = NULL, .state_update = stroboscope},
+    {.id = 0x46, .payload_handler = NULL, .state_update = confetti},
+    {.id = 0x47, .payload_handler = NULL, .state_update = sinelon},
+    {.id = 0x48, .payload_handler = NULL, .state_update = bpm},
+    {.id = 0x49, .payload_handler = NULL, .state_update = juggle},
+    {.id = 0x4a, .payload_handler = NULL, .state_update = fadeinout},
+    {.id = 0x4b, .payload_handler = NULL, .state_update = twinkle},
+    {.id = 0x4c, .payload_handler = NULL, .state_update = snowsparkle},
+};
+
 // SoftwareSerial toSlave(10, 11);
 void simpap_send_char(uint8_t ch){
     Serial.write(ch);
@@ -54,51 +60,30 @@ void simpap_handler(uint8_t* data, uint8_t len){
 
 	uint16_t cmd = get_u16(data);
 
-    
+    for(int i = 0; i < COUNT_OF(configs); i++){
+        if(configs[i].id != cmd){
+            continue;
+        }
 
-	switch(cmd){
-		case STATE_SOLID:
-			state_t.state = STATE_SOLID;
-			solid_handler(&(data[PAYLOAD_OFFSET]), len - PAYLOAD_OFFSET);
-		break;
-		case STATE_GRADIENT:
-			state_t.state = STATE_GRADIENT;
-			gradient_handler(&(data[PAYLOAD_OFFSET]), len - PAYLOAD_OFFSET);
-		break;
-		case STATE_CYLON:
-			state_t.state = STATE_CYLON;
-		break;
-		case STATE_RAINBOW:
-			state_t.state = STATE_RAINBOW;
-		break;
-		case STATE_STROBOSCOPE:
-			state_t.state = STATE_STROBOSCOPE;
-		break;
-		case STATE_CONFETTI:
-			state_t.state = STATE_CONFETTI;
-		break;
-		case STATE_SINELON:
-			state_t.state = STATE_SINELON;
-		break;
-		case STATE_BPM:
-			state_t.state = STATE_BPM;
-		break;
-		case STATE_JUGGLE:
-			state_t.state = STATE_JUGGLE;
-		break;
-		case STATE_FADEINOUT:
-			state_t.state = STATE_FADEINOUT;
-		break;
-		case STATE_TWINKLE:
-			state_t.state = STATE_TWINKLE;
-		break;
-		case STATE_SNOWSPARKLE:
-			state_t.state = STATE_SNOWSPARKLE;
-		break;
-		default:
-    		Serial.print("Don't know this command");
-		break;
-	}
+        state_t.state = configs[i].id;
+        if(configs[i].payload_handler != NULL){
+		    configs[i].payload_handler(&(data[PAYLOAD_OFFSET]), 
+                len - PAYLOAD_OFFSET);
+        }
+    }
+}
+
+void state_update(){
+    for(int i = 0; i < COUNT_OF(configs); i++){
+        if(configs[i].id != state_t.state){
+            continue;
+        }
+
+        configs[i].state_update(leds);
+    }
+
+    FastLED.show();
+	delay(state_t.delay);
 }
 
 void setup() {
@@ -113,54 +98,9 @@ void setup() {
 
     simpap_init(&simpap_ctx);
 
-	// Initial state
-	state_t.state = STATE_RAINBOW;
+	// Initial state - Rainbow
+	state_t.state = 0x44;
 	state_t.delay = 25;
-}
-
-void process(){
-	// cylon
-	switch(state_t.state){
-		case STATE_SOLID:
-			solid(leds);
-		break;
-		case STATE_GRADIENT:
-			gradient(leds);
-		break;
-		case STATE_CYLON:
-			cylon(leds);
-		break;
-		case STATE_RAINBOW:
-			pride(leds);
-		break;
-		case STATE_STROBOSCOPE:
-			stroboscope(leds);
-		break;
-		case STATE_CONFETTI:
-			confetti(leds);
-		break;
-		case STATE_SINELON:
-			sinelon(leds);
-		break;
-		case STATE_BPM:
-			bpm(leds);
-		break;
-		case STATE_JUGGLE:
-			juggle(leds);
-		break;
-		case STATE_FADEINOUT:
-			fadeInOut(leds);
-		break;
-		case STATE_TWINKLE:
-			twinkle(leds, state_t.delay);
-		break;
-		case STATE_SNOWSPARKLE:
-			snowSparkle(leds);
-		break;
-	}
-
-    FastLED.show();
-	delay(state_t.delay);
 }
 
 void loop() {
@@ -169,7 +109,7 @@ void loop() {
 	}
 	start = millis();
 
-	process();
+    state_update();
 
 	// Receive input
     while (Serial.available()) {

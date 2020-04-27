@@ -16,17 +16,17 @@ void gradient_handler(uint8_t* payload, uint8_t len);
 
 void fadeall(CRGB* leds);
 
-void fadeInOut(CRGB* leds);
 void solid(CRGB* leds);
 void gradient(CRGB* leds);
-void pride(CRGB* leds);
+void rainbow(CRGB* leds);
 void cylon(CRGB* leds);
 void stroboscope(CRGB* leds);
 void confetti(CRGB* leds);
 void sinelon(CRGB* leds);
 void bpm(CRGB* leds);
 void juggle(CRGB* leds);
-void twinkle(CRGB* leds, uint16_t step);
-void snowSparkle(CRGB* leds);
+void fadeinout(CRGB* leds);
+void twinkle(CRGB* leds);
+void snowsparkle(CRGB* leds);
 
 #endif // __LEDS_HPP__
