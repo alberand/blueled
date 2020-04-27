@@ -1,5 +1,10 @@
 #include "leds.hpp"
 
+static struct animation_state {
+	uint16_t iteration;
+	uint16_t period;
+} animation_state_t;
+
 static struct solid_params {
     uint32_t color;
 } solid_params_t;
@@ -29,6 +34,23 @@ void fadeall(CRGB* leds) {
     for(int i = 0; i < NUM_LEDS; i++) {
         leds[i].nscale8(250);
     }
+}
+
+void fadeInOut(CRGB* leds){
+    CRGB color = 0xe37d09;
+
+	animation_state_t.iteration++;
+	if(animation_state_t.iteration < 128){
+		fadeall(leds);
+	} else if(animation_state_t.iteration < 256) {
+        for(int i = 0; i < NUM_LEDS; i++) {
+ 	    	leds[i].red = color.red * (animation_state_t.iteration - 127)/127;
+ 	    	leds[i].green = color.green * (animation_state_t.iteration - 127)/127;
+ 	    	leds[i].blue = color.blue * (animation_state_t.iteration - 127)/127;
+        }
+	} else {
+		animation_state_t.iteration = 0;
+	}
 }
 
 void solid(CRGB* leds) {
@@ -91,17 +113,16 @@ void pride(CRGB* leds)
 
 void cylon(CRGB* leds) {
     static uint8_t hue = 0;
-    static uint16_t iteration = 0;
 
     fadeall(leds);
 
-    if(iteration < NUM_LEDS)
-        leds[iteration] = CHSV(hue++, 255, 255);
-    if(NUM_LEDS < iteration && iteration < (2*NUM_LEDS))
-        leds[2*NUM_LEDS - iteration] = CHSV(hue++, 255, 255);
+    if(animation_state_t.iteration < NUM_LEDS)
+        leds[animation_state_t.iteration] = CHSV(hue++, 255, 255);
+    if(NUM_LEDS < animation_state_t.iteration && animation_state_t.iteration < (2*NUM_LEDS))
+        leds[2*NUM_LEDS - animation_state_t.iteration] = CHSV(hue++, 255, 255);
 
-    if (iteration++ == (NUM_LEDS*2)) {
-        iteration = 0;
+    if (animation_state_t.iteration++ == (NUM_LEDS*2)) {
+        animation_state_t.iteration = 0;
     }
 }
 
@@ -310,4 +331,36 @@ void juggle(CRGB* leds) {
         leds[beatsin16( i+7, 0, NUM_LEDS-1 )] |= CHSV(dothue, 200, 255);
         dothue += 32;
     }
+}
+
+void twinkle(CRGB* leds, uint16_t step) {
+	animation_state_t.iteration++;
+	if(animation_state_t.iteration*step == 500){
+		animation_state_t.iteration = 0;
+    	leds[random(NUM_LEDS)] = solid_params_t.color;
+	} else {
+		fadeall(leds);
+	}
+
+	if(animation_state_t.iteration*25 == 2000){
+		animation_state_t.iteration = 0;
+	}
+}
+
+void snowSparkle(CRGB* leds) {
+	animation_state_t.iteration++;
+
+	if(animation_state_t.iteration*25 == 1500){
+  		leds[random(NUM_LEDS)] = CRGB(0xff, 0xff, 0xff);
+	}
+
+	if(animation_state_t.iteration*25 == 1900){
+    	for(int i = 0; i < NUM_LEDS; i++) {
+        	leds[i] = 0x101010;
+    	}
+	}
+
+	if(animation_state_t.iteration*25 == 2000){
+		animation_state_t.iteration = 0;
+	}
 }

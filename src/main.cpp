@@ -29,6 +29,9 @@
 #define STATE_SINELON 0x47
 #define STATE_BPM 0x48
 #define STATE_JUGGLE 0x49
+#define STATE_FADEINOUT 0x4A
+#define STATE_TWINKLE 0x4B
+#define STATE_SNOWSPARKLE 0x4C
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -50,6 +53,8 @@ void simpap_handler(uint8_t* data, uint8_t len){
     digitalWrite(LED_BUILTIN, HIGH);
 
 	uint16_t cmd = get_u16(data);
+
+    
 
 	switch(cmd){
 		case STATE_SOLID:
@@ -81,6 +86,15 @@ void simpap_handler(uint8_t* data, uint8_t len){
 		case STATE_JUGGLE:
 			state_t.state = STATE_JUGGLE;
 		break;
+		case STATE_FADEINOUT:
+			state_t.state = STATE_FADEINOUT;
+		break;
+		case STATE_TWINKLE:
+			state_t.state = STATE_TWINKLE;
+		break;
+		case STATE_SNOWSPARKLE:
+			state_t.state = STATE_SNOWSPARKLE;
+		break;
 		default:
     		Serial.print("Don't know this command");
 		break;
@@ -93,11 +107,13 @@ void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, LOW);
 
+	// Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
     FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
 
     simpap_init(&simpap_ctx);
 
+	// Initial state
 	state_t.state = STATE_RAINBOW;
 	state_t.delay = 25;
 }
@@ -131,6 +147,15 @@ void process(){
 		break;
 		case STATE_JUGGLE:
 			juggle(leds);
+		break;
+		case STATE_FADEINOUT:
+			fadeInOut(leds);
+		break;
+		case STATE_TWINKLE:
+			twinkle(leds, state_t.delay);
+		break;
+		case STATE_SNOWSPARKLE:
+			snowSparkle(leds);
 		break;
 	}
 
