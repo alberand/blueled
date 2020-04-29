@@ -28,5 +28,6 @@ void juggle(CRGB* leds);
 void fadeinout(CRGB* leds);
 void twinkle(CRGB* leds);
 void snowsparkle(CRGB* leds);
+void train(CRGB* leds);
 
 #endif // __LEDS_HPP__
