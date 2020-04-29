@@ -350,17 +350,17 @@ void twinkle(CRGB* leds) {
 void snowsparkle(CRGB* leds) {
 	animation_state_t.iteration++;
 
-	if(animation_state_t.iteration*25 == 1500){
+	if(animation_state_t.iteration*25 == 500){
   		leds[random(NUM_LEDS)] = CRGB(0xff, 0xff, 0xff);
 	}
 
-	if(animation_state_t.iteration*25 == 1900){
+	if(animation_state_t.iteration*25 == 550){
     	for(int i = 0; i < NUM_LEDS; i++) {
         	leds[i] = 0x101010;
     	}
 	}
 
-	if(animation_state_t.iteration*25 == 2000){
+	if(animation_state_t.iteration*25 == 600){
 		animation_state_t.iteration = 0;
 	}
 }
