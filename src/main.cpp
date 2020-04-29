@@ -36,18 +36,19 @@ struct state_config {
 };
 
 static const struct state_config configs[] = {
-    {.id = 0x41, .payload_handler = solid_handler, .state_update = solid},
-    {.id = 0x42, .payload_handler = gradient_handler, .state_update = gradient},
-    {.id = 0x43, .payload_handler = NULL, .state_update = cylon},
-    {.id = 0x44, .payload_handler = NULL, .state_update = rainbow},
-    {.id = 0x45, .payload_handler = NULL, .state_update = stroboscope},
-    {.id = 0x46, .payload_handler = NULL, .state_update = confetti},
-    {.id = 0x47, .payload_handler = NULL, .state_update = sinelon},
-    {.id = 0x48, .payload_handler = NULL, .state_update = bpm},
-    {.id = 0x49, .payload_handler = NULL, .state_update = juggle},
-    {.id = 0x4a, .payload_handler = NULL, .state_update = fadeinout},
-    {.id = 0x4b, .payload_handler = NULL, .state_update = twinkle},
-    {.id = 0x4c, .payload_handler = NULL, .state_update = snowsparkle},
+    {.id = 0x41, .payload_handler = solid_handler,      .state_update = solid},
+    {.id = 0x42, .payload_handler = gradient_handler,   .state_update = gradient},
+    {.id = 0x43, .payload_handler = NULL,               .state_update = cylon},
+    {.id = 0x44, .payload_handler = NULL,               .state_update = rainbow},
+    {.id = 0x45, .payload_handler = NULL,               .state_update = stroboscope},
+    {.id = 0x46, .payload_handler = NULL,               .state_update = confetti},
+    {.id = 0x47, .payload_handler = NULL,               .state_update = sinelon},
+    {.id = 0x48, .payload_handler = NULL,               .state_update = bpm},
+    {.id = 0x49, .payload_handler = NULL,               .state_update = juggle},
+    {.id = 0x4a, .payload_handler = NULL,               .state_update = fadeinout},
+    {.id = 0x4b, .payload_handler = NULL,               .state_update = twinkle},
+    {.id = 0x4c, .payload_handler = NULL,               .state_update = snowsparkle},
+    {.id = 0x4d, .payload_handler = NULL,               .state_update = train},
 };
 
 // SoftwareSerial toSlave(10, 11);
