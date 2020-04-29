@@ -10,9 +10,9 @@ index 61862e1..038daaf 100644
    // Set up watchdog to trigger after 1s
 -  watchdogConfig(WATCHDOG_1S);
 +  if(PIND & (1 << PIND2)){
-+    watchdogConfig(WATCHDOG_4S);
++    watchdogConfig(WATCHDOG_8S);
 +  }else{
-+    watchdogConfig(WATCHDOG_OFF);
++    watchdogConfig(WATCHDOG_16MS);
 +  }
  
  #if (LED_START_FLASHES > 0) || defined(LED_DATA_FLASH) || defined(LED_START_ON)
