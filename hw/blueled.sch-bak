@@ -131,21 +131,6 @@ Wire Wire Line
 Connection ~ 4050 1200
 Wire Wire Line
 	4050 1200 4150 1200
-Text Label 1350 1400 0    50   ~ 0
-GND
-$Comp
-L power:GND #PWR0109
-U 1 1 5CC59A0A
-P 1350 1400
-F 0 "#PWR0109" H 1350 1150 50  0001 C CNN
-F 1 "GND" H 1355 1227 50  0000 C CNN
-F 2 "" H 1350 1400 50  0001 C CNN
-F 3 "" H 1350 1400 50  0001 C CNN
-	1    1350 1400
-	1    0    0    -1  
-$EndComp
-Text Label 6000 1050 0    50   ~ 0
-+3V3
 Text Label 10550 1500 0    50   ~ 0
 DATA
 $Comp
@@ -216,8 +201,6 @@ F 3 "~" H 9100 1550 50  0001 C CNN
 	1    9100 1550
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9600 1450 9400 1450
 Wire Wire Line
 	8650 1550 8900 1550
 Wire Wire Line
@@ -340,9 +323,9 @@ Wire Wire Line
 	1200 3350 1450 3350
 Wire Wire Line
 	1200 3250 1450 3250
-Text Label 6700 3250 0    50   ~ 0
+Text Label 7100 3250 0    50   ~ 0
 RX
-Text Label 6700 3350 0    50   ~ 0
+Text Label 7100 3350 0    50   ~ 0
 TX
 Text Label 6700 3450 0    50   ~ 0
 HC-STATE
@@ -380,24 +363,18 @@ Wire Wire Line
 	6600 1950 6700 1950
 Wire Wire Line
 	6600 2050 6700 2050
-Text Label 4150 1200 0    50   ~ 0
-+3V3
 Text Label 2600 1200 2    50   ~ 0
 VIN
 Text Label 8650 1450 0    50   ~ 0
 MISO
 Text Label 8650 1550 0    50   ~ 0
 SCK
-Text Label 9600 1450 2    50   ~ 0
-+3V3
 Text Label 9600 1550 2    50   ~ 0
 MOSI
 Text Label 2750 3250 0    50   ~ 0
 MISO
 Wire Wire Line
 	2650 3250 2750 3250
-Text Label 3100 2800 0    50   ~ 0
-+3V3
 Text Label 1200 3250 2    50   ~ 0
 MOSI
 Text Label 1200 3350 2    50   ~ 0
@@ -405,8 +382,6 @@ SCK
 Wire Wire Line
 	6000 1150 6000 1050
 Connection ~ 6000 1150
-Text Label 6850 2650 2    50   ~ 0
-+3V3
 Wire Wire Line
 	3100 2900 3100 3050
 $Comp
@@ -464,8 +439,6 @@ Wire Wire Line
 	1700 5200 2000 5200
 Wire Wire Line
 	1800 4450 1800 4550
-Text Label 1800 4450 0    50   ~ 0
-+3V3
 Wire Wire Line
 	1800 4850 1800 4900
 $Comp
@@ -485,8 +458,8 @@ $Comp
 L Device:R_Small R6
 U 1 1 5ED22AEB
 P 1800 5000
-F 0 "R6" H 1859 5046 50  0000 L CNN
-F 1 "1k" H 1859 4955 50  0000 L CNN
+F 0 "R6" H 1650 5050 50  0000 L CNN
+F 1 "1k" H 1650 4950 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1800 5000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 1800 5000 50  0001 C CNN
 F 4 "lcsc.com" H 1800 5000 50  0001 C CNN "Distributor"
@@ -509,8 +482,6 @@ Text Label 4400 6300 0    50   ~ 0
 HC-DISCNCT
 Text Label 4450 5200 0    50   ~ 0
 HC-ATMODE
-Text Label 2000 4450 0    50   ~ 0
-+3V3
 Text Label 1700 5200 2    50   ~ 0
 RX
 NoConn ~ 4300 5400
@@ -530,8 +501,8 @@ $Comp
 L Device:LED D2
 U 1 1 5D08942B
 P 2000 4700
-F 0 "D2" V 2039 4583 50  0000 R CNN
-F 1 "LED" V 1948 4583 50  0000 R CNN
+F 0 "D2" V 2050 4600 50  0000 R CNN
+F 1 "LED" V 1950 4600 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2000 4700 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2R-A5_C192315.pdf" H 2000 4700 50  0001 C CNN
 F 4 "lcsc.com" H 2000 4700 50  0001 C CNN "Distributor"
@@ -543,8 +514,8 @@ $Comp
 L Device:R_Small R3
 U 1 1 5D089425
 P 2000 5000
-F 0 "R3" H 2059 5046 50  0000 L CNN
-F 1 "1k" H 2059 4955 50  0000 L CNN
+F 0 "R3" H 2050 5050 50  0000 L CNN
+F 1 "1k" H 2050 4950 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2000 5000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 2000 5000 50  0001 C CNN
 F 4 "lcsc.com" H 2000 5000 50  0001 C CNN "Distributor"
@@ -599,39 +570,9 @@ F 3 "" H 2800 7150 50  0001 C CNN
 	1    2800 7150
 	1    0    0    -1  
 $EndComp
-Text Label 1200 6300 2    50   ~ 0
-+3V3
-Text Label 1500 5500 2    50   ~ 0
-~HC-POWER-EN
-$Comp
-L Device:R_Small R5
-U 1 1 5E8E07EF
-P 1500 5800
-F 0 "R5" H 1559 5846 50  0000 L CNN
-F 1 "1k" H 1559 5755 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1500 5800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 1500 5800 50  0001 C CNN
-F 4 "lcsc.com" H 1500 5800 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 1500 5800 50  0001 C CNN "Manuf. Part"
-	1    1500 5800
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:Q_PNP_EBC Q2
-U 1 1 5E8AAEF6
-P 1500 6200
-F 0 "Q2" V 1700 6150 50  0000 L CNN
-F 1 "Q_PNP_EBC" V 1800 6150 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering" H 1700 6300 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf" H 1500 6200 50  0001 C CNN
-F 4 "lcsc.com" H 1500 6200 50  0001 C CNN "Distributor"
-F 5 "UMT2907A" H 1500 6200 50  0001 C CNN "Manuf. Part"
-	1    1500 6200
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	5250 1550 5400 1550
-Text Notes 900  4300 0    89   ~ 0
+Text Notes 900  4200 0    89   ~ 0
 HC-05 Bluetooth
 Text Notes 4700 750  0    89   ~ 0
 ATmega328P
@@ -643,23 +584,8 @@ Text Notes 8650 2250 0    89   ~ 0
 KiCAD ad-hoc
 Text Label 8850 2450 2    50   ~ 0
 VIN
-Text Label 9500 2450 2    50   ~ 0
-+3V3
 Wire Wire Line
 	8850 2650 8850 2450
-Wire Wire Line
-	9500 2650 9500 2450
-$Comp
-L power:PWR_FLAG #FLG0103
-U 1 1 5D4A3D51
-P 9500 2650
-F 0 "#FLG0103" H 9500 2900 50  0000 C CNN
-F 1 "PWR_FLAG" H 9500 2823 50  0000 C CNN
-F 2 "" H 9500 2650 50  0001 C CNN
-F 3 "~" H 9500 2650 50  0001 C CNN
-	1    9500 2650
-	-1   0    0    1   
-$EndComp
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5D4A1496
@@ -689,30 +615,6 @@ Wire Wire Line
 Wire Wire Line
 	1300 3150 1300 3550
 Connection ~ 1300 3550
-Wire Wire Line
-	9150 2500 9150 2650
-$Comp
-L power:PWR_FLAG #FLG0102
-U 1 1 5D4A1B11
-P 9150 2500
-F 0 "#FLG0102" H 9150 2575 50  0001 C CNN
-F 1 "PWR_FLAG" H 9150 2673 50  0000 C CNN
-F 2 "" H 9150 2500 50  0001 C CNN
-F 3 "~" H 9150 2500 50  0001 C CNN
-	1    9150 2500
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0111
-U 1 1 5D4ADA6B
-P 9150 2650
-F 0 "#PWR0111" H 9150 2400 50  0001 C CNN
-F 1 "GND" H 9155 2477 50  0000 C CNN
-F 2 "" H 9150 2650 50  0001 C CNN
-F 3 "" H 9150 2650 50  0001 C CNN
-	1    9150 2650
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6000 4250 6000 4350
 $Comp
@@ -843,19 +745,15 @@ Wire Wire Line
 	1700 1400 1600 1400
 NoConn ~ 1700 1900
 NoConn ~ 2100 1800
-Wire Wire Line
-	1600 1600 1700 1600
-Wire Wire Line
-	1600 1650 1600 1600
 $Comp
 L power:GND #PWR0110
 U 1 1 5D474D63
-P 1600 1650
-F 0 "#PWR0110" H 1600 1400 50  0001 C CNN
-F 1 "GND" H 1605 1477 50  0000 C CNN
-F 2 "" H 1600 1650 50  0001 C CNN
-F 3 "" H 1600 1650 50  0001 C CNN
-	1    1600 1650
+P 1450 1700
+F 0 "#PWR0110" H 1450 1450 50  0001 C CNN
+F 1 "GND" H 1455 1527 50  0000 C CNN
+F 2 "" H 1450 1700 50  0001 C CNN
+F 3 "" H 1450 1700 50  0001 C CNN
+	1    1450 1700
 	1    0    0    -1  
 $EndComp
 NoConn ~ 1700 1700
@@ -884,20 +782,12 @@ Wire Wire Line
 Connection ~ 5250 1550
 Wire Wire Line
 	1700 6200 2100 6200
-Wire Wire Line
-	1200 6300 1300 6300
-Wire Wire Line
-	1700 6300 1950 6300
-Wire Wire Line
-	1500 5500 1500 5600
-Wire Wire Line
-	1500 5900 1500 6000
 $Comp
 L Connector:TestPoint DBG1
 U 1 1 5EA875B4
 P 1950 6400
-F 0 "DBG1" V 1950 6600 50  0000 L CNN
-F 1 "DBG-HC-PWR" V 1850 6600 50  0000 L CNN
+F 0 "DBG1" H 1900 6650 50  0000 L CNN
+F 1 "DBG-HC-PWR" H 1900 6750 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2150 6400 50  0001 C CNN
 F 3 "~" H 2150 6400 50  0001 C CNN
 	1    1950 6400
@@ -908,20 +798,6 @@ Wire Wire Line
 Connection ~ 1950 6300
 Wire Wire Line
 	1950 6300 2100 6300
-Wire Wire Line
-	1500 5600 1500 5700
-Connection ~ 1500 5600
-$Comp
-L Connector:TestPoint DBG2
-U 1 1 5EAA6065
-P 1500 5600
-F 0 "DBG2" V 1500 5800 50  0000 L CNN
-F 1 "DBG-HC-RST" V 1400 5800 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1700 5600 50  0001 C CNN
-F 3 "~" H 1700 5600 50  0001 C CNN
-	1    1500 5600
-	0    -1   -1   0   
-$EndComp
 $Comp
 L Device:CP1 C1
 U 1 1 5EA4B8BA
@@ -949,4 +825,175 @@ Wire Wire Line
 	3700 1600 3700 1500
 Wire Wire Line
 	3150 1600 3700 1600
+$Comp
+L Device:Jumper_NC_Small JP1
+U 1 1 5EA9BCB4
+P 6800 3250
+F 0 "JP1" H 6950 3300 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 6800 3371 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm" H 6800 3250 50  0001 C CNN
+F 3 "~" H 6800 3250 50  0001 C CNN
+	1    6800 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Jumper_NC_Small JP2
+U 1 1 5EAABDED
+P 6800 3350
+F 0 "JP2" H 6950 3400 50  0000 C CNN
+F 1 "Jumper_NC_Small" H 6800 3471 50  0001 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm" H 6800 3350 50  0001 C CNN
+F 3 "~" H 6800 3350 50  0001 C CNN
+	1    6800 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 3350 7100 3350
+Wire Wire Line
+	6900 3250 7100 3250
+$Comp
+L power:+3.3V #PWR07
+U 1 1 5EAE643C
+P 6000 1050
+F 0 "#PWR07" H 6000 900 50  0001 C CNN
+F 1 "+3.3V" H 6015 1223 50  0000 C CNN
+F 2 "" H 6000 1050 50  0001 C CNN
+F 3 "" H 6000 1050 50  0001 C CNN
+	1    6000 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR09
+U 1 1 5EAEDBBC
+P 9450 1350
+F 0 "#PWR09" H 9450 1200 50  0001 C CNN
+F 1 "+3.3V" H 9465 1523 50  0000 C CNN
+F 2 "" H 9450 1350 50  0001 C CNN
+F 3 "" H 9450 1350 50  0001 C CNN
+	1    9450 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9400 1450 9450 1450
+Wire Wire Line
+	9450 1450 9450 1350
+$Comp
+L power:+3.3V #PWR08
+U 1 1 5EAFB72E
+P 6850 2650
+F 0 "#PWR08" H 6850 2500 50  0001 C CNN
+F 1 "+3.3V" H 6865 2823 50  0000 C CNN
+F 2 "" H 6850 2650 50  0001 C CNN
+F 3 "" H 6850 2650 50  0001 C CNN
+	1    6850 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR05
+U 1 1 5EB01941
+P 3100 2800
+F 0 "#PWR05" H 3100 2650 50  0001 C CNN
+F 1 "+3.3V" H 3115 2973 50  0000 C CNN
+F 2 "" H 3100 2800 50  0001 C CNN
+F 3 "" H 3100 2800 50  0001 C CNN
+	1    3100 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR04
+U 1 1 5EB04BFE
+P 2000 4450
+F 0 "#PWR04" H 2000 4300 50  0001 C CNN
+F 1 "+3.3V" H 2015 4623 50  0000 C CNN
+F 2 "" H 2000 4450 50  0001 C CNN
+F 3 "" H 2000 4450 50  0001 C CNN
+	1    2000 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 4450 2000 4450
+Connection ~ 2000 4450
+$Comp
+L Connector:TestPoint DBG2
+U 1 1 5EAA6065
+P 1350 5600
+F 0 "DBG2" V 1350 5800 50  0000 L CNN
+F 1 "DBG-HC-RST" V 1250 5800 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1550 5600 50  0001 C CNN
+F 3 "~" H 1550 5600 50  0001 C CNN
+	1    1350 5600
+	0    -1   -1   0   
+$EndComp
+Connection ~ 1350 5600
+Wire Wire Line
+	1350 5600 1350 5700
+Wire Wire Line
+	1350 5900 1350 6000
+Wire Wire Line
+	1350 5500 1350 5600
+Wire Wire Line
+	1050 6300 1150 6300
+$Comp
+L Device:Q_PNP_EBC Q2
+U 1 1 5E8AAEF6
+P 1350 6200
+F 0 "Q2" V 1550 6150 50  0000 L CNN
+F 1 "Q_PNP_EBC" V 1650 5850 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering" H 1550 6300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf" H 1350 6200 50  0001 C CNN
+F 4 "lcsc.com" H 1350 6200 50  0001 C CNN "Distributor"
+F 5 "UMT2907A" H 1350 6200 50  0001 C CNN "Manuf. Part"
+	1    1350 6200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 5E8E07EF
+P 1350 5800
+F 0 "R5" H 1409 5846 50  0000 L CNN
+F 1 "1k" H 1409 5755 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1350 5800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 1350 5800 50  0001 C CNN
+F 4 "lcsc.com" H 1350 5800 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 1350 5800 50  0001 C CNN "Manuf. Part"
+	1    1350 5800
+	1    0    0    -1  
+$EndComp
+Text Label 1350 5500 0    50   ~ 0
+~HC-POWER-EN
+$Comp
+L power:+3.3V #PWR02
+U 1 1 5EB1E141
+P 1050 6200
+F 0 "#PWR02" H 1050 6050 50  0001 C CNN
+F 1 "+3.3V" H 1065 6373 50  0000 C CNN
+F 2 "" H 1050 6200 50  0001 C CNN
+F 3 "" H 1050 6200 50  0001 C CNN
+	1    1050 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1050 6300 1050 6200
+$Comp
+L power:+3.3V #PWR06
+U 1 1 5EB2DEAF
+P 4150 1200
+F 0 "#PWR06" H 4150 1050 50  0001 C CNN
+F 1 "+3.3V" H 4165 1373 50  0000 C CNN
+F 2 "" H 4150 1200 50  0001 C CNN
+F 3 "" H 4150 1200 50  0001 C CNN
+	1    4150 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 6300 1950 6300
+Wire Wire Line
+	1350 1400 1450 1400
+Wire Wire Line
+	1450 1400 1450 1600
+Wire Wire Line
+	1450 1600 1700 1600
+Wire Wire Line
+	1450 1700 1450 1600
+Connection ~ 1450 1600
 $EndSCHEMATC
