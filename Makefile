@@ -17,6 +17,7 @@ bootloader.hex: $(BUILD)
 	cp optiboot/optiboot/bootloaders/optiboot/optiboot_atmega328.hex $(BUILD)/bootloader.hex
 
 application.hex: $(BUILD)
+	pio run -e wireless
 	cp .pio/build/wireless/firmware.hex $(BUILD)/application.hex
 
 $(BUILD):
