@@ -12,6 +12,7 @@ combined.hex: application.hex bootloader.hex
 	mv $@ $(BUILD)
 
 bootloader.hex: $(BUILD)
+	git -C optiboot checkout master .
 	git -C optiboot apply ../001-start-app-if-PD2-is-low.patch
 	make -C optiboot/optiboot/bootloaders/optiboot atmega328
 	cp optiboot/optiboot/bootloaders/optiboot/optiboot_atmega328.hex $(BUILD)/bootloader.hex
