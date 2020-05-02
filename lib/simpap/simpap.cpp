@@ -39,7 +39,7 @@ int8_t simpap_decode(struct simpap* p){
 }
 
 int8_t simpap_encode(struct simpap* p, uint8_t* msg, uint8_t len){
-    if(len > 20 || len == 0){
+    if(len > 60 || len == 0){
         return -1;
     }
 
