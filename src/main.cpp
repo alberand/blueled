@@ -19,7 +19,10 @@
 #define PAYLOAD_OFFSET 2
 
 // Define the array of leds
-CRGB leds[NUM_LEDS];
+CRGB* leds;
+static bool initialized = false;
+
+uint16_t NUM_LEDS;
 
 struct simpap simpap_ctx;
 static uint16_t start, stop;
@@ -57,21 +60,37 @@ void simpap_send_char(uint8_t ch){
 }
 
 void simpap_handler(uint8_t* data, uint8_t len){
-    digitalWrite(LED_BUILTIN, HIGH);
-
 	uint16_t cmd = get_u16(data);
+	
+	/* Configuration commands. TODO make it more general if there is too many
+	 * of them */
+	if(cmd == 0x20){
+    	digitalWrite(LED_BUILTIN, HIGH);
+		if(leds != NULL){
+			free(leds);
+		}
+		NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
+		leds = (CRGB*)malloc(NUM_LEDS*sizeof(CRGB));
+    	FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+		initialized = true;
+		simpap_send(&simpap_ctx, (uint8_t*)"[Info] Initialization complete", 30);
+	} else if(!initialized){
+		simpap_send(&simpap_ctx, (uint8_t*)"[Error] Not known number of LEDs", 32);
+	} else{
+		/* Apply animation */
+    	for(int i = 0; i < COUNT_OF(configs); i++){
+    	    if(configs[i].id != cmd){
+    	        continue;
+    	    }
 
-    for(int i = 0; i < COUNT_OF(configs); i++){
-        if(configs[i].id != cmd){
-            continue;
-        }
-
-        state_t.state = configs[i].id;
-        if(configs[i].payload_handler != NULL){
-		    configs[i].payload_handler(&(data[PAYLOAD_OFFSET]), 
-                len - PAYLOAD_OFFSET);
-        }
-    }
+		    simpap_send(&simpap_ctx, (uint8_t*)"[Info] Changing animation", 25);
+    	    state_t.state = configs[i].id;
+    	    if(configs[i].payload_handler != NULL){
+			    configs[i].payload_handler(&(data[PAYLOAD_OFFSET]), 
+    	            len - PAYLOAD_OFFSET);
+    	    }
+    	}
+	}
 }
 
 void state_update(){
@@ -95,7 +114,7 @@ void setup() {
 
 	// Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
-    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+    // FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, 5);
 
     simpap_init(&simpap_ctx);
 
@@ -110,7 +129,9 @@ void loop() {
 	}
 	start = millis();
 
-    state_update();
+	if(initialized){
+    	state_update();
+	}
 
 	// Receive input
     while (Serial.available()) {

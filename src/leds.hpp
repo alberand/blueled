@@ -7,9 +7,9 @@
 
 #include "utils.hpp"
 
-#define NUM_LEDS 10
-
 #define ZOOMING_BEATS_PER_MINUTE 122
+
+extern uint16_t NUM_LEDS;
 
 void solid_handler(uint8_t* payload, uint8_t len);
 void gradient_handler(uint8_t* payload, uint8_t len);
