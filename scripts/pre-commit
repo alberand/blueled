@@ -11,9 +11,18 @@ if [ $DEBUG -eq 1 ]; then
     echo "[debug] Chosen files: " $staged
 fi
 
+if [ -z "$staged" ]; then
+    echo "[info] No files to format"
+    exit 0
+fi
+
 echo "[info] Applying 'astyle' formatter"
 
-astyle $staged
+astyle --style=mozilla $staged
 
-# xargs -l
+if [ $? -eq 0 ]; then
+    echo "[info] Check formatting"
+    git add $staged
+    exit 1
+fi
 
