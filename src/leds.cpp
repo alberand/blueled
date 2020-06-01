@@ -376,9 +376,9 @@ void train(CRGB* leds) {
         //setPixel(i,level,0,0);
         float level = sin(i + position) * 127 + 128;
         leds[i] = CRGB(
-            ((sin(i+Position) * 127 + 128)/255)*red,
-            ((sin(i+Position) * 127 + 128)/255)*green,
-            ((sin(i+Position) * 127 + 128)/255)*blue
+            ((sin(i+position) * 127 + 128)/255)*0xAC,
+            ((sin(i+position) * 127 + 128)/255)*0x19,
+            ((sin(i+position) * 127 + 128)/255)*0xA6
         );
     }
 
