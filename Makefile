@@ -22,5 +22,8 @@ application.hex: $(BUILD)
 	pio run -e wireless
 	cp .pio/build/wireless/firmware.hex $(BUILD)/application.hex
 
+analysis:
+	cppcheck --enable=all src/*
+
 $(BUILD):
 	mkdir $(BUILD)
