@@ -1,5 +1,7 @@
 import time
+import select
 import serial
+import sys
 import binascii
 from pprint import pprint
 
@@ -10,7 +12,6 @@ def cmd_set_leds_number(*args):
 
 def cmd_solid_color(*args):
     cmd = 0x0041
-    print(args)
     data = cmd.to_bytes(2, byteorder='big') + args[0].to_bytes(4, byteorder='big')
     return data
 
@@ -83,6 +84,11 @@ def cmd_snowsparkle(*args):
     data = cmd.to_bytes(2, byteorder='big')
     return data
 
+def cmd_train(*args):
+    cmd = 0x004d
+    data = cmd.to_bytes(2, byteorder='big')
+    return data
+
 def cmd_help(*args):
     pprint(CMD)
     return cmd_rainbow()
@@ -101,6 +107,7 @@ CMD = {
         'o': [cmd_fadeinout, lambda x: int(x)],
         't': [cmd_twinkle, lambda x: int(x)],
         'p': [cmd_snowsparkle, lambda x: int(x)],
+        'a': [cmd_train, lambda x: int(x)],
         'h': [cmd_help, lambda x: int(x)],
 }
 
@@ -159,39 +166,7 @@ class Simpap:
         return frame
 
     def is_cmd(self, data):
+        if not data:
+            return False
+
         return data[0] in CMD.keys()
-
-    def run(self):
-        try:
-            while True:
-                while self.ser.inWaiting() > 0:
-                    response = self.accept(self.ser.read(1))
-                    if response:
-                        print(f'<- {response}')
-
-                input_raw = input('> ')
-
-                if self.is_cmd(input_raw):
-                    cmd_id = input_raw[0]
-                    cmd = CMD[cmd_id][0]
-                    cmd_args = CMD[cmd_id][1]
-                    if len(input_raw) > 1:
-                        args = cmd_args(input_raw)
-                        self.send(cmd(args))
-                    else:
-                        self.send(cmd())
-                else:
-                    self.send(input_raw.encode())
-
-        except KeyboardInterrupt:
-            print('Exiting')
-            self.ser.close()
-            exit()
-
-def main():
-    s = Simpap('/dev/blueled')
-
-    s.run()
-
-if __name__ == '__main__':
-    main()
