@@ -1,0 +1,19 @@
+#!/bin/sh
+
+DEBUG=1
+
+# Redirect output to stderr.
+exec 1>&2
+
+staged=$(git diff --name-only --cached | grep -E "(.hpp|.cpp)$")
+
+if [ $DEBUG -eq 1 ]; then
+    echo "[debug] Chosen files: " $staged
+fi
+
+echo "[info] Applying 'astyle' formatter"
+
+astyle $staged
+
+# xargs -l
+
