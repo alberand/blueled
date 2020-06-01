@@ -1,26 +1,31 @@
 #include "leds.hpp"
 
-static struct animation_state {
-	uint16_t iteration;
-	uint16_t period;
+static struct animation_state
+{
+    uint16_t iteration;
+    uint16_t period;
 } animation_state_t;
 
-static struct solid_params {
+static struct solid_params
+{
     uint32_t color;
 } solid_params_t;
 
-static struct gradient_params {
+static struct gradient_params
+{
     uint32_t colors[20];
     uint8_t index;
     uint8_t num;
 } gradient_params_t;
 
-void solid_handler(uint8_t* payload, uint8_t len) {
+void solid_handler(uint8_t* payload, uint8_t len)
+{
     // parse parameters
     solid_params_t.color = get_u32(payload);
 }
 
-void gradient_handler(uint8_t* payload, uint8_t len) {
+void gradient_handler(uint8_t* payload, uint8_t len)
+{
     // parse parameters
     gradient_params_t.num = get_u8(payload);
     for(int i = 0; i < gradient_params_t.num; i++) {
@@ -30,36 +35,40 @@ void gradient_handler(uint8_t* payload, uint8_t len) {
 
 }
 
-void fadeall(CRGB* leds) {
+void fadeall(CRGB* leds)
+{
     for(int i = 0; i < NUM_LEDS; i++) {
         leds[i].nscale8(250);
     }
 }
 
-void fadeinout(CRGB* leds){
+void fadeinout(CRGB* leds)
+{
     CRGB color = 0xe37d09;
 
-	animation_state_t.iteration++;
-	if(animation_state_t.iteration < 128){
-		fadeall(leds);
-	} else if(animation_state_t.iteration < 256) {
+    animation_state_t.iteration++;
+    if(animation_state_t.iteration < 128) {
+        fadeall(leds);
+    } else if(animation_state_t.iteration < 256) {
         for(int i = 0; i < NUM_LEDS; i++) {
- 	    	leds[i].red = color.red * (animation_state_t.iteration - 127)/127;
- 	    	leds[i].green = color.green * (animation_state_t.iteration - 127)/127;
- 	    	leds[i].blue = color.blue * (animation_state_t.iteration - 127)/127;
+            leds[i].red = color.red * (animation_state_t.iteration - 127)/127;
+            leds[i].green = color.green * (animation_state_t.iteration - 127)/127;
+            leds[i].blue = color.blue * (animation_state_t.iteration - 127)/127;
         }
-	} else {
-		animation_state_t.iteration = 0;
-	}
+    } else {
+        animation_state_t.iteration = 0;
+    }
 }
 
-void solid(CRGB* leds) {
+void solid(CRGB* leds)
+{
     for(int i = 0; i < NUM_LEDS; i++) {
         leds[i] = solid_params_t.color;
     }
 }
 
-void gradient(CRGB* leds) {
+void gradient(CRGB* leds)
+{
     uint16_t start = 0;
     uint16_t len = int(NUM_LEDS/(gradient_params_t.num - 1));
 
@@ -111,7 +120,8 @@ void rainbow(CRGB* leds)
     }
 }
 
-void cylon(CRGB* leds) {
+void cylon(CRGB* leds)
+{
     static uint8_t hue = 0;
 
     fadeall(leds);
@@ -323,7 +333,8 @@ void bpm(CRGB* leds)
     }
 }
 
-void juggle(CRGB* leds) {
+void juggle(CRGB* leds)
+{
 // eight colored dots, weaving in and out of sync with each other
     fadeToBlackBy( leds, NUM_LEDS, 20);
     byte dothue = 0;
@@ -333,41 +344,44 @@ void juggle(CRGB* leds) {
     }
 }
 
-void twinkle(CRGB* leds) {
-	animation_state_t.iteration++;
-	if(animation_state_t.iteration*25 == 500){
-		animation_state_t.iteration = 0;
-    	leds[random(NUM_LEDS)] = solid_params_t.color;
-	} else {
-		fadeall(leds);
-	}
+void twinkle(CRGB* leds)
+{
+    animation_state_t.iteration++;
+    if(animation_state_t.iteration*25 == 500) {
+        animation_state_t.iteration = 0;
+        leds[random(NUM_LEDS)] = solid_params_t.color;
+    } else {
+        fadeall(leds);
+    }
 
-	if(animation_state_t.iteration*25 == 2000){
-		animation_state_t.iteration = 0;
-	}
+    if(animation_state_t.iteration*25 == 2000) {
+        animation_state_t.iteration = 0;
+    }
 }
 
-void snowsparkle(CRGB* leds) {
-	animation_state_t.iteration++;
+void snowsparkle(CRGB* leds)
+{
+    animation_state_t.iteration++;
 
-	if(animation_state_t.iteration*25 == 500){
-  		leds[random(NUM_LEDS)] = CRGB(0xff, 0xff, 0xff);
-	}
+    if(animation_state_t.iteration*25 == 500) {
+        leds[random(NUM_LEDS)] = CRGB(0xff, 0xff, 0xff);
+    }
 
-	if(animation_state_t.iteration*25 == 550){
-    	for(int i = 0; i < NUM_LEDS; i++) {
-        	leds[i] = 0x101010;
-    	}
-	}
+    if(animation_state_t.iteration*25 == 550) {
+        for(int i = 0; i < NUM_LEDS; i++) {
+            leds[i] = 0x101010;
+        }
+    }
 
-	if(animation_state_t.iteration*25 == 600){
-		animation_state_t.iteration = 0;
-	}
+    if(animation_state_t.iteration*25 == 600) {
+        animation_state_t.iteration = 0;
+    }
 }
 
-void train(CRGB* leds) {
+void train(CRGB* leds)
+{
     static int position = 0;
- 
+
     position++; // = 0; //Position + Rate;
 
     for(int i=0; i<NUM_LEDS; i++) {
@@ -376,13 +390,13 @@ void train(CRGB* leds) {
         //setPixel(i,level,0,0);
         float level = sin(i + position) * 127 + 128;
         leds[i] = CRGB(
-            ((sin(i+position) * 127 + 128)/255)*0xAC,
-            ((sin(i+position) * 127 + 128)/255)*0x19,
-            ((sin(i+position) * 127 + 128)/255)*0xA6
-        );
+                      ((sin(i+position) * 127 + 128)/255)*0xAC,
+                      ((sin(i+position) * 127 + 128)/255)*0x19,
+                      ((sin(i+position) * 127 + 128)/255)*0xA6
+                  );
     }
 
-    if(position == (NUM_LEDS*2)){
+    if(position == (NUM_LEDS*2)) {
         position  = 0;
     }
 }
