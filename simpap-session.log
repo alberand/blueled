@@ -1,0 +1,11 @@
+In [1]: import simpap
+
+In [2]: simpap.send(simpap.cmd_set_leds_number(10))                                                     
+-> b'7e0020000aa34c7e'
+
+[Info] Initialization complete
+In [3]: simpap.send(simpap.cmd_rainbow())                                                               
+-> b'7e0044154f7e'
+
+[Info] Changing animation
+In [4]: simpap.quit()
