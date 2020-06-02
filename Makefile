@@ -28,7 +28,7 @@ analysis:
 	cppcheck --enable=all src/*
 
 sniff:
-	tools/jpnevulator --tty=$(BLUEPORT) --read --ascii
+	interceptty $(BLUEPORT) /tmp/blueledish
 
 $(BUILD):
 	mkdir $(BUILD)
