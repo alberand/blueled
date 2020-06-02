@@ -1,6 +1,8 @@
 BUILD = ./build
 PORT = /dev/ttyUSB0
 
+BLUEPORT = /dev/blueled
+
 .PHONY: combined.hex bootloader.hex application.hex
 
 all: combined.hex
@@ -24,6 +26,9 @@ application.hex: $(BUILD)
 
 analysis:
 	cppcheck --enable=all src/*
+
+sniff:
+	tools/jpnevulator --tty=$(BLUEPORT) --read --ascii
 
 $(BUILD):
 	mkdir $(BUILD)

@@ -31,6 +31,11 @@ Create serial port:
 
     sudo rfcomm bind rfcomm0 <MAC>
 
+How to sniff bluetooth:
+https://github.com/snarlistic/jpnevulator
+
+    jpnevulator --tty=/dev/blueled --read --ascii
+
 In case of problems with PC's bluetooth module try:
 
 1. power on/off module through the bluetoothctl session
