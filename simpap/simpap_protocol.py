@@ -112,17 +112,9 @@ CMD = {
 }
 
 class Simpap:
-    def __init__(self, port):
+    def __init__(self, transport):
         self.buf = b''
-        self.ser = serial.Serial(
-                port=port,
-                baudrate=115200,
-                parity=serial.PARITY_NONE,
-                stopbits=serial.STOPBITS_ONE,
-                bytesize=serial.EIGHTBITS
-        )
-
-        self.ser.isOpen()
+        self.transport = transport
 
         # parser state
         self.started = False
@@ -153,10 +145,16 @@ class Simpap:
 
             return self.last_cmd
 
+    def receive(self):
+        while self.transport.avaliable():
+            msg = self.accept(self.transport.read(1))
+            if msg:
+                return msg
+
     def send(self, data):
         frame = self.compose(data)
         print(f'-> {binascii.hexlify(frame)}')
-        self.ser.write(frame)
+        self.transport.write(frame)
 
     def compose(self, data):
         crc = binascii.crc_hqx(data, 0xFFFF)
