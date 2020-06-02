@@ -1,5 +1,7 @@
 from time import sleep
+import atexit
 import threading
+
 from simpap.simpap_protocol import *
 
 class SerialTransport:
@@ -39,7 +41,9 @@ def worker():
 
 def quit():
     running = False
-    serial.close()
+    serial.ser.close()
 
 receiver = threading.Thread(target=worker)
 receiver.start()
+
+atexit.register(quit)
