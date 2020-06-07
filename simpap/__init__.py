@@ -12,7 +12,8 @@ class SerialTransport:
                 baudrate=115200,
                 parity=serial.PARITY_NONE,
                 stopbits=serial.STOPBITS_ONE,
-                bytesize=serial.EIGHTBITS
+                bytesize=serial.EIGHTBITS,
+                timeout=0.5
         )
         self.ser.isOpen()
 
@@ -25,25 +26,42 @@ class SerialTransport:
     def avaliable(self):
         return self.ser.in_waiting
 
-serial = SerialTransport('/dev/blueled')
-s = Simpap(serial)
-send = s.send
-
-running = True
+def exec_cmd(cmd):
+    c = cmd[0]
+    args = cmd
+    print(f'cmd: {c}; args: {args}')
+    if s.is_cmd(cmd):
+        if args != c:
+            a = CMD[c][1]
+            b = CMD[c][0]
+            s.send(b(a(args)))
+        else:
+            s.send(CMD[c][0]())
 
 def worker():
-    while running:
+    t = threading.currentThread()
+    while getattr(t, "running", True):
         msg = s.receive()
         if msg:
             print(msg)
 
         sleep(0.01)
 
-def quit():
-    running = False
+def simpap_quit():
+    receiver.running = False
+    receiver.join()
     serial.ser.close()
 
+# so setup
+# serial = SerialTransport('/dev/blueled')
+serial = SerialTransport('/tmp/blueledish')
+s = Simpap(serial)
+# assign functions
+send = s.send
+cmd = exec_cmd
+
+# start receiving thread
 receiver = threading.Thread(target=worker)
 receiver.start()
 
-atexit.register(quit)
+atexit.register(simpap_quit)
