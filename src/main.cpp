@@ -54,6 +54,7 @@ static const struct state_config configs[] = {
     {.id = 0x4b, .payload_handler = NULL,               .state_update = twinkle},
     {.id = 0x4c, .payload_handler = NULL,               .state_update = snowsparkle},
     {.id = 0x4d, .payload_handler = NULL,               .state_update = train},
+    {.id = 0x4e, .payload_handler = NULL,               .state_update = color_wipe},
 };
 
 // SoftwareSerial toSlave(10, 11);
@@ -125,7 +126,7 @@ void setup()
     simpap_init(&simpap_ctx);
 
     // Initial state - Rainbow
-    state_t.state = 0x44;
+    state_t.state = 0x4e;
     state_t.delay = 25;
 }
 

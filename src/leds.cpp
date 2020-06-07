@@ -400,3 +400,18 @@ void train(CRGB* leds)
         position  = 0;
     }
 }
+
+void color_wipe(CRGB* leds)
+{
+    for(uint16_t i=0; i<NUM_LEDS; i++) {
+        if(POSITION_IN_FIRST_HALF(animation_t.iteration,
+                                  animation_t.period)) {
+            leds[i] = animation_t.color;
+        }
+
+        if(POSITION_IN_SECOND_HALF(animation_t.iteration,
+                                   animation_t.period)) {
+            leds[i] = 0;
+        }
+    }
+}
