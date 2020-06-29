@@ -53,8 +53,8 @@ def simpap_quit():
     serial.ser.close()
 
 # so setup
-# serial = SerialTransport('/dev/blueled')
-serial = SerialTransport('/tmp/blueledish')
+serial = SerialTransport('/dev/blueled')
+# serial = SerialTransport('/tmp/blueledish')
 s = Simpap(serial)
 # assign functions
 send = s.send

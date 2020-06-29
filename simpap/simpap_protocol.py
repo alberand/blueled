@@ -89,6 +89,11 @@ def cmd_train(*args):
     data = cmd.to_bytes(2, byteorder='big')
     return data
 
+def cmd_color_wipe(*args):
+    cmd = 0x004e
+    data = cmd.to_bytes(2, byteorder='big')
+    return data
+
 def cmd_help(*args):
     pprint(CMD)
     return cmd_rainbow()
@@ -108,6 +113,7 @@ CMD = {
         't': [cmd_twinkle, lambda x: int(x)],
         'p': [cmd_snowsparkle, lambda x: int(x)],
         'a': [cmd_train, lambda x: int(x)],
+        'w': [cmd_color_wipe, lambda x: int(x)],
         'h': [cmd_help, lambda x: int(x)],
 }
 
