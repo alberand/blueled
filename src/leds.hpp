@@ -1,5 +1,4 @@
-#ifndef __LEDS_HPP__
-#define __LEDS_HPP__
+#pragma once
 
 #include <stdint.h>
 
@@ -7,36 +6,43 @@
 
 #include "utils.hpp"
 
-#define ZOOMING_BEATS_PER_MINUTE 122
+#define POSITION_IN_MIDDLE(i, p) (i == (uint16_t)int(p/2))
+#define POSITION_IN_SECOND_HALF(i, p) (i >= (uint16_t)int(p/2))
+#define POSITION_IN_FIRST_HALF(i, p) (i < (uint16_t)int(p/2))
+#define POSITION_IN_FIRST_QUARTER(i, p) (i < (uint16_t)int(p/4))
+#define POSITION_IN_SECOND_QUARTER(i, p) ((uint16_t)int(p/4) <= i < 2*(uint16_t)int(p/4))
+#define POSITION_IN_THIRD_QUARTER(i, p) (2*(uint16_t)int(p/4) <= i < 3*(uint16_t)int(p/4))
+#define POSITION_IN_FORTH_QUARTER(i, p) (3*(uint16_t)int(p/4) <= i < p)
 
-#define POSITION_IN_MIDDLE(i, p) (i == int(p/2))
-#define POSITION_IN_SECOND_HALF(i, p) (i > int(p/2))
-#define POSITION_IN_FIRST_HALF(i, p) (i < int(p/2))
-#define POSITION_IN_FIRST_QUARTER(i, p) (i < int(p/4))
-#define POSITION_IN_SECOND_QUARTER(i, p) (int(p/4) < i < 2*int(p/4))
-#define POSITION_IN_THIRD_QUARTER(i, p) (2*int(p/4) < i < 3*int(p/4))
-#define POSITION_IN_FORTH_QUARTER(i, p) (3*int(p/4) < i < p)
+struct animation_config
+{
+    uint8_t id;
+    uint16_t delay;
+    void (*payload_handler)(uint8_t*, uint8_t);
+    void (*leds_update)(CRGB*, uint16_t num_leds);
+};
 
-extern uint16_t NUM_LEDS;
+
+void animation_state_reset(const struct animation_config* animation_config);
+void animation_state_update(CRGB* leds, uint16_t num_leds,
+                            const struct animation_config* animation_config);
 
 void solid_handler(uint8_t* payload, uint8_t len);
 void gradient_handler(uint8_t* payload, uint8_t len);
 
-void fadeall(CRGB* leds);
+void fadeall(CRGB* leds, uint16_t num_leds);
 
-void solid(CRGB* leds);
-void gradient(CRGB* leds);
-void rainbow(CRGB* leds);
-void cylon(CRGB* leds);
-void stroboscope(CRGB* leds);
-void confetti(CRGB* leds);
-void sinelon(CRGB* leds);
-void bpm(CRGB* leds);
-void juggle(CRGB* leds);
-void fadeinout(CRGB* leds);
-void twinkle(CRGB* leds);
-void snowsparkle(CRGB* leds);
-void train(CRGB* leds);
-void color_wipe(CRGB* leds);
-
-#endif // __LEDS_HPP__
+void solid(CRGB* leds, uint16_t num_leds);
+void gradient(CRGB* leds, uint16_t num_leds);
+void rainbow(CRGB* leds, uint16_t num_leds);
+void cylon(CRGB* leds, uint16_t num_leds);
+void stroboscope(CRGB* leds, uint16_t num_leds);
+void confetti(CRGB* leds, uint16_t num_leds);
+void sinelon(CRGB* leds, uint16_t num_leds);
+void bpm(CRGB* leds, uint16_t num_leds);
+void juggle(CRGB* leds, uint16_t num_leds);
+void fadeinout(CRGB* leds, uint16_t num_leds);
+void twinkle(CRGB* leds, uint16_t num_leds);
+void snowsparkle(CRGB* leds, uint16_t num_leds);
+void train(CRGB* leds, uint16_t num_leds);
+void color_wipe(CRGB* leds, uint16_t num_leds);

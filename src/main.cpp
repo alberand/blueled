@@ -1,9 +1,15 @@
+#include <stdio.h>
+#include <stdarg.h>
+
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
 #include "simpap.hpp"
 #include "leds.hpp"
 #include "utils.hpp"
+#include "common.hpp"
+
+#include "config.hpp"
 
 // Software-Hardoware configuration
 // Always 5V
@@ -18,6 +24,10 @@
 // Communication
 #define PAYLOAD_OFFSET 2
 
+// In updates per second (Hz)
+#define BASE_FREQ 100
+#define BASE_PERIOD (1000/BASE_FREQ)
+
 // Define the array of leds
 CRGB* leds;
 static bool initialized = false;
@@ -29,33 +39,22 @@ static uint16_t start, stop;
 
 struct state
 {
-    uint8_t state;
-    uint16_t delay;
+    uint16_t iteration;
+    uint16_t num_leds;
+    uint8_t animation;
+    const struct animation_config* config;
 } state_t;
 
-struct state_config
+void print(const char *__fmt, ...)
 {
-    uint8_t id;
-    void (*payload_handler)(uint8_t*, uint8_t);
-    void (*state_update)(CRGB*);
-};
+    char buf[50] = { 0 };
+    va_list va;
+    va_start(va, __fmt);
+    vsprintf(buf, __fmt, va);
+    va_end(va);
 
-static const struct state_config configs[] = {
-    {.id = 0x41, .payload_handler = solid_handler,      .state_update = solid},
-    {.id = 0x42, .payload_handler = gradient_handler,   .state_update = gradient},
-    {.id = 0x43, .payload_handler = NULL,               .state_update = cylon},
-    {.id = 0x44, .payload_handler = NULL,               .state_update = rainbow},
-    {.id = 0x45, .payload_handler = NULL,               .state_update = stroboscope},
-    {.id = 0x46, .payload_handler = NULL,               .state_update = confetti},
-    {.id = 0x47, .payload_handler = NULL,               .state_update = sinelon},
-    {.id = 0x48, .payload_handler = NULL,               .state_update = bpm},
-    {.id = 0x49, .payload_handler = NULL,               .state_update = juggle},
-    {.id = 0x4a, .payload_handler = NULL,               .state_update = fadeinout},
-    {.id = 0x4b, .payload_handler = NULL,               .state_update = twinkle},
-    {.id = 0x4c, .payload_handler = NULL,               .state_update = snowsparkle},
-    {.id = 0x4d, .payload_handler = NULL,               .state_update = train},
-    {.id = 0x4e, .payload_handler = NULL,               .state_update = color_wipe},
-};
+    simpap_send(&simpap_ctx, (uint8_t*)buf, sizeof(buf));
+}
 
 // SoftwareSerial toSlave(10, 11);
 void simpap_send_char(uint8_t ch)
@@ -77,19 +76,22 @@ void simpap_handler(uint8_t* data, uint8_t len)
         NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
         leds = (CRGB*)malloc(NUM_LEDS*sizeof(CRGB));
         FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+        state_t.num_leds = NUM_LEDS;
         initialized = true;
-        simpap_send(&simpap_ctx, (uint8_t*)"[Info] Initialization complete", 30);
+        print("[Info] Initialization complete");
     } else if(!initialized) {
-        simpap_send(&simpap_ctx, (uint8_t*)"[Error] Not known number of LEDs", 32);
+        print("[Error] Not known number of LEDs");
     } else {
         /* Apply animation */
-        for(int i = 0; i < COUNT_OF(configs); i++) {
+        for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
             if(configs[i].id != cmd) {
                 continue;
             }
 
-            simpap_send(&simpap_ctx, (uint8_t*)"[Info] Changing animation", 25);
-            state_t.state = configs[i].id;
+            print("[Info] Changing animation");
+            state_t.animation = configs[i].id;
+            state_t.config = &configs[i];
+            animation_state_reset(state_t.config);
             if(configs[i].payload_handler != NULL) {
                 configs[i].payload_handler(&(data[PAYLOAD_OFFSET]),
                                            len - PAYLOAD_OFFSET);
@@ -100,16 +102,13 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
 void state_update()
 {
-    for(int i = 0; i < COUNT_OF(configs); i++) {
-        if(configs[i].id != state_t.state) {
-            continue;
-        }
+    state_t.iteration++;
 
-        configs[i].state_update(leds);
+    if(state_t.iteration%(state_t.config->delay/BASE_PERIOD) == 0) {
+        animation_state_update(leds, state_t.num_leds, state_t.config);
     }
 
     FastLED.show();
-    delay(state_t.delay);
 }
 
 void setup()
@@ -126,14 +125,23 @@ void setup()
     simpap_init(&simpap_ctx);
 
     // Initial state - Rainbow
-    state_t.state = 0x4e;
-    state_t.delay = 25;
+    state_t.iteration = 0;
+    state_t.num_leds = 10;
+    state_t.animation = 0x4e;
+    state_t.config = &configs[3];
+
+    // TODO tobe removed
+    NUM_LEDS = 20;
+    leds = (CRGB*)malloc(NUM_LEDS*sizeof(CRGB));
+    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+    state_t.num_leds = NUM_LEDS;
+    initialized = true;
 }
 
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        simpap_send(&simpap_ctx, (uint8_t*)"[Error] Overrun", 15);
+        print("[Error] Overrun");
     }
     start = millis();
 
@@ -146,5 +154,8 @@ void loop()
         uint8_t ch = Serial.read();
         simpap_accept_char(&simpap_ctx, ch);
     }
+
+    delay(BASE_PERIOD);
+
     stop = millis();
 }

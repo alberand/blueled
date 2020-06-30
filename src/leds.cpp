@@ -1,85 +1,92 @@
 #include "leds.hpp"
+#include "common.hpp"
 
 static struct animation_state
 {
+    // dynamics
     uint16_t iteration;
-    uint16_t period;
-} animation_state_t;
-
-static struct solid_params
-{
-    uint32_t color;
-} solid_params_t;
-
-static struct gradient_params
-{
+    // multi-color
     uint32_t colors[20];
     uint8_t index;
     uint8_t num;
-} gradient_params_t;
+} animation_t;
+
+void animation_state_reset(const struct animation_config* animation_config)
+{
+    animation_t.iteration = 0;
+}
+
+void animation_state_update(CRGB* leds, uint16_t num_leds,
+                            const struct animation_config* animation_config)
+{
+    animation_t.iteration++;
+    animation_config->leds_update(leds, num_leds);
+}
 
 void solid_handler(uint8_t* payload, uint8_t len)
 {
     // parse parameters
-    solid_params_t.color = get_u32(payload);
+    animation_t.colors[0] = get_u32(payload);
+    animation_t.index = 0;
+    animation_t.num = 1;
 }
 
 void gradient_handler(uint8_t* payload, uint8_t len)
 {
     // parse parameters
-    gradient_params_t.num = get_u8(payload);
-    for(int i = 0; i < gradient_params_t.num; i++) {
-        gradient_params_t.colors[i] = get_u32((payload + i*4 + 1));
-        gradient_params_t.index = i;
+    animation_t.num = get_u8(payload);
+    for(int i = 0; i < animation_t.num; i++) {
+        animation_t.colors[i] = get_u32((payload + i*4 + 1));
+        animation_t.index = i;
     }
 
 }
 
-void fadeall(CRGB* leds)
+void fadeall(CRGB* leds, uint16_t num_leds)
 {
-    for(int i = 0; i < NUM_LEDS; i++) {
+    for(uint16_t i = 0; i < num_leds; i++) {
         leds[i].nscale8(250);
     }
 }
 
-void fadeinout(CRGB* leds)
+void fadeinout(CRGB* leds, uint16_t num_leds)
 {
     CRGB color = 0xe37d09;
 
-    animation_state_t.iteration++;
-    if(animation_state_t.iteration < 128) {
-        fadeall(leds);
-    } else if(animation_state_t.iteration < 256) {
-        for(int i = 0; i < NUM_LEDS; i++) {
-            leds[i].red = color.red * (animation_state_t.iteration - 127)/127;
-            leds[i].green = color.green * (animation_state_t.iteration - 127)/127;
-            leds[i].blue = color.blue * (animation_state_t.iteration - 127)/127;
+    animation_t.iteration++;
+    if(animation_t.iteration < 128) {
+        fadeall(leds, num_leds);
+    } else if(animation_t.iteration < 256) {
+        for(uint16_t i = 0; i < num_leds; i++) {
+            leds[i].red = color.red * (animation_t.iteration - 127)/127;
+            leds[i].green = color.green * (animation_t.iteration - 127)/127;
+            leds[i].blue = color.blue * (animation_t.iteration - 127)/127;
         }
     } else {
-        animation_state_t.iteration = 0;
+        animation_t.iteration = 0;
     }
 }
 
-void solid(CRGB* leds)
+void solid(CRGB* leds, uint16_t num_leds)
 {
-    for(int i = 0; i < NUM_LEDS; i++) {
-        leds[i] = solid_params_t.color;
+    for(uint16_t i = 0; i < num_leds; i++) {
+        leds[i] = animation_t.colors[0];
     }
 }
 
-void gradient(CRGB* leds)
+void gradient(CRGB* leds, uint16_t num_leds)
 {
     uint16_t start = 0;
-    uint16_t len = int(NUM_LEDS/(gradient_params_t.num - 1));
+    uint16_t len = int(num_leds/(animation_t.num - 1));
 
-    for(int i = 0; i < gradient_params_t.num - 1; i++) {
-        fill_gradient_RGB(leds, start, gradient_params_t.colors[i], \
-                          start + len, gradient_params_t.colors[i+1]);
+    for(int i = 0; i < animation_t.num - 1; i++) {
+        fill_gradient_RGB(leds, start, animation_t.colors[i], \
+                          start + len, animation_t.colors[i+1]);
         start = start + len;
     }
 }
 
-void rainbow(CRGB* leds)
+void rainbow(CRGB* leds, uint16_t num_leds)
 {
     static uint16_t sPseudotime = 0;
     static uint16_t sLastMillis = 0;
@@ -100,7 +107,7 @@ void rainbow(CRGB* leds)
     sHue16 += deltams * beatsin88( 400, 5,9);
     uint16_t brightnesstheta16 = sPseudotime;
 
-    for( uint16_t i = 0 ; i < NUM_LEDS; i++) {
+    for( uint16_t i = 0 ; i < num_leds; i++) {
         hue16 += hueinc16;
         uint8_t hue8 = hue16 / 256;
 
@@ -114,25 +121,27 @@ void rainbow(CRGB* leds)
         CRGB newcolor = CHSV( hue8, sat8, bri8);
 
         uint16_t pixelnumber = i;
-        pixelnumber = (NUM_LEDS-1) - pixelnumber;
+        pixelnumber = (num_leds-1) - pixelnumber;
 
         nblend( leds[pixelnumber], newcolor, 64);
     }
 }
 
-void cylon(CRGB* leds)
+void cylon(CRGB* leds, uint16_t num_leds)
 {
     static uint8_t hue = 0;
 
-    fadeall(leds);
+    fadeall(leds, num_leds);
 
-    if(animation_state_t.iteration < NUM_LEDS)
-        leds[animation_state_t.iteration] = CHSV(hue++, 255, 255);
-    if(NUM_LEDS < animation_state_t.iteration && animation_state_t.iteration < (2*NUM_LEDS))
-        leds[2*NUM_LEDS - animation_state_t.iteration] = CHSV(hue++, 255, 255);
+    print("i: %d; n: %d", animation_t.iteration, num_leds);
 
-    if (animation_state_t.iteration++ == (NUM_LEDS*2)) {
-        animation_state_t.iteration = 0;
+    if(animation_t.iteration < num_leds)
+        leds[animation_t.iteration] = CHSV(hue++, 255, 255);
+    if(num_leds < animation_t.iteration && animation_t.iteration < (2*num_leds))
+        leds[2*num_leds - animation_t.iteration] = CHSV(hue++, 255, 255);
+
+    if (animation_t.iteration == (num_leds*2)) {
+        animation_t.iteration = 0;
     }
 }
 
@@ -150,7 +159,7 @@ void cylon(CRGB* leds)
 //                                   \-------/       \-/
 //                                   period 5      width 2
 //
-static void drawRainbowDashes(CRGB* leds,
+static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
                               uint8_t startpos, uint16_t lastpos, uint8_t period, uint8_t width,
                               uint8_t huestart, uint8_t huedelta, uint8_t saturation, uint8_t value)
 {
@@ -163,7 +172,7 @@ static void drawRainbowDashes(CRGB* leds,
         for( uint8_t w = 0; w < width; w++) {
             leds[ pos ] = color;
             pos++;
-            if( pos >= NUM_LEDS) {
+            if( pos >= num_leds) {
                 break;
             }
         }
@@ -174,7 +183,7 @@ static void drawRainbowDashes(CRGB* leds,
 
 // stroboscopeWorker updates the positions of the dashes, and calls the draw function
 //
-void stroboscopeWorker(CRGB* leds,
+void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
                        uint8_t dashperiod, uint8_t dashwidth, int8_t  dashmotionspeed,
                        uint8_t stroberepeats,
                        uint8_t huedelta)
@@ -216,16 +225,16 @@ void stroboscopeWorker(CRGB* leds,
     const uint8_t kValue = 255;
 
     // call the function that actually just draws the dashes now
-    drawRainbowDashes( leds, sStartPosition, NUM_LEDS-1,
+    drawRainbowDashes( leds, num_leds, sStartPosition, num_leds-1,
                        dashperiod, dashwidth,
                        sStartHue, huedelta,
                        kSaturation, kValue);
 }
 
-void stroboscope(CRGB* leds)
+void stroboscope(CRGB* leds, uint16_t num_leds)
 {
     // First, we black out all the LEDs
-    fill_solid( leds, NUM_LEDS, CRGB::Black);
+    fill_solid( leds, num_leds, CRGB::Black);
 
     // To achive the strobe effect, we actually only draw lit pixels
     // every Nth frame (e.g. every 4th frame).
@@ -260,7 +269,7 @@ void stroboscope(CRGB* leds)
         // The dashes zoom back and forth at a speed that 'goes well' with
         // most dance music, a little faster than 120 Beats Per Minute.  You
         // can adjust this for faster or slower 'zooming' back and forth.
-        uint8_t zoomBPM = ZOOMING_BEATS_PER_MINUTE;
+        uint8_t zoomBPM = 122;
         int8_t  dashmotionspeed = beatsin8( (zoomBPM /2), 1,dashperiod);
         // This is where we reverse the direction under cover of high speed
         // visual aliasing.
@@ -298,97 +307,97 @@ void stroboscope(CRGB* leds)
 
         // Now that all the parameters for this frame are calculated,
         // we call the 'worker' function that does the next part of the work.
-        stroboscopeWorker(leds,  dashperiod, dashwidth, dashmotionspeed, strobesPerPosition, hueShift);
+        stroboscopeWorker(leds, num_leds, dashperiod, dashwidth, dashmotionspeed, strobesPerPosition, hueShift);
     }
 }
 
-void confetti(CRGB* leds)
+void confetti(CRGB* leds, uint16_t num_leds)
 {
 // random colored speckles that blink in and fade smoothly
     static uint16_t hue = 0;
-    fadeToBlackBy( leds, NUM_LEDS, 10);
-    int pos = random16(NUM_LEDS);
+    fadeToBlackBy( leds, num_leds, 10);
+    int pos = random16(num_leds);
     leds[pos] += CHSV( hue++ + random8(64), 200, 255);
 }
 
-void sinelon(CRGB* leds)
+void sinelon(CRGB* leds, uint16_t num_leds)
 {
 // a colored dot sweeping back and forth, with fading trails
     static uint16_t hue = 0;
-    fadeToBlackBy( leds, NUM_LEDS, 20);
-    int pos = beatsin16( 13, 0, NUM_LEDS-1 );
+    fadeToBlackBy( leds, num_leds, 20);
+    int pos = beatsin16( 13, 0, num_leds-1 );
     leds[pos] += CHSV( hue++, 255, 192);
 }
 
-void bpm(CRGB* leds)
+void bpm(CRGB* leds, uint16_t num_leds)
 {
 // colored stripes pulsing at a defined Beats-Per-Minute (BPM)
     static uint16_t hue = 0;
     uint8_t BeatsPerMinute = 62;
     CRGBPalette16 palette = PartyColors_p;
     uint8_t beat = beatsin8( BeatsPerMinute, 64, 255);
-    for( int i = 0; i < NUM_LEDS; i++) { //9948
+    for(uint16_t i = 0; i < num_leds; i++) {
         hue++;
         leds[i] = ColorFromPalette(palette, hue +(i*2), beat-hue +(i*10));
     }
 }
 
-void juggle(CRGB* leds)
+void juggle(CRGB* leds, uint16_t num_leds)
 {
 // eight colored dots, weaving in and out of sync with each other
-    fadeToBlackBy( leds, NUM_LEDS, 20);
+    fadeToBlackBy( leds, num_leds, 20);
     byte dothue = 0;
     for( int i = 0; i < 8; i++) {
-        leds[beatsin16( i+7, 0, NUM_LEDS-1 )] |= CHSV(dothue, 200, 255);
+        leds[beatsin16( i+7, 0, num_leds-1 )] |= CHSV(dothue, 200, 255);
         dothue += 32;
     }
 }
 
-void twinkle(CRGB* leds)
+void twinkle(CRGB* leds, uint16_t num_leds)
 {
-    animation_state_t.iteration++;
-    if(animation_state_t.iteration*25 == 500) {
-        animation_state_t.iteration = 0;
-        leds[random(NUM_LEDS)] = solid_params_t.color;
+    animation_t.iteration++;
+    if(animation_t.iteration*25 == 500) {
+        animation_t.iteration = 0;
+        leds[random(num_leds)] = animation_t.colors[0];
     } else {
-        fadeall(leds);
+        fadeall(leds, num_leds);
     }
 
-    if(animation_state_t.iteration*25 == 2000) {
-        animation_state_t.iteration = 0;
+    if(animation_t.iteration*25 == 2000) {
+        animation_t.iteration = 0;
     }
 }
 
-void snowsparkle(CRGB* leds)
+void snowsparkle(CRGB* leds, uint16_t num_leds)
 {
-    animation_state_t.iteration++;
+    animation_t.iteration++;
 
-    if(animation_state_t.iteration*25 == 500) {
-        leds[random(NUM_LEDS)] = CRGB(0xff, 0xff, 0xff);
+    if(animation_t.iteration*25 == 500) {
+        leds[random(num_leds)] = CRGB(0xff, 0xff, 0xff);
     }
 
-    if(animation_state_t.iteration*25 == 550) {
-        for(int i = 0; i < NUM_LEDS; i++) {
+    if(animation_t.iteration*25 == 550) {
+        for(uint16_t i = 0; i < num_leds; i++) {
             leds[i] = 0x101010;
         }
     }
 
-    if(animation_state_t.iteration*25 == 600) {
-        animation_state_t.iteration = 0;
+    if(animation_t.iteration*25 == 600) {
+        animation_t.iteration = 0;
     }
 }
 
-void train(CRGB* leds)
+void train(CRGB* leds, uint16_t num_leds)
 {
-    static int position = 0;
+    static uint16_t position = 0;
 
     position++; // = 0; //Position + Rate;
 
-    for(int i=0; i<NUM_LEDS; i++) {
+    for(uint16_t i=0; i<num_leds; i++) {
         // sine wave, 3 offset waves make a rainbow!
         // float level = sin(i + position) * 127 + 128;
         //setPixel(i,level,0,0);
-        float level = sin(i + position) * 127 + 128;
+        // float level = sin(i + position) * 127 + 128;
         leds[i] = CRGB(
                       ((sin(i+position) * 127 + 128)/255)*0xAC,
                       ((sin(i+position) * 127 + 128)/255)*0x19,
@@ -396,22 +405,27 @@ void train(CRGB* leds)
                   );
     }
 
-    if(position == (NUM_LEDS*2)) {
+    if(position == (num_leds*2)) {
         position  = 0;
     }
 }
 
-void color_wipe(CRGB* leds)
+void color_wipe(CRGB* leds, uint16_t num_leds)
 {
-    for(uint16_t i=0; i<NUM_LEDS; i++) {
-        if(POSITION_IN_FIRST_HALF(animation_t.iteration,
-                                  animation_t.period)) {
-            leds[i] = animation_t.color;
-        }
+    uint32_t led_idx = 0;
+    uint32_t period = num_leds*4;
 
-        if(POSITION_IN_SECOND_HALF(animation_t.iteration,
-                                   animation_t.period)) {
-            leds[i] = 0;
-        }
+    if(animation_t.iteration%4 == 0) {
+        led_idx = (animation_t.iteration/4)%num_leds;
+    } else {
+        return;
+    }
+
+    if(POSITION_IN_FIRST_HALF((animation_t.iteration/4)%period, period)) {
+        leds[led_idx] = animation_t.colors[0];
+    }
+
+    if(POSITION_IN_SECOND_HALF((animation_t.iteration/4)%period, period)) {
+        leds[led_idx] = 0;
     }
 }
