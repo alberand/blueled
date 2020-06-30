@@ -126,16 +126,9 @@ void setup()
 
     // Initial state - Rainbow
     state_t.iteration = 0;
-    state_t.num_leds = 10;
+    state_t.num_leds = 0;
     state_t.animation = 0x4e;
     state_t.config = &configs[3];
-
-    // TODO tobe removed
-    NUM_LEDS = 20;
-    leds = (CRGB*)malloc(NUM_LEDS*sizeof(CRGB));
-    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
-    state_t.num_leds = NUM_LEDS;
-    initialized = true;
 }
 
 void loop()

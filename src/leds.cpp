@@ -133,8 +133,6 @@ void cylon(CRGB* leds, uint16_t num_leds)
 
     fadeall(leds, num_leds);
 
-    print("i: %d; n: %d", animation_t.iteration, num_leds);
-
     if(animation_t.iteration < num_leds)
         leds[animation_t.iteration] = CHSV(hue++, 255, 255);
     if(num_leds < animation_t.iteration && animation_t.iteration < (2*num_leds))
