@@ -5,12 +5,13 @@
 
 #include <stdint.h>
 
-#define MAX_SIZE 20
+#define MAX_SIZE 50
 #define SIMPAP_OVERHEAD 4
 #define BUFFER_SIZE (MAX_SIZE + SIMPAP_OVERHEAD)
 
-struct simpap {
-	uint8_t buffer[BUFFER_SIZE];
+struct simpap
+{
+    uint8_t buffer[BUFFER_SIZE];
     uint8_t index;
     bool overrun;
 
@@ -19,7 +20,7 @@ struct simpap {
     bool finished;
 
     // output
-	uint8_t data[MAX_SIZE];
+    uint8_t data[MAX_SIZE];
 };
 
 uint16_t crc16(uint8_t* data_p, uint8_t length);
