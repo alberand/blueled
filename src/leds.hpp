@@ -25,7 +25,7 @@ struct animation_config
 
 void animation_state_reset(const struct animation_config* animation_config);
 void animation_state_update(CRGB* leds, uint16_t num_leds,
-                            const struct animation_config* animation_config);
+                            struct animation_config* animation_config);
 
 void solid_handler(uint8_t* payload, uint8_t len);
 void gradient_handler(uint8_t* payload, uint8_t len);

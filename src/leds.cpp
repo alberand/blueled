@@ -17,7 +17,7 @@ void animation_state_reset(const struct animation_config* animation_config)
 }
 
 void animation_state_update(CRGB* leds, uint16_t num_leds,
-                            const struct animation_config* animation_config)
+                            struct animation_config* animation_config)
 {
     animation_t.iteration++;
     animation_config->leds_update(leds, num_leds);
