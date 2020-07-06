@@ -1,6 +1,7 @@
 from time import sleep
 import atexit
 import threading
+import sys
 
 from simpap.simpap_protocol import *
 
@@ -38,7 +39,7 @@ def exec_cmd(cmd):
         else:
             s.send(CMD[c][0]())
 
-def worker():
+def worker(s):
     t = threading.currentThread()
     while getattr(t, "running", True):
         msg = s.receive()
@@ -47,13 +48,14 @@ def worker():
 
         sleep(0.01)
 
-def simpap_quit():
+def quit():
     receiver.running = False
     receiver.join()
     serial.ser.close()
 
 # so setup
-serial = SerialTransport('/dev/blueled')
+# serial = SerialTransport('/dev/blueled')
+serial = SerialTransport('/dev/ttyUSB0')
 # serial = SerialTransport('/tmp/blueledish')
 s = Simpap(serial)
 # assign functions
@@ -61,7 +63,5 @@ send = s.send
 cmd = exec_cmd
 
 # start receiving thread
-receiver = threading.Thread(target=worker)
+receiver = threading.Thread(target=worker, args=(s,))
 receiver.start()
-
-atexit.register(simpap_quit)
