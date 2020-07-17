@@ -1,15 +1,7 @@
 #include "leds.hpp"
 #include "common.hpp"
 
-static struct animation_state
-{
-    // dynamics
-    uint16_t iteration;
-    // multi-color
-    uint32_t colors[20];
-    uint8_t index;
-    uint8_t num;
-} animation_t;
+static struct animation_state animation_t;
 
 void animation_state_reset(const struct animation_config* animation_config)
 {
@@ -19,8 +11,8 @@ void animation_state_reset(const struct animation_config* animation_config)
 void animation_state_update(CRGB* leds, uint16_t num_leds,
                             struct animation_config* animation_config)
 {
-    animation_t.iteration++;
     animation_config->leds_update(leds, num_leds);
+    animation_t.iteration++;
 }
 
 void solid_handler(uint8_t* payload, uint8_t len)
@@ -133,14 +125,12 @@ void cylon(CRGB* leds, uint16_t num_leds)
 
     fadeall(leds, num_leds);
 
+    if (animation_t.iteration == (num_leds*2))
+        animation_t.iteration = 0;
     if(animation_t.iteration < num_leds)
         leds[animation_t.iteration] = CHSV(hue++, 255, 255);
     if(num_leds < animation_t.iteration && animation_t.iteration < (2*num_leds))
         leds[2*num_leds - animation_t.iteration] = CHSV(hue++, 255, 255);
-
-    if (animation_t.iteration == (num_leds*2)) {
-        animation_t.iteration = 0;
-    }
 }
 
 
@@ -353,58 +343,55 @@ void juggle(CRGB* leds, uint16_t num_leds)
 
 void twinkle(CRGB* leds, uint16_t num_leds)
 {
-    animation_t.iteration++;
-    if(animation_t.iteration*25 == 500) {
+    if(animation_t.iteration == 400) {
         animation_t.iteration = 0;
+    }
+
+    if(animation_t.iteration == 100) {
+        // animation_t.iteration = 0;
         leds[random(num_leds)] = animation_t.colors[0];
     } else {
         fadeall(leds, num_leds);
-    }
-
-    if(animation_t.iteration*25 == 2000) {
-        animation_t.iteration = 0;
     }
 }
 
 void snowsparkle(CRGB* leds, uint16_t num_leds)
 {
-    animation_t.iteration++;
+    if(animation_t.iteration == 130) {
+        animation_t.iteration = 0;
+    }
 
-    if(animation_t.iteration*25 == 500) {
+    if(animation_t.iteration == 100) {
         leds[random(num_leds)] = CRGB(0xff, 0xff, 0xff);
     }
 
-    if(animation_t.iteration*25 == 550) {
+    if(animation_t.iteration == 115) {
         for(uint16_t i = 0; i < num_leds; i++) {
             leds[i] = 0x101010;
         }
-    }
-
-    if(animation_t.iteration*25 == 600) {
-        animation_t.iteration = 0;
     }
 }
 
 void train(CRGB* leds, uint16_t num_leds)
 {
-    static uint16_t position = 0;
+    uint16_t position = 0;
 
-    position++; // = 0; //Position + Rate;
+    if(animation_t.iteration == (num_leds*2)) {
+        animation_t.iteration  = 0;
+    }
 
-    for(uint16_t i=0; i<num_leds; i++) {
+    position = animation_t.iteration; // = 0; //Position + Rate;
+
+    for(uint16_t i = 0; i < num_leds; i++) {
         // sine wave, 3 offset waves make a rainbow!
         // float level = sin(i + position) * 127 + 128;
         //setPixel(i,level,0,0);
         // float level = sin(i + position) * 127 + 128;
-        leds[i] = CRGB(
-                      ((sin(i+position) * 127 + 128)/255)*0xAC,
-                      ((sin(i+position) * 127 + 128)/255)*0x19,
-                      ((sin(i+position) * 127 + 128)/255)*0xA6
-                  );
-    }
-
-    if(position == (num_leds*2)) {
-        position  = 0;
+        leds[position] = CRGB(
+                             ((sin(i+position*10) * 127 + 128)/255)*0xAC,
+                             ((sin(i+position*10) * 127 + 128)/255)*0x19,
+                             ((sin(i+position*10) * 127 + 128)/255)*0xA6
+                         );
     }
 }
 

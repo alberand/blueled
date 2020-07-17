@@ -22,6 +22,15 @@ struct animation_config
     void (*leds_update)(CRGB*, uint16_t num_leds);
 };
 
+struct animation_state
+{
+    // dynamics
+    uint16_t iteration;
+    // multi-color
+    uint32_t colors[20];
+    uint8_t index;
+    uint8_t num;
+};
 
 void animation_state_reset(const struct animation_config* animation_config);
 void animation_state_update(CRGB* leds, uint16_t num_leds,

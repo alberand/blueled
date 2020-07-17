@@ -42,7 +42,7 @@ uint16_t NUM_LEDS;
 struct simpap simpap_ctx;
 static uint16_t start, stop;
 
-struct state
+static struct state
 {
     bool initialized;
     uint16_t iteration;
