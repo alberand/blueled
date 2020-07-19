@@ -20,6 +20,7 @@
 
 // Application related
 #define DATA_PIN PD7
+#define PIN_DEBUG PB0
 #define CYCLE_MAX_DURATION 100
 
 // Communication
@@ -108,6 +109,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
     } else if(!state_t.initialized) {
         print("[Error] Not known number of LEDs");
     } else {
+        digitalWrite(PIN_DEBUG, !digitalRead(PIN_DEBUG));
         /* Apply animation */
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
             if(configs[i].id != cmd) {
@@ -195,7 +197,9 @@ void setup()
     Serial.begin(115200);
 
     pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(PIN_DEBUG, OUTPUT);
     digitalWrite(LED_BUILTIN, LOW);
+    digitalWrite(PIN_DEBUG, LOW);
 
     // Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
