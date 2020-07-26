@@ -20,6 +20,7 @@
 
 // Application related
 #define DATA_PIN PD7
+#define PIN_RESET PD3
 #define PIN_DEBUG PB0
 #define CYCLE_MAX_DURATION 100
 
@@ -163,13 +164,19 @@ bool state_load(struct state* state_t)
             }
 
             state_t->config = &configs[i];
+
+            if(leds != NULL) {
+                free(leds);
+            }
+            leds = (CRGB*)malloc(state_t->num_leds*sizeof(CRGB));
+            FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, state_t->num_leds);
         }
     }
 
     // We don't read state from memory or:
     // state_t.animation shouldn't be zero as there is no animation
     // with id == 0
-    if(state_t->animation == 0) {
+    if(state_t->animation == 0 or state_t->iteration == -1) {
         print("[Error] Failed to read app state from EEPROM");
         return false;
     }
@@ -197,6 +204,7 @@ void setup()
     Serial.begin(115200);
 
     pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(PIN_RESET, INPUT);
     pinMode(PIN_DEBUG, OUTPUT);
     digitalWrite(LED_BUILTIN, LOW);
     digitalWrite(PIN_DEBUG, LOW);
@@ -210,7 +218,7 @@ void setup()
     delay(1000);
 
     // Read configuration from EEPROM if exist
-    if(!state_load(&state_t)) {
+    if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
         print("[Info] Setting default app state");
         // Initial state - Rainbow
         state_reset(&state_t);
