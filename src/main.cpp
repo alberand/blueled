@@ -241,7 +241,10 @@ void loop()
     // Receive input
     while (Serial.available()) {
         uint8_t ch = Serial.read();
-        simpap_accept_char(&simpap_ctx, ch);
+        int8_t rc = simpap_accept_char(&simpap_ctx, ch);
+        if(rc != 0) {
+            print("[Error] Simpap failed to accept the char (%d error code)", rc);
+        }
     }
 
     delay(BASE_PERIOD);
