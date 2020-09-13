@@ -36,8 +36,10 @@
 #define MEM_NEW_STATE_ADDRESS (MEM_BASE_ADDRESS + 0x0)
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
 
+#define MAX_LEDS 256
+
 // Define the array of leds
-CRGB* leds;
+CRGB leds[MAX_LEDS];
 
 uint16_t NUM_LEDS;
 
@@ -56,7 +58,7 @@ static struct state
 void simpap_send_char(uint8_t ch);
 void simpap_handler(uint8_t* data, uint8_t len);
 
-void state_update(struct state* state_t);
+bool state_update(struct state* state_t);
 void state_save(const struct state* state_t);
 bool state_load(struct state* state_t);
 void state_print(struct state* state_t);
@@ -97,12 +99,8 @@ void simpap_handler(uint8_t* data, uint8_t len)
      * of them */
     if(cmd == 0x20) {
         digitalWrite(LED_BUILTIN, HIGH);
-        if(leds != NULL) {
-            free(leds);
-        }
         NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
-        leds = (CRGB*)malloc(NUM_LEDS*sizeof(CRGB));
-        FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, NUM_LEDS);
+
         state_t.num_leds = NUM_LEDS;
         state_t.initialized = true;
         state_save(&state_t);
@@ -130,13 +128,16 @@ void simpap_handler(uint8_t* data, uint8_t len)
     }
 }
 
-void state_update(struct state* state_t)
+bool state_update(struct state* state_t)
 {
     state_t->iteration++;
 
     if(state_t->iteration%(state_t->config->delay/BASE_PERIOD) == 0) {
         animation_state_update(leds, state_t->num_leds, state_t->config);
+        return true;
     }
+
+    return false;
 }
 
 void state_save(const struct state* state_t)
@@ -164,12 +165,6 @@ bool state_load(struct state* state_t)
             }
 
             state_t->config = &configs[i];
-
-            if(leds != NULL) {
-                free(leds);
-            }
-            leds = (CRGB*)malloc(state_t->num_leds*sizeof(CRGB));
-            FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, state_t->num_leds);
         }
     }
 
@@ -189,14 +184,8 @@ void state_reset(struct state* state_t)
     state_t->initialized = true;
     state_t->iteration = 0;
     state_t->num_leds = 10;
-    state_t->animation = 0x4e;
+    state_t->animation = 0x44;
     state_t->config = &configs[3];
-
-    if(leds != NULL) {
-        free(leds);
-    }
-    leds = (CRGB*)malloc(state_t->num_leds*sizeof(CRGB));
-    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, state_t->num_leds);
 }
 
 void setup()
@@ -211,7 +200,7 @@ void setup()
 
     // Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
-    // FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, 5);
+    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, MAX_LEDS);
 
     simpap_init(&simpap_ctx);
 
@@ -234,8 +223,9 @@ void loop()
     start = millis();
 
     if(state_t.initialized) {
-        state_update(&state_t);
-        FastLED.show();
+        if(state_update(&state_t)){
+            FastLED.show();
+        }
     }
 
     // Receive input
