@@ -374,24 +374,22 @@ void snowsparkle(CRGB* leds, uint16_t num_leds)
 
 void train(CRGB* leds, uint16_t num_leds)
 {
-    uint16_t position = 0;
-
-    if(animation_t.iteration == (num_leds*2)) {
+    if(animation_t.iteration >= (num_leds*2)) {
         animation_t.iteration  = 0;
     }
 
-    position = animation_t.iteration; // = 0; //Position + Rate;
+    uint16_t position = animation_t.iteration;
 
     for(uint16_t i = 0; i < num_leds; i++) {
         // sine wave, 3 offset waves make a rainbow!
         // float level = sin(i + position) * 127 + 128;
         //setPixel(i,level,0,0);
         // float level = sin(i + position) * 127 + 128;
-        leds[position] = CRGB(
-                             ((sin(i+position*10) * 127 + 128)/255)*0xAC,
-                             ((sin(i+position*10) * 127 + 128)/255)*0x19,
-                             ((sin(i+position*10) * 127 + 128)/255)*0xA6
-                         );
+        leds[i] = CRGB(
+                      ((sin(i+position) * 127 + 128)/255)*0xAC,
+                      ((sin(i+position) * 127 + 128)/255)*0x19,
+                      ((sin(i+position) * 127 + 128)/255)*0xA6
+                  );
     }
 }
 

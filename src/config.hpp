@@ -77,7 +77,7 @@ static const struct animation_config configs[] = {
     },
     {
         .id = 0x4d,
-        .delay = 10,
+        .delay = 50,
         .payload_handler = NULL,
         .leds_update = train,
     },

@@ -19,7 +19,7 @@ struct animation_config
     uint8_t id;
     uint16_t delay;
     void (*payload_handler)(uint8_t*, uint8_t);
-    void (*leds_update)(CRGB*, uint16_t num_leds);
+    void (*leds_update)(CRGB*, uint16_t);
 };
 
 struct animation_state
