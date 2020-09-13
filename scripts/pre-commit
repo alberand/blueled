@@ -21,7 +21,7 @@ echo "[info] Applying 'astyle' formatter"
 astyle --style=mozilla $staged
 
 if [ $? -eq 0 ]; then
-    git add $staged
+    # git add $staged
     exit 0
 else
     echo "[error] Check formatting"
