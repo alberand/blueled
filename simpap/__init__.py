@@ -27,41 +27,37 @@ class SerialTransport:
     def avaliable(self):
         return self.ser.in_waiting
 
-def exec_cmd(cmd):
-    c = cmd[0]
-    args = cmd
-    print(f'cmd: {c}; args: {args}')
-    if s.is_cmd(cmd):
-        if args != c:
-            a = CMD[c][1]
-            b = CMD[c][0]
-            s.send(b(a(args)))
-        else:
-            s.send(CMD[c][0]())
+class Communication:
 
-def worker(s):
-    t = threading.currentThread()
-    while getattr(t, "running", True):
-        msg = s.receive()
-        if msg:
-            print(msg)
+    def __init__(self, port):
+        self.serial = SerialTransport(port)
+        self.app_layer = Simpap(self.serial)
+    
+        self.receiver = threading.Thread(target=self.worker, args=(self.app_layer,))
+        self.receiver.start()
 
-        sleep(0.01)
+    def cmd(self, cmd):
+        c = cmd[0]
+        args = cmd
+        print(f'cmd: {c}; args: {args}')
+        if self.app_layer.is_cmd(cmd):
+            if args != c:
+                a = CMD[c][1]
+                b = CMD[c][0]
+                self.app_layer.send(b(a(args)))
+            else:
+                self.app_layer.send(CMD[c][0]())
 
-def quit():
-    receiver.running = False
-    receiver.join()
-    serial.ser.close()
-
-# so setup
-# serial = SerialTransport('/dev/blueled')
-serial = SerialTransport('/dev/ttyUSB0')
-# serial = SerialTransport('/tmp/blueledish')
-s = Simpap(serial)
-# assign functions
-send = s.send
-cmd = exec_cmd
-
-# start receiving thread
-receiver = threading.Thread(target=worker, args=(s,))
-receiver.start()
+    def worker(self, app_layer):
+        t = threading.currentThread()
+        while getattr(t, "running", True):
+            msg = app_layer.receive()
+            if msg:
+                print(msg)
+    
+            sleep(0.01)
+    
+    def stop(self):
+        self.receiver.running = False
+        self.receiver.join()
+        self.serial.ser.close()
