@@ -223,7 +223,7 @@ void loop()
     start = millis();
 
     if(state_t.initialized) {
-        if(state_update(&state_t)){
+        if(state_update(&state_t)) {
             FastLED.show();
         }
     }
