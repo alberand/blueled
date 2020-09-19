@@ -87,4 +87,16 @@ static const struct animation_config configs[] = {
         .payload_handler = NULL,
         .leds_update = color_wipe,
     },
+    {
+        .id = 0x4f,
+        .delay = 20,
+        .payload_handler = NULL,
+        .leds_update = rainbow_classic,
+    },
+    {
+        .id = 0x50,
+        .delay = 50,
+        .payload_handler = NULL,
+        .leds_update = theater_chase,
+    },
 };

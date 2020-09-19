@@ -412,3 +412,47 @@ void color_wipe(CRGB* leds, uint16_t num_leds)
         leds[led_idx] = 0;
     }
 }
+
+void rainbow_classic(CRGB* leds, uint16_t num_leds) {
+  uint16_t i;
+  static byte c[3];
+
+    if(animation_t.iteration >= (256*5)) {
+        animation_t.iteration  = 0;
+    }
+
+    for(i=0; i< num_leds; i++) {
+		byte pos = ((i * 256 / num_leds) + animation_t.iteration) & 255;
+ 
+  		if(pos < 85) {
+  		 c[0]=pos * 3;
+  		 c[1]=255 - pos * 3;
+  		 c[2]=0;
+  		} else if(pos < 170) {
+  		 pos -= 85;
+  		 c[0]=255 - pos * 3;
+  		 c[1]=0;
+  		 c[2]=pos * 3;
+  		} else {
+  		 pos -= 170;
+  		 c[0]=0;
+  		 c[1]=pos * 3;
+  		 c[2]=255 - pos * 3;
+  		}
+
+      leds[i] = CRGB(c[0], c[1], c[2]);
+    }
+}
+
+void theater_chase(CRGB* leds, uint16_t num_leds) {
+    if(animation_t.iteration >= 30) {
+        animation_t.iteration  = 0;
+    }
+
+	int q = animation_t.iteration%3;
+
+      for (int i=0; i < num_leds; i=i+3) {
+        leds[i + q - 1] = CRGB(0,0,0);
+        leds[i + q] = CRGB(0xFF, 0, 0);
+      }
+}

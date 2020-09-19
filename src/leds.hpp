@@ -55,3 +55,5 @@ void twinkle(CRGB* leds, uint16_t num_leds);
 void snowsparkle(CRGB* leds, uint16_t num_leds);
 void train(CRGB* leds, uint16_t num_leds);
 void color_wipe(CRGB* leds, uint16_t num_leds);
+void rainbow_classic(CRGB* leds, uint16_t num_leds);
+void theater_chase(CRGB* leds, uint16_t num_leds);
