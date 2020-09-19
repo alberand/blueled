@@ -118,8 +118,8 @@ void simpap_handler(uint8_t* data, uint8_t len)
             print("[Info] Changing animation");
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
-            state_save(&state_t);
             animation_state_reset(state_t.config);
+            state_save(&state_t);
             if(configs[i].payload_handler != NULL) {
                 configs[i].payload_handler(&(data[PAYLOAD_OFFSET]),
                                            len - PAYLOAD_OFFSET);
