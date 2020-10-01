@@ -104,6 +104,11 @@ def cmd_theater_chase(*args):
     data = cmd.to_bytes(2, byteorder='big')
     return data
 
+def cmd_fire(*args):
+    cmd = 0x0051
+    data = cmd.to_bytes(2, byteorder='big')
+    return data
+
 def cmd_help(*args):
     pprint(CMD)
     return cmd_rainbow()
@@ -126,6 +131,7 @@ CMD = {
         'w': [cmd_color_wipe, lambda x: int(x)],
         'x': [cmd_rainbow_classic, lambda x: int(x)],
         'z': [cmd_theater_chase, lambda x: int(x)],
+        'q': [cmd_fire, lambda x: int(x)],
         'h': [cmd_help, lambda x: int(x)],
 }
 
