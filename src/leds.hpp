@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 
+#define FASTLED_ALLOW_INTERRUPTS 1
 #include <FastLED.h>
 
 #include "utils.hpp"

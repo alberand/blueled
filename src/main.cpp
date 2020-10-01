@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include <avr/interrupt.h>
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 #include <EEPROM.h>
@@ -39,6 +40,11 @@
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
 
 #define MAX_LEDS 256
+
+#define START_COMM 0xAA
+#define ACK_START_COMM 0xBB
+
+static bool in_comm = false;
 
 // Define the array of leds
 CRGB leds[MAX_LEDS];
@@ -223,11 +229,11 @@ void setup()
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        // print("overrun");
+        print("overrun");
     }
     start = millis();
 
-    if(state_t.initialized) {
+    if(state_t.initialized && !in_comm) {
         if(state_update(&state_t)) {
             FastLED.show();
         }
@@ -238,12 +244,20 @@ void loop()
     // Receive input
     while (Serial.available()) {
         uint8_t ch = Serial.read();
+        if(ch == START_COMM) {
+            print('%c', ACK_START_COMM);
+            // in_comm = true;
+            break;
+            continue;
+        }
         int8_t rc = simpap_accept_char(&simpap_ctx, ch);
         if(rc != 0) {
             print("failed char %d", rc);
             for(int i = 0; i < simpap_ctx.index; i++) {
                 print("d: %X", simpap_ctx.buffer[i]);
             }
+        } else {
+            in_comm = false;
         }
     }
 
