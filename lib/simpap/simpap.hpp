@@ -5,7 +5,7 @@
 
 #include <stdint.h>
 
-#define MAX_SIZE 50
+#define MAX_SIZE 100
 #define SIMPAP_OVERHEAD 4
 #define BUFFER_SIZE (MAX_SIZE + SIMPAP_OVERHEAD)
 
