@@ -48,6 +48,9 @@ class Communication:
             else:
                 self.app_layer.send(CMD[c][0]())
 
+    def send_raw(self, data):
+        self.serial.write(data)
+
     def worker(self, app_layer):
         t = threading.currentThread()
         while getattr(t, "running", True):
