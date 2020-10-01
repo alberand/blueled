@@ -12,6 +12,8 @@
 
 #include "config.hpp"
 
+#define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
+
 // Software-Hardoware configuration
 // Always 5V
 #define MAX_VOLTS 5
@@ -61,12 +63,12 @@ void simpap_handler(uint8_t* data, uint8_t len);
 bool state_update(struct state* state_t);
 void state_save(const struct state* state_t);
 bool state_load(struct state* state_t);
-void state_print(struct state* state_t);
+void state_print(const struct state* state_t);
 void state_reset(struct state* state_t);
 
 void print(const char *__fmt, ...)
 {
-    char buf[50] = { 0 };
+    char buf[100] = { 0 };
     va_list va;
     va_start(va, __fmt);
     vsprintf(buf, __fmt, va);
@@ -75,12 +77,13 @@ void print(const char *__fmt, ...)
     simpap_send(&simpap_ctx, (uint8_t*)buf, sizeof(buf));
 }
 
-void state_print(struct state* state_t)
+void state_print(const struct state* state_t)
 {
-    print("[Debug] state_t.initialized: %s", state_t->initialized ? "true" : "false");
-    print("[Debug] state_t.iteration: %d", state_t->iteration);
-    print("[Debug] state_t.num_leds: %d", state_t->num_leds);
+    //print("[Debug] state_t.initialized: %s", state_t->initialized ? "true" : "false");
+    //print("[Debug] state_t.iteration: %d", state_t->iteration);
+    //print("[Debug] state_t.num_leds: %d", state_t->num_leds);
     print("[Debug] state_t.animation: %X", state_t->animation);
+    // print("[Debug] state_t.config: %X", state_t->config);
     // printf("[Debug] state_t.config->id: %X", state_t->config->id);
     // printf("[Debug] state_t.config->delay: %d", state_t->config->delay);
 }
@@ -104,9 +107,9 @@ void simpap_handler(uint8_t* data, uint8_t len)
         state_t.num_leds = NUM_LEDS;
         state_t.initialized = true;
         state_save(&state_t);
-        print("[Info] Initialization complete");
+        print("init done");
     } else if(!state_t.initialized) {
-        print("[Error] Not known number of LEDs");
+        print("dunno LEDs");
     } else {
         digitalWrite(PIN_DEBUG, !digitalRead(PIN_DEBUG));
         /* Apply animation */
@@ -115,7 +118,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
                 continue;
             }
 
-            print("[Info] Changing animation");
+            print("change anim");
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
             animation_state_reset(state_t.config);
@@ -142,7 +145,7 @@ bool state_update(struct state* state_t)
 
 void state_save(const struct state* state_t)
 {
-    print("[Debug] Saving state");
+    print("save mem");
     state_print(state_t);
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
     // This flag is used only to check that config was saved
@@ -154,7 +157,7 @@ bool state_load(struct state* state_t)
 {
     bool is_config_new = false;
     if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
-        print("[Info] Reading configuration from EEPROM");
+        print("read mem");
         state_reset(state_t);
         EEPROM.get(MEM_STATE_ADDRESS, *state_t);
         state_print(state_t);
@@ -171,8 +174,10 @@ bool state_load(struct state* state_t)
     // We don't read state from memory or:
     // state_t.animation shouldn't be zero as there is no animation
     // with id == 0
-    if(state_t->animation == 0 or state_t->iteration == -1) {
-        print("[Error] Failed to read app state from EEPROM");
+    if(state_t->animation == 0 or \
+            state_t->animation > 0x60 or \
+            state_t->num_leds > MAX_LEDS) {
+        print("fail mem read");
         return false;
     }
 
@@ -190,7 +195,7 @@ void state_reset(struct state* state_t)
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(9600, SERIAL_8E1);
 
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(PIN_RESET, INPUT);
@@ -208,7 +213,7 @@ void setup()
 
     // Read configuration from EEPROM if exist
     if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
-        print("[Info] Setting default app state");
+        print("default anim");
         // Initial state - Rainbow
         state_reset(&state_t);
         state_save(&state_t);
@@ -218,7 +223,7 @@ void setup()
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        print("[Error] Overrun");
+        // print("overrun");
     }
     start = millis();
 
@@ -228,16 +233,19 @@ void loop()
         }
     }
 
+    delay(BASE_PERIOD);
+
     // Receive input
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         int8_t rc = simpap_accept_char(&simpap_ctx, ch);
         if(rc != 0) {
-            print("[Error] Simpap failed to accept the char (%d error code)", rc);
+            print("failed char %d", rc);
+            for(int i = 0; i < simpap_ctx.index; i++) {
+                print("d: %X", simpap_ctx.buffer[i]);
+            }
         }
     }
-
-    delay(BASE_PERIOD);
 
     stop = millis();
 }

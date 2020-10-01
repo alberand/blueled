@@ -34,7 +34,7 @@ struct animation_state
 
 void animation_state_reset(const struct animation_config* animation_config);
 void animation_state_update(CRGB* leds, uint16_t num_leds,
-                            struct animation_config* animation_config);
+                            const struct animation_config* animation_config);
 
 void solid_handler(uint8_t* payload, uint8_t len);
 void gradient_handler(uint8_t* payload, uint8_t len);
@@ -57,3 +57,4 @@ void train(CRGB* leds, uint16_t num_leds);
 void color_wipe(CRGB* leds, uint16_t num_leds);
 void rainbow_classic(CRGB* leds, uint16_t num_leds);
 void theater_chase(CRGB* leds, uint16_t num_leds);
+void fire(CRGB* leds, uint16_t num_leds);
