@@ -2,6 +2,9 @@ tags
 *.swp
 tmp
 build
+*.elf
+*.hex
+*.lst
 
 # PlatformIO
 # https://platformio.org/
