@@ -136,9 +136,14 @@ CMD = {
 }
 
 class Simpap:
+
+    START_COMM = 0xAA
+    ACK = 0xBB
+
     def __init__(self, transport):
         self.buf = b''
         self.transport = transport
+        self.busy = False
 
         # parser state
         self.started = False
@@ -180,10 +185,45 @@ class Simpap:
             if msg:
                 return msg
 
+    def expect(self, data, timeout=1000):
+        received = bytes()
+        part = None
+        print(f'[DEBUG] Waiting for {binascii.hexlify(data)}')
+        # timeout is in [ms]
+        while timeout:
+            # print(f'[DEBUG] Already received {binascii.hexlify(received)}')
+            if self.transport.avaliable():
+                part = self.transport.read(1)
+
+            if part:
+                received += part
+
+            if received == data:
+                print(f'[DEBUG] Good: Received {binascii.hexlify(data)}')
+                return True
+            timeout -= 1
+            time.sleep(float(timeout)/1000000.0)
+
+        return False
+
     def send(self, data):
         frame = self.compose(data)
-        print(f'-> {binascii.hexlify(frame)}')
-        self.transport.write(frame)
+        if self.busy:
+            return
+        self.busy = True
+        self.write(self.START_COMM.to_bytes(1, byteorder='big'))
+        if not self.expect(self.ACK.to_bytes(1, byteorder='big')):
+            self.busy = False
+            return
+        self.write(frame)
+        if not self.expect(self.ACK.to_bytes(1, byteorder='big'), 2000):
+            self.busy = False
+            return
+        self.busy = False
+
+    def write(self, data):
+        print(f'-> {binascii.hexlify(data)}')
+        self.transport.write(data)
 
     def compose(self, data):
         crc = binascii.crc_hqx(data, 0xFFFF)

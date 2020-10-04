@@ -42,7 +42,7 @@
 #define MAX_LEDS 256
 
 #define START_COMM 0xAA
-#define ACK_START_COMM 0xBB
+#define ACK 0xBB
 
 static bool in_comm = false;
 
@@ -102,6 +102,9 @@ void simpap_send_char(uint8_t ch)
 
 void simpap_handler(uint8_t* data, uint8_t len)
 {
+    in_comm = false;
+    simpap_send_char(ACK);
+
     uint16_t cmd = get_u16(data);
 
     /* Configuration commands. TODO make it more general if there is too many
@@ -245,9 +248,8 @@ void loop()
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         if(ch == START_COMM) {
-            print('%c', ACK_START_COMM);
-            // in_comm = true;
-            break;
+            in_comm = true;
+            simpap_send_char(ACK);
             continue;
         }
         int8_t rc = simpap_accept_char(&simpap_ctx, ch);
@@ -256,8 +258,9 @@ void loop()
             for(int i = 0; i < simpap_ctx.index; i++) {
                 print("d: %X", simpap_ctx.buffer[i]);
             }
-        } else {
+
             in_comm = false;
+            simpap_send_char(ACK);
         }
     }
 

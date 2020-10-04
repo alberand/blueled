@@ -54,9 +54,10 @@ class Communication:
     def worker(self, app_layer):
         t = threading.currentThread()
         while getattr(t, "running", True):
-            msg = app_layer.receive()
-            if msg:
-                print(msg)
+            if not app_layer.busy:
+                msg = app_layer.receive()
+                if msg:
+                    print(msg)
     
             sleep(0.01)
     
