@@ -169,8 +169,9 @@ class Simpap:
             if int.from_bytes(self.buf[-2:], "big") != binascii.crc_hqx(self.buf[:-2], 0xFFFF):
                 print('CRC16 of received frame is incorect')
                 print(f'FRAME: {self.buf}')
-                print(int.from_bytes(self.buf[-2:], "big"))
-                print(binascii.crc_hqx(self.buf[:-2], 0xFFFF))
+                print("CRC: 0x{:02x} (recv) != 0x{:02x}".format(
+                    int.from_bytes(self.buf[-2:], "big"),
+                    binascii.crc_hqx(self.buf[:-2], 0xFFFF)))
                 self.buf = b''
                 return
 

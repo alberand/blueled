@@ -88,7 +88,7 @@ void state_print(const struct state* state_t)
     //print("[Debug] state_t.initialized: %s", state_t->initialized ? "true" : "false");
     //print("[Debug] state_t.iteration: %d", state_t->iteration);
     //print("[Debug] state_t.num_leds: %d", state_t->num_leds);
-    print("[Debug] state_t.animation: %X", state_t->animation);
+    print("anim: %X", state_t->animation);
     // print("[Debug] state_t.config: %X", state_t->config);
     // printf("[Debug] state_t.config->id: %X", state_t->config->id);
     // printf("[Debug] state_t.config->delay: %d", state_t->config->delay);
@@ -116,9 +116,9 @@ void simpap_handler(uint8_t* data, uint8_t len)
         state_t.num_leds = NUM_LEDS;
         state_t.initialized = true;
         state_save(&state_t);
-        print("init done");
+        // print("init done");
     } else if(!state_t.initialized) {
-        print("dunno LEDs");
+        // print("dunno LEDs");
     } else {
         digitalWrite(PIN_DEBUG, !digitalRead(PIN_DEBUG));
         /* Apply animation */
@@ -127,7 +127,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
                 continue;
             }
 
-            print("change anim");
+            // print("change anim");
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
             animation_state_reset(state_t.config);
@@ -154,7 +154,7 @@ bool state_update(struct state* state_t)
 
 void state_save(const struct state* state_t)
 {
-    print("save mem");
+    // print("save mem");
     state_print(state_t);
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
     // This flag is used only to check that config was saved

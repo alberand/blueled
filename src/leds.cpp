@@ -456,7 +456,7 @@ void theater_chase(CRGB* leds, uint16_t num_leds)
 
     int q = animation_t.iteration%3;
 
-    for (uint32_t i=0; i < num_leds; i=i+3) {
+    for (uint32_t i = 0; i < num_leds; i=i+3) {
         leds[i + q - 1] = CRGB(0,0,0);
         leds[i + q] = CRGB(0xFF, 0, 0);
     }
