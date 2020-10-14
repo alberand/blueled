@@ -5,7 +5,7 @@ DEBUG=1
 # Redirect output to stderr.
 exec 1>&2
 
-staged=$(git diff --name-only --cached | grep -E "(.hpp|.cpp)$")
+staged=$(git diff --diff-filter=AM --name-only --cached | grep -E "(.hpp|.cpp)$")
 
 if [ $DEBUG -eq 1 ]; then
     echo "[debug] Chosen files: " $staged
@@ -21,10 +21,9 @@ echo "[info] Applying 'astyle' formatter"
 astyle --style=mozilla $staged
 
 if [ $? -eq 0 ]; then
-    # git add $staged
+    git add -u $staged
     exit 0
 else
     echo "[error] Check formatting"
     exit 1
 fi
-
