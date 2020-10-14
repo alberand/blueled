@@ -46,7 +46,7 @@ void fadeall(CRGB* leds, uint16_t num_leds)
 
 void fadeinout(CRGB* leds, uint16_t num_leds)
 {
-    CRGB color = 0xe37d09;
+    const CRGB color = 0xE37D09;
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {
@@ -64,13 +64,17 @@ void fadeinout(CRGB* leds, uint16_t num_leds)
 
 void solid(CRGB* leds, uint16_t num_leds)
 {
+    const CRGB color = 0xFF00FF;
+
     for(uint16_t i = 0; i < num_leds; i++) {
-        leds[i] = animation_t.colors[0];
+        leds[i] = color;
     }
 }
 
 void gradient(CRGB* leds, uint16_t num_leds)
 {
+    const CRGB colors[20] = {0xFF};
+
     uint16_t start = 0;
     uint16_t len = int(num_leds/(animation_t.num - 1));
 
@@ -136,23 +140,11 @@ void cylon(CRGB* leds, uint16_t num_leds)
         leds[2*num_leds - animation_t.iteration] = CHSV(hue++, 255, 255);
 }
 
-
-
-
-
-// drawRainbowDashes - draw rainbow-colored 'dashes' of light along the led strip:
-//   starting from 'startpos', up to and including 'lastpos'
-//   with a given 'period' and 'width'
-//   starting from a given hue, which changes for each successive dash by a 'huedelta'
-//   at a given saturation and value.
-//
-//   period = 5, width = 2 would be  _ _ _ X X _ _ _ Y Y _ _ _ Z Z _ _ _ A A _ _ _
-//                                   \-------/       \-/
-//                                   period 5      width 2
-//
 static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
-                              uint8_t startpos, uint16_t lastpos, uint8_t period, uint8_t width,
-                              uint8_t huestart, uint8_t huedelta, uint8_t saturation, uint8_t value)
+                              uint8_t startpos, uint16_t lastpos, 
+                              uint8_t period, uint8_t width,
+                              uint8_t huestart, uint8_t huedelta, 
+                              uint8_t saturation, uint8_t value)
 {
     uint8_t hue = huestart;
     for( uint16_t i = startpos; i <= lastpos; i += period) {
@@ -172,10 +164,10 @@ static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
     }
 }
 
-// stroboscopeWorker updates the positions of the dashes, and calls the draw function
-//
 void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
-                       uint8_t dashperiod, uint8_t dashwidth, int8_t  dashmotionspeed,
+                       uint8_t dashperiod, 
+                       uint8_t dashwidth, 
+                       int8_t  dashmotionspeed,
                        uint8_t stroberepeats,
                        uint8_t huedelta)
 {
@@ -298,13 +290,13 @@ void stroboscope(CRGB* leds, uint16_t num_leds)
 
         // Now that all the parameters for this frame are calculated,
         // we call the 'worker' function that does the next part of the work.
-        stroboscopeWorker(leds, num_leds, dashperiod, dashwidth, dashmotionspeed, strobesPerPosition, hueShift);
+        stroboscopeWorker(leds, num_leds, dashperiod, dashwidth,
+                dashmotionspeed, strobesPerPosition, hueShift);
     }
 }
 
 void confetti(CRGB* leds, uint16_t num_leds)
 {
-// random colored speckles that blink in and fade smoothly
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 10);
     int pos = random16(num_leds);
@@ -313,7 +305,6 @@ void confetti(CRGB* leds, uint16_t num_leds)
 
 void sinelon(CRGB* leds, uint16_t num_leds)
 {
-// a colored dot sweeping back and forth, with fading trails
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 20);
     int pos = beatsin16( 13, 0, num_leds-1 );
@@ -322,7 +313,6 @@ void sinelon(CRGB* leds, uint16_t num_leds)
 
 void bpm(CRGB* leds, uint16_t num_leds)
 {
-// colored stripes pulsing at a defined Beats-Per-Minute (BPM)
     static uint16_t hue = 0;
     uint8_t BeatsPerMinute = 62;
     CRGBPalette16 palette = PartyColors_p;
@@ -335,7 +325,6 @@ void bpm(CRGB* leds, uint16_t num_leds)
 
 void juggle(CRGB* leds, uint16_t num_leds)
 {
-// eight colored dots, weaving in and out of sync with each other
     fadeToBlackBy( leds, num_leds, 20);
     byte dothue = 0;
     for( int i = 0; i < 8; i++) {
@@ -377,6 +366,8 @@ void snowsparkle(CRGB* leds, uint16_t num_leds)
 
 void train(CRGB* leds, uint16_t num_leds)
 {
+    const CRGB color = 0xFF00FF;
+
     if(animation_t.iteration >= (num_leds*2)) {
         animation_t.iteration  = 0;
     }
@@ -398,6 +389,8 @@ void train(CRGB* leds, uint16_t num_leds)
 
 void color_wipe(CRGB* leds, uint16_t num_leds)
 {
+    const CRGB color = 0xFF00FF;
+
     uint32_t led_idx = 0;
     uint32_t period = num_leds*4;
 
@@ -408,7 +401,7 @@ void color_wipe(CRGB* leds, uint16_t num_leds)
     }
 
     if(POSITION_IN_FIRST_HALF((animation_t.iteration/4)%period, period)) {
-        leds[led_idx] = animation_t.colors[0];
+        leds[led_idx] = color;
     }
 
     if(POSITION_IN_SECOND_HALF((animation_t.iteration/4)%period, period)) {
@@ -522,4 +515,3 @@ void fire(CRGB* leds, uint16_t num_leds)
     }
 
 }
-
