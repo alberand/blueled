@@ -450,46 +450,51 @@ void rainbow_classic(CRGB* leds, uint16_t num_leds)
 
 void theater_chase(CRGB* leds, uint16_t num_leds)
 {
-    if(animation_t.iteration >= 30) {
-        animation_t.iteration  = 0;
+    const uint8_t step = 10;
+    const CRGB color_on = CRGB(0xFF, 0, 0);
+    const CRGB color_off = CRGB(0, 0, 0);
+
+    if(animation_t.iteration == step) {
+        animation_t.iteration = 0;
     }
 
-    int q = animation_t.iteration%3;
-
-    for (uint32_t i = 0; i < num_leds; i=i+3) {
-        leds[i + q - 1] = CRGB(0,0,0);
-        leds[i + q] = CRGB(0xFF, 0, 0);
+    for (uint32_t i = 0; i < num_leds; i++) {
+        if(i%step == animation_t.iteration) {
+            leds[i] = color_on;
+        } else {
+            leds[i] = color_off;
+        }
     }
 }
 
 void fire(CRGB* leds, uint16_t num_leds)
 {
-    int Cooling = 55;
-    int Sparking = 120;
+    const uint32_t cooling = 55;
+    const uint32_t sparking = 120;
     static byte heat[10];
-    int cooldown;
+    uint32_t cooldown = 0;
 
-    if(num_leds > 200)
-        num_leds = 200;
+    if(num_leds > 10)
+        num_leds = 10;
 
     // Step 1.  Cool down every cell a little
     for( uint32_t i = 0; i < num_leds; i++) {
-        cooldown = random(0, ((Cooling * 10) / num_leds) + 2);
+        cooldown = random(0, ((cooling * 10) / num_leds) + 2);
 
-        if(cooldown>heat[i]) {
-            heat[i]=0;
+        if(cooldown > heat[i]) {
+            heat[i] = 0;
         } else {
-            heat[i]=heat[i]-cooldown;
+            heat[i] = heat[i] - cooldown;
         }
     }
 
     // Step 2.  Heat from each cell drifts 'up' and diffuses a little
-    for( int k= num_leds - 1; k >= 2; k--) {
+    for( int k = num_leds - 1; k >= 2; k--) {
         heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2]) / 3;
     }
 
     // Step 3.  Randomly ignite new 'sparks' near the bottom
-    if( random(255) < Sparking ) {
+    if( random(255) < sparking ) {
         int y = random(7);
         heat[y] = heat[y] + random(160,255);
         //heat[y] = random(160,255);
@@ -498,7 +503,7 @@ void fire(CRGB* leds, uint16_t num_leds)
     // Step 4.  Convert heat to LED colors
     for( uint32_t j = 0; j < num_leds; j++) {
 
-        int temperature = heat[j];
+        byte temperature = heat[j];
         // Scale 'heat' down from 0-255 to 0-191
         byte t192 = round((temperature/255.0)*191);
 
@@ -512,7 +517,7 @@ void fire(CRGB* leds, uint16_t num_leds)
         } else if( t192 > 0x40 ) {             // middle
             leds[j] = CRGB(255, heatramp, 0);
         } else {                               // coolest
-            leds[j] = CRGB(heatramp, 0, 0);
+            leds[j] = CRGB(0, heatramp, 0);
         }
     }
 
