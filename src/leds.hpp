@@ -19,148 +19,159 @@ struct animation_config
 {
     uint8_t id;
     uint16_t delay;
-    void (*payload_handler)(uint8_t*, uint8_t);
-    void (*leds_update)(CRGB*, uint16_t);
+    void (*leds_update)(CRGB*, uint16_t, const struct animation_config*);
+    // Size of the received data in bytes
+    uint8_t size;
+    // Array for animation parameters
+    uint32_t* params;
 };
 
 struct animation_state
 {
-    // dynamics
     uint16_t iteration;
-    // multi-color
-    uint32_t colors[20];
-    uint8_t index;
-    uint8_t num;
 };
 
-void animation_state_reset(const struct animation_config* animation_config);
+void animation_state_reset();
 void animation_state_update(CRGB* leds, uint16_t num_leds,
-                            const struct animation_config* animation_config);
+                            const struct animation_config* config);
 
-void solid_handler(uint8_t* payload, uint8_t len);
-void gradient_handler(uint8_t* payload, uint8_t len);
+void fadeall(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void rainbow(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void cylon(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void stroboscope(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void bpm(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void juggle(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
+void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config);
 
-void fadeall(CRGB* leds, uint16_t num_leds);
-
-void solid(CRGB* leds, uint16_t num_leds);
-void gradient(CRGB* leds, uint16_t num_leds);
-void rainbow(CRGB* leds, uint16_t num_leds);
-void cylon(CRGB* leds, uint16_t num_leds);
-void stroboscope(CRGB* leds, uint16_t num_leds);
-void confetti(CRGB* leds, uint16_t num_leds);
-void sinelon(CRGB* leds, uint16_t num_leds);
-void bpm(CRGB* leds, uint16_t num_leds);
-void juggle(CRGB* leds, uint16_t num_leds);
-void fadeinout(CRGB* leds, uint16_t num_leds);
-void twinkle(CRGB* leds, uint16_t num_leds);
-void snowsparkle(CRGB* leds, uint16_t num_leds);
-void train(CRGB* leds, uint16_t num_leds);
-void color_wipe(CRGB* leds, uint16_t num_leds);
-void rainbow_classic(CRGB* leds, uint16_t num_leds);
-void theater_chase(CRGB* leds, uint16_t num_leds);
-void fire(CRGB* leds, uint16_t num_leds);
-
-static const struct animation_config configs[] = {
+static struct animation_config configs[] = {
     {
         .id = 0x41,
         .delay = 10,
-        .payload_handler = solid_handler,
         .leds_update = solid,
+        .size = 4,
+        .params = nullptr,
     },
     {
         .id = 0x42,
         .delay = 10,
-        .payload_handler = gradient_handler,
         .leds_update = gradient,
+        .size = 16,
+        .params = nullptr,
     },
     {
         .id = 0x43,
         .delay = 20,
-        .payload_handler = NULL,
         .leds_update = cylon,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x44,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = rainbow,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x45,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = stroboscope,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x46,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = confetti,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x47,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = sinelon,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x48,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = bpm,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x49,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = juggle,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x4a,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = fadeinout,
+        .size = 4,
+        .params = nullptr,
     },
     {
         .id = 0x4b,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = twinkle,
+        .size = 4,
+        .params = nullptr,
     },
     {
         .id = 0x4c,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = snowsparkle,
+        .size = 8,
+        .params = nullptr,
     },
     {
         .id = 0x4d,
         .delay = 50,
-        .payload_handler = NULL,
         .leds_update = train,
+        .size = 4,
+        .params = nullptr,
     },
     {
         .id = 0x4e,
         .delay = 10,
-        .payload_handler = NULL,
         .leds_update = color_wipe,
+        .size = 4,
+        .params = nullptr,
     },
     {
         .id = 0x4f,
         .delay = 20,
-        .payload_handler = NULL,
         .leds_update = rainbow_classic,
+        .size = 0,
+        .params = nullptr,
     },
     {
         .id = 0x50,
         .delay = 200,
-        .payload_handler = NULL,
         .leds_update = theater_chase,
+        .size = 12,
+        .params = nullptr,
     },
     {
         .id = 0x51,
         .delay = 20,
-        .payload_handler = NULL,
         .leds_update = fire,
+        .size = 0,
+        .params = nullptr,
     },
 };

@@ -3,54 +3,35 @@
 
 static struct animation_state animation_t;
 
-void animation_state_reset(const struct animation_config* animation_config)
+void animation_state_reset()
 {
     animation_t.iteration = 0;
 }
 
 void animation_state_update(CRGB* leds, uint16_t num_leds,
-                            const struct animation_config* animation_config)
+                            const struct animation_config* config)
 {
-    if(animation_config != NULL) {
-        animation_config->leds_update(leds, num_leds);
+    if(config != NULL) {
+        config->leds_update(leds, num_leds, config);
     }
 
     animation_t.iteration++;
 }
 
-void solid_handler(uint8_t* payload, uint8_t len)
-{
-    // parse parameters
-    animation_t.colors[0] = get_u32(payload);
-    animation_t.index = 0;
-    animation_t.num = 1;
-}
-
-void gradient_handler(uint8_t* payload, uint8_t len)
-{
-    // parse parameters
-    animation_t.num = get_u8(payload);
-    for(int i = 0; i < animation_t.num; i++) {
-        animation_t.colors[i] = get_u32((payload + i*4 + 1));
-        animation_t.index = i;
-    }
-
-}
-
-void fadeall(CRGB* leds, uint16_t num_leds)
+void fadeall(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     for(uint16_t i = 0; i < num_leds; i++) {
         leds[i].nscale8(250);
     }
 }
 
-void fadeinout(CRGB* leds, uint16_t num_leds)
+void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = 0xE37D09;
+    const CRGB color = config->params[0];
 
     animation_t.iteration++;
     if(animation_t.iteration < 128) {
-        fadeall(leds, num_leds);
+        fadeall(leds, num_leds, config);
     } else if(animation_t.iteration < 256) {
         for(uint16_t i = 0; i < num_leds; i++) {
             leds[i].red = color.red * (animation_t.iteration - 127)/127;
@@ -62,30 +43,28 @@ void fadeinout(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void solid(CRGB* leds, uint16_t num_leds)
+void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = 0xFF00FF;
+    const CRGB color = config->params[0];
 
     for(uint16_t i = 0; i < num_leds; i++) {
         leds[i] = color;
     }
 }
 
-void gradient(CRGB* leds, uint16_t num_leds)
+void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB colors[20] = {0xFF};
-
     uint16_t start = 0;
-    uint16_t len = int(num_leds/(animation_t.num - 1));
+    uint16_t len = int(num_leds/(config->params[0] - 1));
 
-    for(int i = 0; i < animation_t.num - 1; i++) {
-        fill_gradient_RGB(leds, start, animation_t.colors[i], \
-                          start + len, animation_t.colors[i+1]);
+    for(int i = 1; i < config->params[0]; i++) {
+        fill_gradient_RGB(leds, start, config->params[i], \
+                          start + len, config->params[i + 1]);
         start = start + len;
     }
 }
 
-void rainbow(CRGB* leds, uint16_t num_leds)
+void rainbow(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t sPseudotime = 0;
     static uint16_t sLastMillis = 0;
@@ -126,11 +105,11 @@ void rainbow(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void cylon(CRGB* leds, uint16_t num_leds)
+void cylon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint8_t hue = 0;
 
-    fadeall(leds, num_leds);
+    fadeall(leds, num_leds, config);
 
     if (animation_t.iteration == (num_leds*2))
         animation_t.iteration = 0;
@@ -141,9 +120,9 @@ void cylon(CRGB* leds, uint16_t num_leds)
 }
 
 static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
-                              uint8_t startpos, uint16_t lastpos, 
+                              uint8_t startpos, uint16_t lastpos,
                               uint8_t period, uint8_t width,
-                              uint8_t huestart, uint8_t huedelta, 
+                              uint8_t huestart, uint8_t huedelta,
                               uint8_t saturation, uint8_t value)
 {
     uint8_t hue = huestart;
@@ -165,8 +144,8 @@ static void drawRainbowDashes(CRGB* leds, uint16_t num_leds,
 }
 
 void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
-                       uint8_t dashperiod, 
-                       uint8_t dashwidth, 
+                       uint8_t dashperiod,
+                       uint8_t dashwidth,
                        int8_t  dashmotionspeed,
                        uint8_t stroberepeats,
                        uint8_t huedelta)
@@ -214,7 +193,7 @@ void stroboscopeWorker(CRGB* leds, uint16_t num_leds,
                        kSaturation, kValue);
 }
 
-void stroboscope(CRGB* leds, uint16_t num_leds)
+void stroboscope(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     // First, we black out all the LEDs
     fill_solid( leds, num_leds, CRGB::Black);
@@ -291,11 +270,11 @@ void stroboscope(CRGB* leds, uint16_t num_leds)
         // Now that all the parameters for this frame are calculated,
         // we call the 'worker' function that does the next part of the work.
         stroboscopeWorker(leds, num_leds, dashperiod, dashwidth,
-                dashmotionspeed, strobesPerPosition, hueShift);
+                          dashmotionspeed, strobesPerPosition, hueShift);
     }
 }
 
-void confetti(CRGB* leds, uint16_t num_leds)
+void confetti(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 10);
@@ -303,7 +282,7 @@ void confetti(CRGB* leds, uint16_t num_leds)
     leds[pos] += CHSV( hue++ + random8(64), 200, 255);
 }
 
-void sinelon(CRGB* leds, uint16_t num_leds)
+void sinelon(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     fadeToBlackBy( leds, num_leds, 20);
@@ -311,7 +290,7 @@ void sinelon(CRGB* leds, uint16_t num_leds)
     leds[pos] += CHSV( hue++, 255, 192);
 }
 
-void bpm(CRGB* leds, uint16_t num_leds)
+void bpm(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     static uint16_t hue = 0;
     uint8_t BeatsPerMinute = 62;
@@ -323,7 +302,7 @@ void bpm(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void juggle(CRGB* leds, uint16_t num_leds)
+void juggle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     fadeToBlackBy( leds, num_leds, 20);
     byte dothue = 0;
@@ -333,40 +312,43 @@ void juggle(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void twinkle(CRGB* leds, uint16_t num_leds)
+void twinkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     if(animation_t.iteration == 400) {
         animation_t.iteration = 0;
     }
 
     if(animation_t.iteration == 100) {
-        // animation_t.iteration = 0;
-        leds[random(num_leds)] = animation_t.colors[0];
+        animation_t.iteration = 0;
+        leds[random(num_leds)] = config->params[0];
     } else {
-        fadeall(leds, num_leds);
+        fadeall(leds, num_leds, config);
     }
 }
 
-void snowsparkle(CRGB* leds, uint16_t num_leds)
+void snowsparkle(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
+    static const CRGB base_color = config->params[0];
+    static const CRGB sparkle_color = config->params[1];
+
     if(animation_t.iteration == 130) {
         animation_t.iteration = 0;
     }
 
     if(animation_t.iteration == 100) {
-        leds[random(num_leds)] = CRGB(0xff, 0xff, 0xff);
+        leds[random(num_leds)] = base_color;
     }
 
     if(animation_t.iteration == 115) {
         for(uint16_t i = 0; i < num_leds; i++) {
-            leds[i] = 0x101010;
+            leds[i] = sparkle_color;
         }
     }
 }
 
-void train(CRGB* leds, uint16_t num_leds)
+void train(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = 0xFF00FF;
+    const CRGB color = config->params[0];
 
     if(animation_t.iteration >= (num_leds*2)) {
         animation_t.iteration  = 0;
@@ -375,21 +357,16 @@ void train(CRGB* leds, uint16_t num_leds)
     uint16_t position = animation_t.iteration;
 
     for(uint16_t i = 0; i < num_leds; i++) {
-        // sine wave, 3 offset waves make a rainbow!
-        // float level = sin(i + position) * 127 + 128;
-        //setPixel(i,level,0,0);
-        // float level = sin(i + position) * 127 + 128;
-        leds[i] = CRGB(
-                      ((sin(i+position) * 127 + 128)/255)*0xAC,
-                      ((sin(i+position) * 127 + 128)/255)*0x19,
-                      ((sin(i+position) * 127 + 128)/255)*0xA6
-                  );
+        const uint8_t R = ((sin(i + position) * 127 + 128)/255)*color.red;
+        const uint8_t G = ((sin(i + position) * 127 + 128)/255)*color.green;
+        const uint8_t B = ((sin(i + position) * 127 + 128)/255)*color.blue;
+        leds[i] = CRGB(R, G, B);
     }
 }
 
-void color_wipe(CRGB* leds, uint16_t num_leds)
+void color_wipe(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const CRGB color = 0xFF00FF;
+    const CRGB color = config->params[0];
 
     uint32_t led_idx = 0;
     uint32_t period = num_leds*4;
@@ -409,7 +386,7 @@ void color_wipe(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void rainbow_classic(CRGB* leds, uint16_t num_leds)
+void rainbow_classic(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     uint16_t i;
     static byte c[3];
@@ -441,11 +418,11 @@ void rainbow_classic(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void theater_chase(CRGB* leds, uint16_t num_leds)
+void theater_chase(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
-    const uint8_t step = 10;
-    const CRGB color_on = CRGB(0xFF, 0, 0);
-    const CRGB color_off = CRGB(0, 0, 0);
+    const uint8_t step = (uint8_t)config->params[0];
+    const CRGB color_on = config->params[1];
+    const CRGB color_off = config->params[2];
 
     if(animation_t.iteration == step) {
         animation_t.iteration = 0;
@@ -460,7 +437,7 @@ void theater_chase(CRGB* leds, uint16_t num_leds)
     }
 }
 
-void fire(CRGB* leds, uint16_t num_leds)
+void fire(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const uint32_t cooling = 55;
     const uint32_t sparking = 120;
@@ -487,7 +464,7 @@ void fire(CRGB* leds, uint16_t num_leds)
     }
 
     // Step 3.  Randomly ignite new 'sparks' near the bottom
-    if( random(255) < sparking ) {
+    if( (uint32_t)random(255) < sparking ) {
         int y = random(7);
         heat[y] = heat[y] + random(160,255);
         //heat[y] = random(160,255);

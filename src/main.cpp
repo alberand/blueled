@@ -3,7 +3,6 @@
 
 #include <avr/interrupt.h>
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 #include <EEPROM.h>
 
 #include "simpap.hpp"
@@ -60,7 +59,7 @@ static struct state
     uint16_t iteration;
     uint16_t num_leds;
     uint8_t animation;
-    const struct animation_config* config;
+    struct animation_config* config;
 } state_t;
 
 void simpap_send_char(uint8_t ch);
@@ -104,17 +103,19 @@ void simpap_handler(uint8_t* data, uint8_t len)
     uint16_t cmd = get_u16(data);
 
     // Init packet (set number of leds)
-    if(cmd == COMM_INIT_MSG){
+    if(cmd == COMM_INIT_MSG) {
         digitalWrite(LED_BUILTIN, HIGH);
         NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
 
         state_t.num_leds = NUM_LEDS;
         state_t.initialized = true;
         state_save(&state_t);
+
+        return;
     }
 
     // Set animation (animation with parameters)
-    if(cmd > COMM_ANIM_FIRST && cmd < COMM_ANIM_LAST){
+    if(cmd >= COMM_ANIM_FIRST && cmd <= COMM_ANIM_LAST) {
         digitalWrite(PIN_DEBUG, !digitalRead(PIN_DEBUG));
         /* Apply animation */
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
@@ -124,14 +125,14 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
-            animation_state_reset(state_t.config);
-            state_save(&state_t);
+            state_t.config->params = (uint32_t*)malloc(state_t.config->size);
+            memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET, state_t.config->size);
 
-            if(configs[i].payload_handler != NULL) {
-                configs[i].payload_handler(&(data[PAYLOAD_OFFSET]),
-                                           len - PAYLOAD_OFFSET);
-            }
+            animation_state_reset();
+            state_save(&state_t);
         }
+
+        return;
     }
 
     // unknown

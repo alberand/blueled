@@ -12,25 +12,26 @@ def cmd_set_leds_number(*args):
 
 def cmd_solid_color(*args):
     cmd = 0x0041
-    data = cmd.to_bytes(2, byteorder='big') + args[0].to_bytes(4, byteorder='big')
+    data = cmd.to_bytes(2, byteorder='big') 
+    data += args[0].to_bytes(4, byteorder='little')
     return data
 
 def cmd_gradient_two(*args):
     # 0B 03 00FF0000 0000FF00 000000FF
     data = 0x042.to_bytes(2, byteorder='big') 
-    data += 0x02.to_bytes(1, byteorder='big')
-    data += 0x00FF00.to_bytes(4, byteorder='big')
-    data += 0x0000FF.to_bytes(4, byteorder='big')
+    data += 0x02.to_bytes(1, byteorder='little')
+    data += 0x00FF00.to_bytes(4, byteorder='little')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
 
     return data
 
 def cmd_gradient(*args):
     # 0B 03 00FF0000 0000FF00 000000FF
     data = 0x042.to_bytes(2, byteorder='big') 
-    data += 0x03.to_bytes(1, byteorder='big')
-    data += 0x00FF00.to_bytes(4, byteorder='big')
-    data += 0xFF0000.to_bytes(4, byteorder='big')
-    data += 0x0000FF.to_bytes(4, byteorder='big')
+    data += 0x03.to_bytes(4, byteorder='little')
+    data += 0x00FF00.to_bytes(4, byteorder='little')
+    data += 0xFF0000.to_bytes(4, byteorder='little')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
 
     return data
 
@@ -77,21 +78,26 @@ def cmd_fadeinout(*args):
 def cmd_twinkle(*args):
     cmd = 0x004b
     data = cmd.to_bytes(2, byteorder='big')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
     return data
 
 def cmd_snowsparkle(*args):
     cmd = 0x004c
     data = cmd.to_bytes(2, byteorder='big')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
+    data += 0xFFFFFF.to_bytes(4, byteorder='little')
     return data
 
 def cmd_train(*args):
     cmd = 0x004d
     data = cmd.to_bytes(2, byteorder='big')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
     return data
 
 def cmd_color_wipe(*args):
     cmd = 0x004e
     data = cmd.to_bytes(2, byteorder='big')
+    data += 0x0000FF.to_bytes(4, byteorder='little')
     return data
 
 def cmd_rainbow_classic(*args):
@@ -102,6 +108,9 @@ def cmd_rainbow_classic(*args):
 def cmd_theater_chase(*args):
     cmd = 0x0050
     data = cmd.to_bytes(2, byteorder='big')
+    data += 0x000003.to_bytes(4, byteorder='little')
+    data += 0x00FFFF.to_bytes(4, byteorder='little')
+    data += 0xFF00FF.to_bytes(4, byteorder='little')
     return data
 
 def cmd_fire(*args):
