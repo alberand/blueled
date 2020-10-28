@@ -67,6 +67,7 @@ static struct state
 void simpap_send_char(uint8_t ch);
 void simpap_handler(uint8_t* data, uint8_t len);
 
+bool state_check(const struct state* state_t);
 bool state_update(struct state* state_t);
 void state_save(const struct state* state_t);
 bool state_load(struct state* state_t);
@@ -86,9 +87,30 @@ void print(const char *__fmt, ...)
 #endif
 }
 
+bool state_check(const struct state* state_t)
+{
+    if(state_t->num_leds > MAX_LEDS){
+        return false;
+    }
+
+    if(state_t->animation < configs[0].id){
+        return false;
+    }
+
+    if(state_t->animation > configs[COUNT_OF(configs) - 1].id){
+        return false;
+    }
+
+    if(state_t->config == nullptr || state_t->config == NULL){
+        return false;
+    }
+
+    return true;
+}
+
 void state_print(const struct state* state_t)
 {
-    print("anim: %X", state_t->animation);
+    print("ok (anim: %X)", state_t->animation);
 }
 
 // SoftwareSerial toSlave(10, 11);
@@ -127,8 +149,10 @@ void simpap_handler(uint8_t* data, uint8_t len)
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
             state_t.config->params = (uint32_t*)malloc(state_t.config->size*4);
-            memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET,
+            if(state_t.config->params != nullptr){
+                memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET,
                    state_t.config->size*4);
+            }
 
             animation_state_reset();
             state_save(&state_t);
@@ -138,7 +162,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
     }
 
     // unknown
-    print("unknown msg");
+    print("nok (unknown msg)");
 }
 
 bool state_update(struct state* state_t)
@@ -155,6 +179,10 @@ bool state_update(struct state* state_t)
 
 void state_save(const struct state* state_t)
 {
+    if(!state_check(state_t)){
+        return;
+    }
+
     state_print(state_t);
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
     for(int i = 0; i < state_t->config->size; i++) {
@@ -168,12 +196,14 @@ void state_save(const struct state* state_t)
 
 bool state_load(struct state* state_t)
 {
+    // Check if config exist in memory
     bool is_config_new = false;
     if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
         state_reset(state_t);
         EEPROM.get(MEM_STATE_ADDRESS, *state_t);
         state_print(state_t);
 
+        // Assign config based on state_t->animation
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
             if(configs[i].id != state_t->animation) {
                 continue;
@@ -181,6 +211,7 @@ bool state_load(struct state* state_t)
 
             state_t->config = &configs[i];
         }
+        // Read config params
         state_t->config->params = (uint32_t*)malloc(state_t->config->size*4);
         for(int i = 0; i < state_t->config->size; i++) {
             EEPROM.get(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
@@ -188,13 +219,8 @@ bool state_load(struct state* state_t)
         }
     }
 
-    // We don't read state from memory or:
-    // state_t.animation shouldn't be zero as there is no animation
-    // with id == 0
-    if(state_t->animation == 0 or \
-            state_t->animation > 0x60 or \
-            state_t->num_leds > MAX_LEDS) {
-        print("fail mem read");
+    if(!state_check(state_t)) {
+        print("nok (fail mem read)");
         return false;
     }
 
@@ -208,6 +234,7 @@ void state_reset(struct state* state_t)
     state_t->num_leds = 10;
     state_t->animation = 0x44;
     state_t->config = &configs[3];
+    state_t->config->params = nullptr;
 }
 
 void setup()
@@ -238,7 +265,7 @@ void setup()
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        print("overrun");
+        print("nok (overrun)");
     }
     start = millis();
 
