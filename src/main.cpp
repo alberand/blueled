@@ -281,14 +281,16 @@ void loop()
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         if(ch == START_COMM) {
-            in_comm = true;
             simpap_send_char(ACK);
+            in_comm = !in_comm;
             continue;
         }
-        int8_t rc = simpap_accept_char(&simpap_ctx, ch);
-        if(rc != 0) {
-            in_comm = false;
-            simpap_send_char(ACK);
+        if(in_comm){
+            int8_t rc = simpap_accept_char(&simpap_ctx, ch);
+            if(rc != 0) {
+                in_comm = false;
+                simpap_send_char(ACK);
+            }
         }
     }
 
