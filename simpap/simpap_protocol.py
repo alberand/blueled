@@ -126,6 +126,7 @@ CMD = {
         'l': [cmd_set_leds_number, lambda x: int(x[1:])],
         's': [cmd_solid_color, lambda x: int(x[1:], 16)],
         'g': [cmd_gradient, lambda x: int(x)],
+        'e': [cmd_gradient_two, lambda x: int(x)],
         'c': [cmd_cylon, lambda x: int(x)],
         'r': [cmd_rainbow, lambda x: int(x)],
         'd': [cmd_stroboscope, lambda x: int(x)],

@@ -30,7 +30,11 @@ class SerialTransport:
 class Communication:
 
     def __init__(self, port):
-        self.serial = SerialTransport(port)
+        try:
+            self.serial = SerialTransport(port)
+        except serial.SerialException:
+            print(f'Could not open the {port}')
+            return
         self.app_layer = Simpap(self.serial)
     
         self.receiver = threading.Thread(target=self.worker, args=(self.app_layer,))
@@ -39,14 +43,18 @@ class Communication:
     def cmd(self, cmd):
         c = cmd[0]
         args = cmd
-        print(f'cmd: {c}; args: {args}')
-        if self.app_layer.is_cmd(cmd):
-            if args != c:
-                a = CMD[c][1]
-                b = CMD[c][0]
-                self.app_layer.send(b(a(args)))
-            else:
-                self.app_layer.send(CMD[c][0]())
+
+        try:
+            if self.app_layer.is_cmd(cmd):
+                if args != c:
+                    a = CMD[c][1]
+                    b = CMD[c][0]
+                    self.app_layer.send(b(a(args)))
+                else:
+                    self.app_layer.send(CMD[c][0]())
+        except serial.SerialException:
+            print(f'Could not send command "{cmd}"')
+            self.stop()
 
     def send_raw(self, data):
         self.serial.write(data)
@@ -54,10 +62,14 @@ class Communication:
     def worker(self, app_layer):
         t = threading.currentThread()
         while getattr(t, "running", True):
-            if not app_layer.busy:
-                msg = app_layer.receive()
-                if msg:
-                    print(msg)
+            try:
+                if not app_layer.busy:
+                    msg = app_layer.receive()
+                    if msg:
+                        print(msg)
+            except OSError:
+                print('Failed to read from the port (possibly closed)')
+                break
     
             sleep(0.01)
     
