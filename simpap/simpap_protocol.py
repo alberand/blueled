@@ -17,16 +17,16 @@ def cmd_solid_color(*args):
     return data
 
 def cmd_gradient_two(*args):
-    # 0B 03 00FF0000 0000FF00 000000FF
+    # 0B 00000002 00FF0000 0000FF00
     data = 0x042.to_bytes(2, byteorder='big') 
-    data += 0x02.to_bytes(1, byteorder='little')
+    data += 0x02.to_bytes(4, byteorder='little')
     data += 0x00FF00.to_bytes(4, byteorder='little')
     data += 0x0000FF.to_bytes(4, byteorder='little')
 
     return data
 
 def cmd_gradient(*args):
-    # 0B 03 00FF0000 0000FF00 000000FF
+    # 0B 00000003 00FF0000 0000FF00 000000FF
     data = 0x042.to_bytes(2, byteorder='big') 
     data += 0x03.to_bytes(4, byteorder='little')
     data += 0x00FF00.to_bytes(4, byteorder='little')
