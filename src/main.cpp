@@ -25,6 +25,7 @@
 
 // Communication
 #define PAYLOAD_OFFSET 2
+#define MAX_PARAMS 20
 
 // In updates per second (Hz)
 #define BASE_FREQ 100
@@ -34,6 +35,7 @@
 #define MEM_BASE_ADDRESS 0x0
 #define MEM_NEW_STATE_ADDRESS (MEM_BASE_ADDRESS + 0x0)
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
+#define MEM_PARAMS_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
 
 #define MAX_LEDS 256
 
@@ -116,7 +118,6 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
     // Set animation (animation with parameters)
     if(cmd >= COMM_ANIM_FIRST && cmd <= COMM_ANIM_LAST) {
-        digitalWrite(PIN_DEBUG, !digitalRead(PIN_DEBUG));
         /* Apply animation */
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
             if(configs[i].id != cmd) {
@@ -125,8 +126,9 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
-            state_t.config->params = (uint32_t*)malloc(state_t.config->size);
-            memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET, state_t.config->size);
+            state_t.config->params = (uint32_t*)malloc(state_t.config->size*4);
+            memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET,
+                   state_t.config->size*4);
 
             animation_state_reset();
             state_save(&state_t);
@@ -155,6 +157,10 @@ void state_save(const struct state* state_t)
 {
     state_print(state_t);
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
+    for(int i = 0; i < state_t->config->size; i++) {
+        EEPROM.put(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
+                   state_t->config->params[i]);
+    }
     // This flag is used only to check that config was saved
     bool state_new = true;
     EEPROM.put(MEM_NEW_STATE_ADDRESS, state_new);
@@ -174,6 +180,11 @@ bool state_load(struct state* state_t)
             }
 
             state_t->config = &configs[i];
+        }
+        state_t->config->params = (uint32_t*)malloc(state_t->config->size*4);
+        for(int i = 0; i < state_t->config->size; i++) {
+            EEPROM.get(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
+                       state_t->config->params[i]);
         }
     }
 
@@ -202,6 +213,7 @@ void state_reset(struct state* state_t)
 void setup()
 {
     Serial.begin(9600, SERIAL_8E1);
+    while (!Serial) { ; }
 
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(PIN_RESET, INPUT);
@@ -214,8 +226,6 @@ void setup()
     FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, MAX_LEDS);
 
     simpap_init(&simpap_ctx);
-
-    delay(1000);
 
     // Read configuration from EEPROM if exist
     if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
@@ -250,11 +260,6 @@ void loop()
         }
         int8_t rc = simpap_accept_char(&simpap_ctx, ch);
         if(rc != 0) {
-            print("failed char %d", rc);
-            for(int i = 0; i < simpap_ctx.index; i++) {
-                print("d: %X", simpap_ctx.buffer[i]);
-            }
-
             in_comm = false;
             simpap_send_char(ACK);
         }
