@@ -1,12 +1,19 @@
 ## Blueled - Bluetooth LED strip controller
 
+This repo has hardware and firmware for Bluetooth LED strip controller based on
+atmega328p (the same as in Arduino Nano).
+
 Features:
 
-* Over-The-Air Updates
-* Android Application
-* 20 different pre-set animation modes
+* Android Application (not started yet)
 * Custom colors and gradients
-* Microphone
+* ~15 different pre-set animation
+* Over-The-Air Updates
+* Python interface (to control it from PC)
+* Save latest state between power on/off
+* Up to 200 LEDs (WS2812B or NeoPixel)
+
+#### Notes (to refactor)
 
 Be careful with connection between programmer Arduino and target Arduino. I had
 a lot of corrupted bytes during uploading bootloader/application with ISCP.
