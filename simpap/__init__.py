@@ -38,7 +38,10 @@ class Communication:
         self.app_layer = Simpap(self.serial)
     
         self.receiver = threading.Thread(target=self.worker, args=(self.app_layer,))
+        self.receiver.setDaemon(True)
         self.receiver.start()
+
+        atexit.register(self.stop)
 
     def cmd(self, cmd):
         c = cmd[0]
