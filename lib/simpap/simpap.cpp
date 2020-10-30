@@ -46,7 +46,7 @@ int8_t simpap_decode(struct simpap* p)
 
 int8_t simpap_encode(struct simpap* p, uint8_t* msg, uint8_t len)
 {
-    if(len > MAX_SIZE || len == 0) {
+    if(len > MAX_SIZE || len == 0 || (len + SIMPAP_OVERHEAD) >= BUFFER_SIZE) {
         return -1;
     }
 
@@ -94,6 +94,7 @@ int8_t simpap_accept_char(struct simpap* p, uint8_t ch)
         if((rc = simpap_decode(p)) == 0) {
             simpap_handler(p->data, p->index + 1 - SIMPAP_OVERHEAD);
             simpap_init(p);
+            return 1;
         } else {
             return rc;
         }

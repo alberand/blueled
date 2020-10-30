@@ -57,7 +57,6 @@ static uint16_t start, stop;
 
 static struct state
 {
-    bool initialized;
     uint16_t iteration;
     uint16_t num_leds;
     uint8_t animation;
@@ -77,13 +76,13 @@ void state_reset(struct state* state_t);
 void print(const char *__fmt, ...)
 {
 #ifdef DEBUG
-    char buf[100] = { 0 };
+    char buf[50] = { 0 };
     va_list va;
     va_start(va, __fmt);
     vsprintf(buf, __fmt, va);
     va_end(va);
 
-    simpap_send(&simpap_ctx, (uint8_t*)buf, sizeof(buf));
+    simpap_send(&simpap_ctx, (uint8_t*)buf, COUNT_OF(buf));
 #endif
 }
 
@@ -110,7 +109,8 @@ bool state_check(const struct state* state_t)
 
 void state_print(const struct state* state_t)
 {
-    print("ok (anim: %X)", state_t->animation);
+    // print("ok (anim: %X)", state_t->animation);
+    simpap_send(&simpap_ctx, (uint8_t*)"ok (anim)", 9);
 }
 
 // SoftwareSerial toSlave(10, 11);
@@ -128,11 +128,14 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
     // Init packet (set number of leds)
     if(cmd == COMM_INIT_MSG) {
-        digitalWrite(LED_BUILTIN, HIGH);
+        // digitalWrite(LED_BUILTIN, HIGH);
         NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
 
+        if(NUM_LEDS > MAX_LEDS){
+            return;
+        }
+
         state_t.num_leds = NUM_LEDS;
-        state_t.initialized = true;
         state_save(&state_t);
 
         return;
@@ -162,7 +165,8 @@ void simpap_handler(uint8_t* data, uint8_t len)
     }
 
     // unknown
-    print("nok (unknown msg)");
+    // print("nok (unknown msg)");
+    simpap_send(&simpap_ctx, (uint8_t*)"nok (unknown msg)", 17);
 }
 
 bool state_update(struct state* state_t)
@@ -183,7 +187,6 @@ void state_save(const struct state* state_t)
         return;
     }
 
-    state_print(state_t);
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
     for(int i = 0; i < state_t->config->size; i++) {
         EEPROM.put(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
@@ -201,7 +204,6 @@ bool state_load(struct state* state_t)
     if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
         state_reset(state_t);
         EEPROM.get(MEM_STATE_ADDRESS, *state_t);
-        state_print(state_t);
 
         // Assign config based on state_t->animation
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
@@ -220,7 +222,8 @@ bool state_load(struct state* state_t)
     }
 
     if(!state_check(state_t)) {
-        print("nok (fail mem read)");
+        // print("nok (fail mem read)");
+        simpap_send(&simpap_ctx, (uint8_t*)"nok (fail mem read)", 19);
         return false;
     }
 
@@ -229,7 +232,6 @@ bool state_load(struct state* state_t)
 
 void state_reset(struct state* state_t)
 {
-    state_t->initialized = true;
     state_t->iteration = 0;
     state_t->num_leds = 10;
     state_t->animation = 0x44;
@@ -241,6 +243,7 @@ void setup()
 {
     Serial.begin(9600, SERIAL_8E1);
     while (!Serial) { ; }
+    Serial.flush();
 
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(PIN_RESET, INPUT);
@@ -265,34 +268,40 @@ void setup()
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        print("nok (overrun)");
+        // print("nok (overrun)");
+        simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
-
-    if(state_t.initialized && !in_comm) {
-        if(state_update(&state_t)) {
-            FastLED.show();
-        }
-    }
-
-    delay(BASE_PERIOD);
 
     // Receive input
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         if(ch == START_COMM) {
             simpap_send_char(ACK);
-            in_comm = !in_comm;
+            in_comm = true;
             continue;
         }
         if(in_comm){
             int8_t rc = simpap_accept_char(&simpap_ctx, ch);
+            // Message is ok and handler was called
+            if(rc == 1){
+                break;;
+            }
+            // Parsing error or message is damaged
             if(rc != 0) {
                 in_comm = false;
                 simpap_send_char(ACK);
             }
         }
     }
+
+    if(!in_comm) {
+        if(state_update(&state_t)) {
+            FastLED.show();
+        }
+    }
+
+    delay(BASE_PERIOD);
 
     stop = millis();
 }
