@@ -151,6 +151,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
             state_t.animation = configs[i].id;
             state_t.config = &configs[i];
+            free(state_t.config->params);
             state_t.config->params = (uint32_t*)malloc(state_t.config->size*4);
             if(state_t.config->params != nullptr){
                 memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET,
