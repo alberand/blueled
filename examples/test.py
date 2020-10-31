@@ -1,25 +1,21 @@
-import simpap
 import time
 import atexit
 
-c = simpap.Communication('/dev/ttyUSB0')
+import os, sys, inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir) 
+
+import simpap
+
+c = simpap.Blueled('/dev/ttyUSB0')
 atexit.register(c.stop)
 
-pause = 0
+pause = 0.05
 time.sleep(1)
 
-c.cmd('l1')
-for i in range(4):
-    c.cmd('s00FF0000')
+for i in range(400):
+    c.solid(0xFF0000)
     time.sleep(pause)
-    c.cmd('s0000FF00')
+    c.solid(0x00FF00)
     time.sleep(pause)
-
-c.cmd('l5')
-for i in range(4):
-    c.cmd('s000000FF')
-    time.sleep(pause)
-    c.cmd('g')
-    time.sleep(pause)
-
-c.stop()
