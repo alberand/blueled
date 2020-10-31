@@ -31,7 +31,7 @@ int8_t simpap_decode(struct simpap* p)
     // len - 1 byte for end flag - 2 bytes for crc
     uint8_t len = p->index - 3;
     uint16_t crc = crc16(p->buffer + 1, len);
-    uint16_t crc_recv = (p->buffer[p->index - 2] << 8) | p->buffer[p->index - 1];
+    uint16_t crc_recv = (p->buffer[p->index - 1] << 8) | p->buffer[p->index - 2];
 
     if(crc != crc_recv) {
         return -4;
