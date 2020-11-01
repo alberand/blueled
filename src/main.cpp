@@ -150,7 +150,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
             brightness = 255;
         }
 
-        state_t.brightness = (uint8_t)brightness;
+        state_t.brightness = static_cast<uint8_t>(brightness);
         FastLED.setBrightness(state_t.brightness);
 
         state_save(&state_t);
