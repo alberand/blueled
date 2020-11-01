@@ -44,7 +44,7 @@
 #define COMM_INIT_MSG 0x20
 #define COMM_SET_BRIGHT_MSG 0x21
 #define COMM_ANIM_FIRST (configs[0].id)
-#define COMM_ANIM_LAST (configs[COUNT_OF(configs) - 1].id + 1)
+#define COMM_ANIM_LAST (configs[COUNT_OF(configs) - 1].id)
 
 static bool in_comm = false;
 
