@@ -42,6 +42,7 @@
 #define START_COMM 0xAA
 #define ACK 0xBB
 #define COMM_INIT_MSG 0x20
+#define COMM_SET_BRIGHT_MSG 0x21
 #define COMM_ANIM_FIRST (configs[0].id)
 #define COMM_ANIM_LAST (configs[COUNT_OF(configs) - 1].id + 1)
 
@@ -59,6 +60,7 @@ static struct state
 {
     uint16_t iteration;
     uint16_t num_leds;
+    uint8_t brightness;
     uint8_t animation;
     struct animation_config* config;
 } state_t;
@@ -136,6 +138,21 @@ void simpap_handler(uint8_t* data, uint8_t len)
         }
 
         state_t.num_leds = NUM_LEDS;
+        state_save(&state_t);
+
+        return;
+    }
+
+    if(cmd == COMM_SET_BRIGHT_MSG) {
+        uint32_t brightness = get_u32((data + PAYLOAD_OFFSET));
+
+        if(brightness > 255){
+            brightness = 255;
+        }
+
+        state_t.brightness = (uint8_t)brightness;
+        FastLED.setBrightness(state_t.brightness);
+
         state_save(&state_t);
 
         return;
@@ -298,6 +315,7 @@ void loop()
 
     if(!in_comm) {
         if(state_update(&state_t)) {
+            FastLED.setBrightness(state_t.brightness);
             FastLED.show();
         }
     }
