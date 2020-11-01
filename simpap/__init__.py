@@ -29,8 +29,10 @@ class SerialTransport:
 
 class Blueled:
     metadata = {
+            'set_leds': {'id': 0x20, 'fmt':'<Hi'}, 
+            'set_brightness': {'id': 0x21, 'fmt':'<Hi'}, 
             'solid': {'id': 0x41, 'fmt':'<Hi'}, 
-            'gradient': {'id': 0x42, 'fmt':'<Hi'}, 
+            'gradient': {'id': 0x42, 'fmt':'<Hi'}, # this one is modified later
             'cylon': {'id': 0x43, 'fmt': '<H'}, 
             'rainbow': {'id': 0x44, 'fmt':'<H'}, 
             'stroboscope': {'id': 0x45, 'fmt': '<H'}, 
@@ -87,6 +89,16 @@ class Blueled:
         self.receiver.running = False
         self.receiver.join()
         self.serial.ser.close()
+
+    def set_leds(self, num_leds):
+        metadata = self.metadata['set_leds']
+        message = self.comm.compose(metadata['fmt'], [metadata['id'], num_leds])
+        self.send(message)
+
+    def set_brightness(self, brightness):
+        metadata = self.metadata['set_brightness']
+        message = self.comm.compose(metadata['fmt'], [metadata['id'], brightness])
+        self.send(message)
 
     def solid(self, color):
         metadata = self.metadata['solid']
