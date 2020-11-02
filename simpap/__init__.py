@@ -29,10 +29,10 @@ class SerialTransport:
 
 class Blueled:
     metadata = {
-            'set_leds': {'id': 0x20, 'fmt':'<Hi'}, 
-            'set_brightness': {'id': 0x21, 'fmt':'<Hi'}, 
-            'solid': {'id': 0x41, 'fmt':'<Hi'}, 
-            'gradient': {'id': 0x42, 'fmt':'<Hi'}, # this one is modified later
+            'set_leds': {'id': 0x20, 'fmt':'<HI'}, 
+            'set_brightness': {'id': 0x21, 'fmt':'<HI'}, 
+            'solid': {'id': 0x41, 'fmt':'<HI'}, 
+            'gradient': {'id': 0x42, 'fmt':'<HI'}, # this one is modified later
             'cylon': {'id': 0x43, 'fmt': '<H'}, 
             'rainbow': {'id': 0x44, 'fmt':'<H'}, 
             'stroboscope': {'id': 0x45, 'fmt': '<H'}, 
@@ -40,13 +40,13 @@ class Blueled:
             'sinelon': {'id': 0x47, 'fmt': '<H'}, 
             'bpm': {'id': 0x48, 'fmt': '<H'}, 
             'juggle': {'id': 0x49, 'fmt': '<H'}, 
-            'fadeinout': {'id': 0x4A, 'fmt': '<Hi'}, 
+            'fadeinout': {'id': 0x4A, 'fmt': '<HI'}, 
             'twinkle': {'id': 0x4B, 'fmt': '<H'}, 
-            'snowsparkle': {'id': 0x4C, 'fmt': '<Hii'}, 
-            'train': {'id': 0x4D, 'fmt': '<Hi'}, 
-            'wipe': {'id': 0x4E, 'fmt': '<Hi'}, 
+            'snowsparkle': {'id': 0x4C, 'fmt': '<HII'}, 
+            'train': {'id': 0x4D, 'fmt': '<HI'}, 
+            'wipe': {'id': 0x4E, 'fmt': '<HI'}, 
             'rainbow_classic': {'id': 0x4F, 'fmt': '<H'}, 
-            'theater_chase': {'id': 0x50, 'fmt': '<Hiii'}, 
+            'theater_chase': {'id': 0x50, 'fmt': '<HIII'}, 
             'fire': {'id': 0x51, 'fmt': '<H'}, 
     }
 
