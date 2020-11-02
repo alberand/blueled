@@ -271,7 +271,7 @@ void setup()
 
     // Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
-    FastLED.addLeds<WS2812B, DATA_PIN, RGB>(leds, MAX_LEDS);
+    FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, MAX_LEDS);
 
     simpap_init(&simpap_ctx);
 
