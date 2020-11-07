@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name blueled-rescue)(type Legacy)(uri ${KIPRJMOD}/blueled-rescue.lib)(options "")(descr ""))
+  (lib (name TPS5450)(type Legacy)(uri ${KIPRJMOD}/libs/TPS5450.lib)(options "")(descr ""))
 )
