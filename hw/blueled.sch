@@ -253,8 +253,8 @@ $Comp
 L Connector:TestPoint DBG0
 U 1 1 5D573650
 P 7850 1550
-F 0 "DBG0" V 7804 1738 50  0000 L CNN
-F 1 "Debug" V 7895 1738 50  0000 L CNN
+F 0 "DBG0" V 7800 1450 50  0000 L CNN
+F 1 "Debug" V 7850 1750 50  0000 L CNN
 F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8050 1550 50  0001 C CNN
 F 3 "~" H 8050 1550 50  0001 C CNN
 	1    7850 1550
@@ -300,7 +300,6 @@ Wire Wire Line
 	1400 3150 1400 3450
 Wire Wire Line
 	1400 3450 1450 3450
-NoConn ~ 7550 1650
 Text Label 1350 1200 0    50   ~ 0
 VINJACK
 Wire Wire Line
@@ -991,6 +990,18 @@ Wire Wire Line
 Wire Wire Line
 	6000 1150 6200 1150
 Connection ~ 6200 1150
+$Comp
+L Connector:TestPoint HRT?
+U 1 1 5FA7C739
+P 7850 1650
+F 0 "HRT?" V 7800 1550 50  0000 L CNN
+F 1 "Heartbeat" V 7850 1850 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8050 1650 50  0001 C CNN
+F 3 "~" H 8050 1650 50  0001 C CNN
+	1    7850 1650
+	0    1    1    0   
+$EndComp
 Wire Wire Line
-	5750 1750 6350 1750
+	7550 1650 7850 1650
+NoConn ~ 6350 1750
 $EndSCHEMATC

@@ -21,6 +21,7 @@
 #define DATA_PIN PD7
 #define PIN_RESET PD3
 #define PIN_DEBUG PB0
+#define PIN_HEARTBEAT PB1
 #define CYCLE_MAX_DURATION 100
 
 // Communication
@@ -266,8 +267,10 @@ void setup()
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(PIN_RESET, INPUT);
     pinMode(PIN_DEBUG, OUTPUT);
+    pinMode(PIN_HEARTBEAT, OUTPUT);
     digitalWrite(LED_BUILTIN, LOW);
     digitalWrite(PIN_DEBUG, LOW);
+    digitalWrite(PIN_HEARTBEAT, HIGH);
 
     // Configure LED strip
     set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
@@ -290,6 +293,7 @@ void loop()
         simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
+    digitalWrite(PIN_HEARTBEAT, LOW);
 
     // Receive input
     while (Serial.available()) {
@@ -322,5 +326,6 @@ void loop()
 
     delay(BASE_PERIOD);
 
+    digitalWrite(PIN_HEARTBEAT, HIGH);
     stop = millis();
 }
