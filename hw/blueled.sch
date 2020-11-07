@@ -5,8 +5,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Blueled - LED strip controller"
-Date "2020-04-29"
-Rev "2.0"
+Date "2020-11-07"
+Rev "3.0"
 Comp "alberand"
 Comment1 "Simple bluetooth controller based around cheap bluetooth module HC-05"
 Comment2 ""
@@ -184,39 +184,39 @@ Wire Wire Line
 $Comp
 L Connector_Generic:Conn_02x03_Top_Bottom J3
 U 1 1 5D06C568
-P 5900 4650
-F 0 "J3" H 5950 4967 50  0000 C CNN
-F 1 "ICSP" H 5950 4876 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 5900 4650 50  0001 C CNN
-F 3 "~" H 5900 4650 50  0001 C CNN
-	1    5900 4650
+P 6400 5100
+F 0 "J3" H 6450 5417 50  0000 C CNN
+F 1 "ICSP" H 6450 5326 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 6400 5100 50  0001 C CNN
+F 3 "~" H 6400 5100 50  0001 C CNN
+	1    6400 5100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5450 4650 5700 4650
+	5950 5100 6200 5100
 Wire Wire Line
-	5450 4550 5700 4550
+	5950 5000 6200 5000
 Wire Wire Line
-	6200 4650 6400 4650
+	6700 5100 6900 5100
 $Comp
 L power:GND #PWR01
 U 1 1 5D07BC0F
-P 6250 4850
-F 0 "#PWR01" H 6250 4600 50  0001 C CNN
-F 1 "GND" H 6255 4677 50  0000 C CNN
-F 2 "" H 6250 4850 50  0001 C CNN
-F 3 "" H 6250 4850 50  0001 C CNN
-	1    6250 4850
+P 6750 5300
+F 0 "#PWR01" H 6750 5050 50  0001 C CNN
+F 1 "GND" H 6755 5127 50  0000 C CNN
+F 2 "" H 6750 5300 50  0001 C CNN
+F 3 "" H 6750 5300 50  0001 C CNN
+	1    6750 5300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6200 4750 6250 4750
+	6700 5200 6750 5200
 Wire Wire Line
-	6250 4750 6250 4850
-Text Label 5450 4750 0    50   ~ 0
+	6750 5200 6750 5300
+Text Label 5950 5200 0    50   ~ 0
 RESET
 Wire Wire Line
-	5450 4750 5700 4750
+	5950 5200 6200 5200
 $Comp
 L Device:Q_PMOS_SDG Q1
 U 1 1 5D461D8C
@@ -320,7 +320,7 @@ Text Label 8950 3550 0    50   ~ 0
 ~HC-POWER-EN
 Text Label 8950 3650 0    50   ~ 0
 HC-DISCNCT
-Text Label 8950 3850 0    50   ~ 0
+Text Label 9250 3850 0    50   ~ 0
 DATA
 Wire Wire Line
 	8850 3350 8950 3350
@@ -348,11 +348,11 @@ Wire Wire Line
 	8850 1850 8950 1850
 Wire Wire Line
 	8850 1950 8950 1950
-Text Label 5450 4550 0    50   ~ 0
+Text Label 5950 5000 0    50   ~ 0
 MISO
-Text Label 5450 4650 0    50   ~ 0
+Text Label 5950 5100 0    50   ~ 0
 SCK
-Text Label 6400 4650 2    50   ~ 0
+Text Label 6900 5100 2    50   ~ 0
 MOSI
 Text Label 9150 5250 0    50   ~ 0
 MISO
@@ -403,8 +403,6 @@ Wire Wire Line
 Wire Wire Line
 	9500 6050 9500 5950
 Connection ~ 9500 5950
-Text Notes 700  2750 0    89   ~ 0
-LED strip & MCU POWER
 Text Notes 7050 4800 0    89   ~ 0
 FLASH Memory
 Text Notes 5350 3350 0    89   ~ 0
@@ -551,8 +549,6 @@ F 3 "" H 3150 6150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7500 1450 7650 1450
-Text Notes 700  3350 0    89   ~ 0
-HC-05 Bluetooth
 Text Notes 7100 800  0    89   ~ 0
 ATmega328P
 Wire Wire Line
@@ -833,18 +829,18 @@ $EndComp
 $Comp
 L power:+3.3V #PWR09
 U 1 1 5EAEDBBC
-P 6250 4450
-F 0 "#PWR09" H 6250 4300 50  0001 C CNN
-F 1 "+3.3V" H 6265 4623 50  0000 C CNN
-F 2 "" H 6250 4450 50  0001 C CNN
-F 3 "" H 6250 4450 50  0001 C CNN
-	1    6250 4450
+P 6750 4900
+F 0 "#PWR09" H 6750 4750 50  0001 C CNN
+F 1 "+3.3V" H 6765 5073 50  0000 C CNN
+F 2 "" H 6750 4900 50  0001 C CNN
+F 3 "" H 6750 4900 50  0001 C CNN
+	1    6750 4900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6200 4550 6250 4550
+	6700 5000 6750 5000
 Wire Wire Line
-	6250 4550 6250 4450
+	6750 5000 6750 4900
 $Comp
 L power:+3.3V #PWR08
 U 1 1 5EAFB72E
@@ -1033,31 +1029,29 @@ $EndComp
 $Comp
 L Device:C C5
 U 1 1 5FC19A9D
-P 2000 5550
-F 0 "C5" H 2115 5596 50  0000 L CNN
-F 1 "C" H 2115 5505 50  0000 L CNN
-F 2 "" H 2038 5400 50  0001 C CNN
-F 3 "~" H 2000 5550 50  0001 C CNN
-	1    2000 5550
+P 1850 5550
+F 0 "C5" H 1965 5596 50  0000 L CNN
+F 1 "330uF" H 1965 5505 50  0000 L CNN
+F 2 "" H 1888 5400 50  0001 C CNN
+F 3 "~" H 1850 5550 50  0001 C CNN
+	1    1850 5550
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR011
 U 1 1 5FC1AB02
-P 2000 5800
-F 0 "#PWR011" H 2000 5550 50  0001 C CNN
-F 1 "GND" H 2005 5627 50  0000 C CNN
-F 2 "" H 2000 5800 50  0001 C CNN
-F 3 "" H 2000 5800 50  0001 C CNN
-	1    2000 5800
+P 1850 5800
+F 0 "#PWR011" H 1850 5550 50  0001 C CNN
+F 1 "GND" H 1855 5627 50  0000 C CNN
+F 2 "" H 1850 5800 50  0001 C CNN
+F 3 "" H 1850 5800 50  0001 C CNN
+	1    1850 5800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2000 5800 2000 5700
+	1850 5800 1850 5700
 Wire Wire Line
-	2000 5400 2000 5300
-Wire Wire Line
-	2000 5300 2300 5300
+	1850 5400 1850 5300
 Text Label 1400 4500 0    50   ~ 0
 ~HC-POWER-EN
 $Comp
@@ -1120,8 +1114,7 @@ $EndComp
 Wire Wire Line
 	1100 5300 1200 5300
 Wire Wire Line
-	1600 5300 2000 5300
-Connection ~ 2000 5300
+	1600 5300 1850 5300
 $Comp
 L Regulator_Switching:TPS5450 U5
 U 1 1 5FD42637
@@ -1504,77 +1497,146 @@ Wire Notes Line width 12
 Wire Notes Line width 12
 	5300 6300 9900 6300
 $Comp
-L Mechanical:MountingHole_Pad H?
+L Mechanical:MountingHole_Pad H1
 U 1 1 60599C2F
-P 5650 5200
-F 0 "H?" V 5650 5400 50  0000 C CNN
-F 1 "MountingHole_Pad" V 5796 5203 50  0001 C CNN
-F 2 "" H 5650 5200 50  0001 C CNN
-F 3 "~" H 5650 5200 50  0001 C CNN
-	1    5650 5200
+P 5600 5000
+F 0 "H1" V 5600 5200 50  0000 C CNN
+F 1 "MountingHole_Pad" V 5746 5003 50  0001 C CNN
+F 2 "" H 5600 5000 50  0001 C CNN
+F 3 "~" H 5600 5000 50  0001 C CNN
+	1    5600 5000
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Mechanical:MountingHole_Pad H?
+L Mechanical:MountingHole_Pad H2
 U 1 1 6059B45E
-P 5650 5400
-F 0 "H?" V 5650 5600 50  0000 C CNN
-F 1 "MountingHole_Pad" V 5796 5403 50  0001 C CNN
-F 2 "" H 5650 5400 50  0001 C CNN
-F 3 "~" H 5650 5400 50  0001 C CNN
-	1    5650 5400
+P 5600 5200
+F 0 "H2" V 5600 5400 50  0000 C CNN
+F 1 "MountingHole_Pad" V 5746 5203 50  0001 C CNN
+F 2 "" H 5600 5200 50  0001 C CNN
+F 3 "~" H 5600 5200 50  0001 C CNN
+	1    5600 5200
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Mechanical:MountingHole_Pad H?
+L Mechanical:MountingHole_Pad H3
 U 1 1 605A5A4D
-P 5650 5600
-F 0 "H?" V 5650 5800 50  0000 C CNN
-F 1 "MountingHole_Pad" V 5796 5603 50  0001 C CNN
-F 2 "" H 5650 5600 50  0001 C CNN
-F 3 "~" H 5650 5600 50  0001 C CNN
-	1    5650 5600
+P 5600 5400
+F 0 "H3" V 5600 5600 50  0000 C CNN
+F 1 "MountingHole_Pad" V 5746 5403 50  0001 C CNN
+F 2 "" H 5600 5400 50  0001 C CNN
+F 3 "~" H 5600 5400 50  0001 C CNN
+	1    5600 5400
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Mechanical:MountingHole_Pad H?
+L Mechanical:MountingHole_Pad H4
 U 1 1 605AFFEA
-P 5650 5800
-F 0 "H?" V 5650 6000 50  0000 C CNN
-F 1 "MountingHole_Pad" V 5796 5803 50  0001 C CNN
-F 2 "" H 5650 5800 50  0001 C CNN
-F 3 "~" H 5650 5800 50  0001 C CNN
-	1    5650 5800
+P 5600 5600
+F 0 "H4" V 5600 5800 50  0000 C CNN
+F 1 "MountingHole_Pad" V 5746 5603 50  0001 C CNN
+F 2 "" H 5600 5600 50  0001 C CNN
+F 3 "~" H 5600 5600 50  0001 C CNN
+	1    5600 5600
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR023
 U 1 1 605BAE13
-P 5850 5900
-F 0 "#PWR?" H 5850 5650 50  0001 C CNN
-F 1 "GND" H 5855 5727 50  0000 C CNN
-F 2 "" H 5850 5900 50  0001 C CNN
-F 3 "" H 5850 5900 50  0001 C CNN
-	1    5850 5900
+P 5800 5700
+F 0 "#PWR023" H 5800 5450 50  0001 C CNN
+F 1 "GND" H 5805 5527 50  0000 C CNN
+F 2 "" H 5800 5700 50  0001 C CNN
+F 3 "" H 5800 5700 50  0001 C CNN
+	1    5800 5700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5750 5800 5850 5800
+	5700 5600 5800 5600
 Wire Wire Line
-	5850 5800 5850 5900
+	5800 5600 5800 5700
 Wire Wire Line
-	5750 5600 5850 5600
+	5700 5400 5800 5400
 Wire Wire Line
-	5850 5600 5850 5800
-Connection ~ 5850 5800
+	5800 5400 5800 5600
+Connection ~ 5800 5600
 Wire Wire Line
-	5750 5400 5850 5400
+	5700 5200 5800 5200
 Wire Wire Line
-	5850 5400 5850 5600
-Connection ~ 5850 5600
+	5800 5200 5800 5400
+Connection ~ 5800 5400
 Wire Wire Line
-	5750 5200 5850 5200
+	5700 5000 5800 5000
 Wire Wire Line
-	5850 5200 5850 5400
-Connection ~ 5850 5400
+	5800 5000 5800 5200
+Connection ~ 5800 5200
+Text Notes 700  3350 0    89   ~ 0
+HC-05 Bluetooth
+Text Notes 700  2750 0    89   ~ 0
+LED strip & MCU POWER
+$Comp
+L Device:R_Small R11
+U 1 1 606543FF
+P 9050 3850
+F 0 "R11" V 8950 3800 50  0000 L CNN
+F 1 "470" V 8850 3800 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9050 3850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 9050 3850 50  0001 C CNN
+F 4 "lcsc.com" H 9050 3850 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 9050 3850 50  0001 C CNN "Manuf. Part"
+	1    9050 3850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9150 3850 9250 3850
+$Comp
+L Device:CP1 C12
+U 1 1 6068EAC3
+P 5800 4250
+F 0 "C12" V 6050 4250 50  0000 L CNN
+F 1 "1000uF" V 5950 4150 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 5800 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 5800 4250 50  0001 C CNN
+F 4 "lcsc.com" H 5800 4250 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 5800 4250 50  0001 C CNN "Manuf. Part"
+	1    5800 4250
+	0    -1   -1   0   
+$EndComp
+Text Label 5550 4250 2    50   ~ 0
+VIN
+Wire Wire Line
+	5550 4250 5650 4250
+$Comp
+L power:GND #PWR0109
+U 1 1 606CCD77
+P 6050 4250
+F 0 "#PWR0109" H 6050 4000 50  0001 C CNN
+F 1 "GND" H 6055 4077 50  0000 C CNN
+F 2 "" H 6050 4250 50  0001 C CNN
+F 3 "" H 6050 4250 50  0001 C CNN
+	1    6050 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6050 4250 5950 4250
+Text Notes 5400 4650 0    50   ~ 0
+Big capacitor near LED strinp terminal \nblock to smooth output voltage\n
+Connection ~ 1850 5300
+Wire Wire Line
+	1850 5300 2300 5300
+Text Label 10650 5750 2    50   ~ 0
+PWR_PRT
+Wire Wire Line
+	10650 5950 10650 5750
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 607AA1D3
+P 10650 5950
+F 0 "#FLG01" H 10650 6200 50  0000 C CNN
+F 1 "PWR_FLAG" H 10650 6123 50  0000 C CNN
+F 2 "" H 10650 5950 50  0001 C CNN
+F 3 "~" H 10650 5950 50  0001 C CNN
+	1    10650 5950
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
