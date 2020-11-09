@@ -11,7 +11,7 @@ Features:
 * Over-The-Air Updates
 * Python interface (to control it from PC)
 * Save latest state between power on/off
-* Up to 200 LEDs (WS2812B or NeoPixel)
+* Up to 100 LEDs on full brightness (WS2812B)
 
 #### Notes (to refactor)
 
