@@ -31,7 +31,7 @@ class Blueled:
     metadata = {
             'set_leds': {'id': 0x20, 'fmt':'<HI'}, 
             'set_brightness': {'id': 0x21, 'fmt':'<HI'}, 
-            'solid': {'id': 0x41, 'fmt':'<HI'}, 
+            'solid': {'id': 0x41, 'fmt':'<HIII'}, 
             'gradient': {'id': 0x42, 'fmt':'<HI'}, # this one is modified later
             'cylon': {'id': 0x43, 'fmt': '<H'}, 
             'rainbow': {'id': 0x44, 'fmt':'<H'}, 
@@ -100,9 +100,9 @@ class Blueled:
         message = self.comm.compose(metadata['fmt'], [metadata['id'], brightness])
         self.send(message)
 
-    def solid(self, color):
+    def solid(self, color, offset=0, size=0):
         metadata = self.metadata['solid']
-        message = self.comm.compose(metadata['fmt'], [metadata['id'], color])
+        message = self.comm.compose(metadata['fmt'], [metadata['id'], color, offset, size])
         self.send(message)
 
     def gradient(self, *argv):

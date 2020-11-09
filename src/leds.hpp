@@ -59,7 +59,7 @@ static struct animation_config configs[] = {
         .id = 0x41,
         .delay = 10,
         .leds_update = solid,
-        .size = 1,
+        .size = 3,
         .params = nullptr,
     },
     {

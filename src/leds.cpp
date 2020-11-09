@@ -46,8 +46,19 @@ void fadeinout(CRGB* leds, uint16_t num_leds, const struct animation_config* con
 void solid(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
 {
     const CRGB color = config->params[0];
+    uint16_t offset = 0;
+    if(config->params[1] != 0){
+        offset = config->params[1];
+    }
 
-    fill_solid(leds, num_leds, color);
+    uint16_t num = num_leds;
+    if(config->params[2] != 0){
+        num = config->params[2];
+    }
+
+    for( int i = 0; i < num; ++i) {
+        leds[offset + i] = color;
+    }
 }
 
 void gradient(CRGB* leds, uint16_t num_leds, const struct animation_config* config)
