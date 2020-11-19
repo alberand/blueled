@@ -406,7 +406,7 @@ Connection ~ 9500 5950
 Text Notes 7050 4800 0    89   ~ 0
 FLASH Memory
 Text Notes 5350 3350 0    89   ~ 0
-Ports
+Misc
 Wire Wire Line
 	3150 6150 3150 6050
 Connection ~ 1850 4300
@@ -555,21 +555,19 @@ Wire Wire Line
 	7850 5550 7700 5550
 Wire Wire Line
 	7700 5550 7700 5650
-Text Notes 10050 5550 0    89   ~ 0
-KiCAD ad-hoc
-Text Label 10250 5750 2    50   ~ 0
+Text Label 6250 5750 2    50   ~ 0
 VIN
 Wire Wire Line
-	10250 5950 10250 5750
+	6250 5950 6250 5750
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5D4A1496
-P 10250 5950
-F 0 "#FLG0101" H 10250 6200 50  0000 C CNN
-F 1 "PWR_FLAG" H 10250 6123 50  0000 C CNN
-F 2 "" H 10250 5950 50  0001 C CNN
-F 3 "~" H 10250 5950 50  0001 C CNN
-	1    10250 5950
+P 6250 5950
+F 0 "#FLG0101" H 6250 6200 50  0000 C CNN
+F 1 "PWR_FLAG" H 6250 6123 50  0000 C CNN
+F 2 "" H 6250 5950 50  0001 C CNN
+F 3 "~" H 6250 5950 50  0001 C CNN
+	1    6250 5950
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -1619,24 +1617,26 @@ F 3 "" H 6050 4250 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6050 4250 5950 4250
-Text Notes 5400 4650 0    50   ~ 0
-Big capacitor near LED strinp terminal \nblock to smooth output voltage\n
+Text Notes 5350 4650 0    50   ~ 0
+Buck capacitor near LED strinp terminal \nblock to smooth output voltage\n
 Connection ~ 1850 5300
 Wire Wire Line
 	1850 5300 2300 5300
-Text Label 10650 5750 2    50   ~ 0
+Text Label 6650 5750 2    50   ~ 0
 PWR_PRT
 Wire Wire Line
-	10650 5950 10650 5750
+	6650 5950 6650 5750
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 607AA1D3
-P 10650 5950
-F 0 "#FLG01" H 10650 6200 50  0000 C CNN
-F 1 "PWR_FLAG" H 10650 6123 50  0000 C CNN
-F 2 "" H 10650 5950 50  0001 C CNN
-F 3 "~" H 10650 5950 50  0001 C CNN
-	1    10650 5950
+P 6650 5950
+F 0 "#FLG01" H 6650 6200 50  0000 C CNN
+F 1 "PWR_FLAG" H 6650 6123 50  0000 C CNN
+F 2 "" H 6650 5950 50  0001 C CNN
+F 3 "~" H 6650 5950 50  0001 C CNN
+	1    6650 5950
 	-1   0    0    1   
 $EndComp
+Text Notes 750  5900 0    50   ~ 0
+Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
 $EndSCHEMATC
