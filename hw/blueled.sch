@@ -968,7 +968,7 @@ L Device:R R8
 U 1 1 5FB27684
 P 2200 1750
 F 0 "R8" H 2270 1796 50  0000 L CNN
-F 1 "R" H 2270 1705 50  0000 L CNN
+F 1 "1k" H 2270 1705 50  0000 L CNN
 F 2 "" V 2130 1750 50  0001 C CNN
 F 3 "~" H 2200 1750 50  0001 C CNN
 	1    2200 1750
@@ -1570,8 +1570,8 @@ Wire Wire Line
 Connection ~ 5800 5200
 Text Notes 700  3350 0    89   ~ 0
 HC-05 Bluetooth
-Text Notes 700  2750 0    89   ~ 0
-LED strip & MCU POWER
+Text Notes 900  2900 0    89   ~ 0
+LED strip & MCU \n     POWER
 $Comp
 L Device:R_Small R11
 U 1 1 606543FF
