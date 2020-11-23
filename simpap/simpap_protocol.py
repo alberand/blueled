@@ -6,31 +6,6 @@ import binascii
 import struct
 from pprint import pprint
 
-def cmd_set_leds_number(*args):
-    cmd = 0x0020
-    data = cmd.to_bytes(2, byteorder='little') + args[0].to_bytes(2,
-            byteorder='little')
-    return data
-
-def cmd_gradient_two(*args):
-    # 0B 00000002 00FF0000 0000FF00
-    data = 0x042.to_bytes(2, byteorder='little') 
-    data += 0x02.to_bytes(4, byteorder='little')
-    data += 0x00FF00.to_bytes(4, byteorder='little')
-    data += 0x0000FF.to_bytes(4, byteorder='little')
-
-    return data
-
-def cmd_gradient(*args):
-    # 0B 00000003 00FF0000 0000FF00 000000FF
-    data = 0x042.to_bytes(2, byteorder='little') 
-    data += 0x03.to_bytes(4, byteorder='little')
-    data += 0x00FF00.to_bytes(4, byteorder='little')
-    data += 0xFF0000.to_bytes(4, byteorder='little')
-    data += 0x0000FF.to_bytes(4, byteorder='little')
-
-    return data
-
 class Simpap:
 
     START_COMM = 0xAA
@@ -62,11 +37,11 @@ class Simpap:
             self.finished = True
             self.started = False
 
-            if int.from_bytes(self.buf[-2:], "little") != binascii.crc_hqx(self.buf[:-2], 0xFFFF):
+            if int.from_bytes(self.buf[-2:], "big") != binascii.crc_hqx(self.buf[:-2], 0xFFFF):
                 print('CRC16 of received frame is incorect')
                 print(f'FRAME: {self.buf}')
                 print("CRC: 0x{:02x} (recv) != 0x{:02x}".format(
-                    int.from_bytes(self.buf[-2:], "little"),
+                    int.from_bytes(self.buf[-2:], "big"),
                     binascii.crc_hqx(self.buf[:-2], 0xFFFF)))
                 self.buf = b''
                 return
