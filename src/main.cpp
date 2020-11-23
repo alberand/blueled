@@ -136,7 +136,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
     // Init packet (set number of leds)
     if(cmd == COMM_INIT_MSG) {
         // digitalWrite(LED_BUILTIN, HIGH);
-        NUM_LEDS = get_u16((data + COMMAND_OFFSET));
+        NUM_LEDS = (uint16_t)get_u32((data + PAYLOAD_OFFSET));
 
         if(NUM_LEDS > MAX_LEDS){
             return;
