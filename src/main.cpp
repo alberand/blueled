@@ -39,7 +39,8 @@
 #define MEM_BASE_ADDRESS 0x0
 #define MEM_NEW_STATE_ADDRESS (MEM_BASE_ADDRESS + 0x0)
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
-#define MEM_PARAMS_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
+#define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
+#define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
 #define MAX_LEDS 256
 
@@ -205,48 +206,50 @@ void state_save(const struct state* state_t)
         return;
     }
 
-    // EEPROM.put(MEM_STATE_ADDRESS, *state_t);
-    // for(int i = 0; i < state_t->config->num; i++) {
-        // EEPROM.put(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
-                   // state_t->config->params[i]);
-    // }
+    EEPROM.put(MEM_STATE_ADDRESS, *state_t);
+    EEPROM.put(MEM_ANIMATION_STATE_ADDRESS, animation_t);
+    for(int i = 0; i < state_t->config->num; i++) {
+        uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+        EEPROM.put(address, animation_t.params[i]);
+    }
     // This flag is used only to check that config was saved
-    // bool state_new = true;
-    // EEPROM.put(MEM_NEW_STATE_ADDRESS, state_new);
+    bool state_new = true;
+    EEPROM.put(MEM_NEW_STATE_ADDRESS, state_new);
 }
 
 bool state_load(struct state* state_t)
 {
-    return false;
     // Check if config exist in memory
-    // bool is_config_new = false;
-    // if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
-        // state_reset(state_t);
-        // EEPROM.get(MEM_STATE_ADDRESS, *state_t);
+    bool is_config_new = false;
+    if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
+        state_reset(state_t);
+        EEPROM.get(MEM_STATE_ADDRESS, *state_t);
+        EEPROM.get(MEM_ANIMATION_STATE_ADDRESS, animation_t);
 
         // Assign config based on state_t->animation
-        // for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
-            // if(configs[i].id != state_t->animation) {
-                // continue;
-            // }
+        for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
+            if(configs[i]->id != state_t->animation) {
+                continue;
+            }
 
-            // state_t->config = &configs[i];
-        // }
+            state_t->config = configs[i];
+        }
+
         // Read config params
-        // state_t->config->params = (uint32_t*)malloc(state_t->config->num*4);
-        // for(int i = 0; i < state_t->config->num; i++) {
-            // EEPROM.get(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
-                       // state_t->config->params[i]);
-        // }
-    // }
+        animation_t.params = (uint32_t*)malloc(state_t->config->num*sizeof(uint32_t));
+        for(int i = 0; i < state_t->config->num; i++) {
+            uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+            EEPROM.get(address, animation_t.params[i]);
+        }
+    }
 
-    // if(!state_check(state_t)) {
+    if(!state_check(state_t)) {
         // print("nok (fail mem read)");
-        // simpap_send(&simpap_ctx, (uint8_t*)"nok (fail mem read)", 19);
-        // return false;
-    // }
+        simpap_send(&simpap_ctx, (uint8_t*)"nok (fail mem read)", 19);
+        return false;
+    }
 
-    // return true;
+    return true;
 }
 
 void state_reset(struct state* state_t)
@@ -284,6 +287,7 @@ void setup()
     // Read configuration from EEPROM if exist
     if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
         // Initial state - Rainbow
+        simpap_send(&simpap_ctx, (uint8_t*)"load failed", 11);
         state_reset(&state_t);
         state_save(&state_t);
     }
