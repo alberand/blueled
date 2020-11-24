@@ -4,9 +4,10 @@
 #include <avr/interrupt.h>
 #include <Arduino.h>
 #include <EEPROM.h>
+#include <FastLED.h>
+#include <ledfx.h>
 
 #include "simpap.hpp"
-#include "leds.hpp"
 #include "common.hpp"
 
 #define DEBUG
@@ -25,7 +26,9 @@
 #define CYCLE_MAX_DURATION 100
 
 // Communication
-#define PAYLOAD_OFFSET 2
+#define COMMAND_OFFSET 0
+#define PARAMS_NUM_OFFSET 2
+#define PAYLOAD_OFFSET 3
 #define MAX_PARAMS 20
 
 // In updates per second (Hz)
@@ -36,7 +39,8 @@
 #define MEM_BASE_ADDRESS 0x0
 #define MEM_NEW_STATE_ADDRESS (MEM_BASE_ADDRESS + 0x0)
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
-#define MEM_PARAMS_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
+#define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
+#define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
 #define MAX_LEDS 256
 
@@ -44,8 +48,6 @@
 #define ACK 0xBB
 #define COMM_INIT_MSG 0x20
 #define COMM_SET_BRIGHT_MSG 0x21
-#define COMM_ANIM_FIRST (configs[0].id)
-#define COMM_ANIM_LAST (configs[COUNT_OF(configs) - 1].id)
 
 static bool in_comm = false;
 
@@ -95,15 +97,17 @@ bool state_check(const struct state* state_t)
         return false;
     }
 
-    if(state_t->animation < configs[0].id){
+    bool valid_id = false;
+    for(uint8_t i = 0; i < CONFIGS_SIZE; i++){
+        if(state_t->animation == configs[i]->id){
+            valid_id = true;
+        }
+    }
+    if(!valid_id){
         return false;
     }
 
-    if(state_t->animation > configs[COUNT_OF(configs) - 1].id){
-        return false;
-    }
-
-    if(state_t->config == nullptr || state_t->config == NULL){
+    if(state_t->config == NULL){
         return false;
     }
 
@@ -127,12 +131,12 @@ void simpap_handler(uint8_t* data, uint8_t len)
     in_comm = false;
     simpap_send_char(ACK);
 
-    uint16_t cmd = get_u16(data);
+    uint16_t cmd = get_u16((data + COMMAND_OFFSET));
 
     // Init packet (set number of leds)
     if(cmd == COMM_INIT_MSG) {
         // digitalWrite(LED_BUILTIN, HIGH);
-        NUM_LEDS = get_u16((data + PAYLOAD_OFFSET));
+        NUM_LEDS = (uint16_t)get_u32((data + PAYLOAD_OFFSET));
 
         if(NUM_LEDS > MAX_LEDS){
             return;
@@ -160,23 +164,23 @@ void simpap_handler(uint8_t* data, uint8_t len)
     }
 
     // Set animation (animation with parameters)
-    if(cmd >= COMM_ANIM_FIRST && cmd <= COMM_ANIM_LAST) {
+    if(true) {
         /* Apply animation */
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
-            if(configs[i].id != cmd) {
+            if(configs[i]->id != cmd) {
                 continue;
             }
 
-            state_t.animation = configs[i].id;
-            state_t.config = &configs[i];
-            free(state_t.config->params);
-            state_t.config->params = (uint32_t*)malloc(state_t.config->size*sizeof(uint32_t));
-            if(state_t.config->params != nullptr){
-                memcpy((void*)state_t.config->params, data + PAYLOAD_OFFSET,
-                   state_t.config->size*sizeof(uint32_t));
+            state_t.animation = configs[i]->id;
+            state_t.config = configs[i];
+            ledfx_state_reset();
+
+            uint8_t params_num = get_u8(data + PARAMS_NUM_OFFSET);
+            for(uint8_t i = 0; i < params_num; i++){
+                uint32_t value = get_u32((data + PAYLOAD_OFFSET + i*sizeof(uint32_t)));
+                ledfx_set_param(i, value);
             }
 
-            animation_state_reset();
             state_save(&state_t);
         }
 
@@ -192,12 +196,8 @@ bool state_update(struct state* state_t)
 {
     state_t->iteration++;
 
-    if(state_t->iteration%(state_t->config->delay/BASE_PERIOD) == 0) {
-        animation_state_update(leds, state_t->num_leds, state_t->config);
-        return true;
-    }
-
-    return false;
+    ledfx_effect(state_t->animation, leds, state_t->num_leds);
+    return true;
 }
 
 void state_save(const struct state* state_t)
@@ -207,9 +207,10 @@ void state_save(const struct state* state_t)
     }
 
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
-    for(int i = 0; i < state_t->config->size; i++) {
-        EEPROM.put(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
-                   state_t->config->params[i]);
+    EEPROM.put(MEM_ANIMATION_STATE_ADDRESS, animation_t);
+    for(int i = 0; i < state_t->config->num; i++) {
+        uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+        EEPROM.put(address, animation_t.params[i]);
     }
     // This flag is used only to check that config was saved
     bool state_new = true;
@@ -223,20 +224,22 @@ bool state_load(struct state* state_t)
     if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
         state_reset(state_t);
         EEPROM.get(MEM_STATE_ADDRESS, *state_t);
+        EEPROM.get(MEM_ANIMATION_STATE_ADDRESS, animation_t);
 
         // Assign config based on state_t->animation
         for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
-            if(configs[i].id != state_t->animation) {
+            if(configs[i]->id != state_t->animation) {
                 continue;
             }
 
-            state_t->config = &configs[i];
+            state_t->config = configs[i];
         }
+
         // Read config params
-        state_t->config->params = (uint32_t*)malloc(state_t->config->size*4);
-        for(int i = 0; i < state_t->config->size; i++) {
-            EEPROM.get(MEM_PARAMS_ADDRESS + sizeof(state_t->config->params[0])*i,
-                       state_t->config->params[i]);
+        animation_t.params = (uint32_t*)malloc(state_t->config->num*sizeof(uint32_t));
+        for(int i = 0; i < state_t->config->num; i++) {
+            uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+            EEPROM.get(address, animation_t.params[i]);
         }
     }
 
@@ -253,9 +256,10 @@ void state_reset(struct state* state_t)
 {
     state_t->iteration = 0;
     state_t->num_leds = 10;
+    state_t->brightness = 0xFF;
     state_t->animation = 0x44;
-    state_t->config = &configs[3];
-    state_t->config->params = nullptr;
+    state_t->config = configs[3];
+    ledfx_state_reset();
 }
 
 void setup()
@@ -278,9 +282,12 @@ void setup()
 
     simpap_init(&simpap_ctx);
 
+    ledfx_init();
+
     // Read configuration from EEPROM if exist
     if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
         // Initial state - Rainbow
+        simpap_send(&simpap_ctx, (uint8_t*)"load failed", 11);
         state_reset(&state_t);
         state_save(&state_t);
     }
