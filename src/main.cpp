@@ -176,6 +176,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
             ledfx_state_reset();
 
             uint8_t params_num = get_u8(data + PARAMS_NUM_OFFSET);
+            ledfx_set_total_params(params_num);
             for(uint8_t i = 0; i < params_num; i++){
                 uint32_t value = get_u32((data + PAYLOAD_OFFSET + i*sizeof(uint32_t)));
                 ledfx_set_param(i, value);
