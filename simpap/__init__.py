@@ -10,7 +10,7 @@ class SerialTransport:
     def __init__(self, port):
         self.ser = serial.Serial(
                 port=port,
-                baudrate=9600,
+                baudrate=115200,
                 parity=serial.PARITY_EVEN,
                 stopbits=serial.STOPBITS_ONE,
                 bytesize=serial.EIGHTBITS,

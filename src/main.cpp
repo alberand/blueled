@@ -264,7 +264,7 @@ void state_reset(struct state* state_t)
 
 void setup()
 {
-    Serial.begin(9600, SERIAL_8E1);
+    Serial.begin(115200, SERIAL_8E1);
     while (!Serial) { ; }
     Serial.flush();
 
