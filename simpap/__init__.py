@@ -32,7 +32,7 @@ class Blueled:
             'set_leds': {'id': 0x20, 'params_num': 1, 'fmt':'<HbI'}, 
             'set_brightness': {'id': 0x21, 'params_num': 1, 'fmt':'<HbI'}, 
             'solid': {'id': 0x41, 'params_num': 3, 'fmt':'<HbIII'}, 
-            'gradient': {'id': 0x42, 'params_num': 1, 'fmt':'<HbI'}, # this one is modified later
+            'gradient': {'id': 0x42, 'params_num': 20, 'fmt':'<HbI'}, # this one is modified later
             'cylon': {'id': 0x43, 'params_num': 0, 'fmt': '<Hb'}, 
             'rainbow': {'id': 0x44, 'params_num': 0, 'fmt':'<Hb'}, 
             'stroboscope': {'id': 0x45, 'params_num': 0, 'fmt': '<Hb'}, 
@@ -48,6 +48,7 @@ class Blueled:
             'rainbow_classic': {'id': 0x4F, 'params_num': 0, 'fmt': '<Hb'}, 
             'theater_chase': {'id': 0x50, 'params_num': 3, 'fmt': '<HbIII'}, 
             'fire': {'id': 0x51, 'params_num': 0, 'fmt': '<Hb'}, 
+            'segments': {'id': 0x52, 'params_num': 20, 'fmt':'<Hb'}, # this one is modified later
     }
 
     def __init__(self, port):
@@ -204,4 +205,14 @@ class Blueled:
         metadata = self.metadata['fire']
         message = self.comm.compose(metadata['fmt'], 
                 [metadata['id'], metadata['params_num']])
+        self.send(message)
+
+    def segments(self, *argv):
+        color_num = len(argv)
+        if color_num > 19:
+            return
+        metadata = self.metadata['segments']
+        fmt = metadata['fmt'] + 'I'*color_num
+        message = self.comm.compose(fmt, 
+                [metadata['id'], color_num, *argv])
         self.send(message)
