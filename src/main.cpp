@@ -21,8 +21,8 @@
 // Application related
 #define DATA_PIN PD7
 #define PIN_RESET PD3
-#define PIN_DEBUG PB0
-#define PIN_HEARTBEAT PB1
+#define PIN_DEBUG PD0
+#define PIN_HEARTBEAT 9
 #define CYCLE_MAX_DURATION 100
 
 // Communication
@@ -50,6 +50,8 @@
 #define COMM_SET_BRIGHT_MSG 0x21
 
 static bool in_comm = false;
+
+static int heart_state = HIGH;
 
 // Define the array of leds
 CRGB leds[MAX_LEDS];
@@ -301,7 +303,8 @@ void loop()
         simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
-    digitalWrite(PIN_HEARTBEAT, LOW);
+    digitalWrite(PIN_HEARTBEAT, state);
+    state = !state;
 
     // Receive input
     while (Serial.available()) {
@@ -334,6 +337,5 @@ void loop()
 
     delay(BASE_PERIOD);
 
-    digitalWrite(PIN_HEARTBEAT, HIGH);
     stop = millis();
 }
