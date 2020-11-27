@@ -302,8 +302,8 @@ void loop()
         simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
-    digitalWrite(PIN_HEARTBEAT, state);
-    state = !state;
+    digitalWrite(PIN_HEARTBEAT, heart_state);
+    heart_state = !heart_state;
 
     // Receive input
     while (Serial.available()) {
