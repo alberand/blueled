@@ -28,27 +28,29 @@ class SerialTransport:
         return self.ser.in_waiting
 
 class Blueled:
+    header = '<Hb'
+
     metadata = {
-            'set_leds': {'id': 0x20, 'params_num': 1, 'fmt':'<HbI'}, 
-            'set_brightness': {'id': 0x21, 'params_num': 1, 'fmt':'<HbI'}, 
-            'solid': {'id': 0x41, 'params_num': 3, 'fmt':'<HbIII'}, 
-            'gradient': {'id': 0x42, 'params_num': 20, 'fmt':'<HbI'}, # this one is modified later
-            'cylon': {'id': 0x43, 'params_num': 0, 'fmt': '<Hb'}, 
-            'rainbow': {'id': 0x44, 'params_num': 0, 'fmt':'<Hb'}, 
-            'stroboscope': {'id': 0x45, 'params_num': 0, 'fmt': '<Hb'}, 
-            'confetti': {'id': 0x46, 'params_num': 0, 'fmt': '<Hb'}, 
-            'sinelon': {'id': 0x47, 'params_num': 0, 'fmt': '<Hb'}, 
-            'bpm': {'id': 0x48, 'params_num': 0, 'fmt': '<Hb'}, 
-            'juggle': {'id': 0x49, 'params_num': 0, 'fmt': '<Hb'}, 
-            'fadeinout': {'id': 0x4A, 'params_num': 0, 'fmt': '<HIb'}, 
-            'twinkle': {'id': 0x4B, 'params_num': 0, 'fmt': '<Hb'}, 
-            'snowsparkle': {'id': 0x4C, 'params_num': 2, 'fmt': '<HbII'}, 
-            'train': {'id': 0x4D, 'params_num': 1, 'fmt': '<HbI'}, 
-            'wipe': {'id': 0x4E, 'params_num': 1, 'fmt': '<HbI'}, 
-            'rainbow_classic': {'id': 0x4F, 'params_num': 0, 'fmt': '<Hb'}, 
-            'theater_chase': {'id': 0x50, 'params_num': 3, 'fmt': '<HbIII'}, 
-            'fire': {'id': 0x51, 'params_num': 0, 'fmt': '<Hb'}, 
-            'segments': {'id': 0x52, 'params_num': 20, 'fmt':'<Hb'}, # this one is modified later
+            'set_leds': {'id': 0x20, 'params_num': 1, 'fmt':'I'}, 
+            'set_brightness': {'id': 0x21, 'params_num': 1, 'fmt':'I'}, 
+            'solid': {'id': 0x41, 'params_num': 3, 'fmt':'III'}, 
+            'gradient': {'id': 0x42, 'params_num': 20, 'fmt':'I'}, # this one is modified later
+            'cylon': {'id': 0x43, 'params_num': 0, 'fmt': ''}, 
+            'rainbow': {'id': 0x44, 'params_num': 0, 'fmt':''}, 
+            'stroboscope': {'id': 0x45, 'params_num': 0, 'fmt': ''}, 
+            'confetti': {'id': 0x46, 'params_num': 0, 'fmt': ''}, 
+            'sinelon': {'id': 0x47, 'params_num': 0, 'fmt': ''}, 
+            'bpm': {'id': 0x48, 'params_num': 0, 'fmt': ''}, 
+            'juggle': {'id': 0x49, 'params_num': 0, 'fmt': ''}, 
+            'fadeinout': {'id': 0x4A, 'params_num': 0, 'fmt': 'I'}, 
+            'twinkle': {'id': 0x4B, 'params_num': 0, 'fmt': ''}, 
+            'snowsparkle': {'id': 0x4C, 'params_num': 2, 'fmt': ''}, 
+            'train': {'id': 0x4D, 'params_num': 1, 'fmt': 'I'}, 
+            'wipe': {'id': 0x4E, 'params_num': 1, 'fmt': 'I'}, 
+            'rainbow_classic': {'id': 0x4F, 'params_num': 0, 'fmt': ''}, 
+            'theater_chase': {'id': 0x50, 'params_num': 3, 'fmt': 'III'}, 
+            'fire': {'id': 0x51, 'params_num': 0, 'fmt': ''}, 
+            'segments': {'id': 0x52, 'params_num': 20, 'fmt': ''}, # this one is modified later
     }
 
     def __init__(self, port):
@@ -91,121 +93,90 @@ class Blueled:
         self.receiver.join()
         self.serial.ser.close()
 
+    def command(self, metadata, msg_fmt, msg_data):
+        fmt = header + msg_fmt
+        data = [metadata['id'], metadata['params_num'], *msg_data]
+
+        message = self.comm.compose(fmt, data)
+        self.send(message)
+
     def set_leds(self, num_leds):
         metadata = self.metadata['set_leds']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num'], num_leds])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [num_leds])
 
     def set_brightness(self, brightness):
         metadata = self.metadata['set_brightness']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num'], brightness])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [brightness])
 
     def solid(self, color, offset=0, size=0):
         metadata = self.metadata['solid']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num'], color, offset, size])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [color, offset, size])
 
     def gradient(self, *argv):
         color_num = len(argv)
         metadata = self.metadata['gradient']
         fmt = metadata['fmt'] + 'i'*color_num
-        message = self.comm.compose(fmt, 
-                [metadata['id'], metadata['params_num'], color_num, *argv])
-        self.send(message)
+        self.command(metadata, fmt, [color_num, *argv])
 
     def rainbow(self):
         metadata = self.metadata['rainbow']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def cylon(self):
         metadata = self.metadata['cylon']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def stroboscope(self):
         metadata = self.metadata['stroboscope']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def confetti(self):
         metadata = self.metadata['confetti']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def sinelon(self):
         metadata = self.metadata['sinelon']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def bpm(self):
         metadata = self.metadata['bpm']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def juggle(self):
         metadata = self.metadata['juggle']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
-    def fadeinout(self):
+    def fadeinout(self, color):
         metadata = self.metadata['fadeinout']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [color])
 
     def twinkle(self):
         metadata = self.metadata['twinkle']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def snowsparkle(self):
         metadata = self.metadata['snowsparkle']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def train(self):
         metadata = self.metadata['train']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def wipe(self):
         metadata = self.metadata['wipe']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def rainbow_classic(self):
         metadata = self.metadata['rainbow_classic']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def theater_chase(self):
         metadata = self.metadata['theater_chase']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def fire(self):
         metadata = self.metadata['fire']
-        message = self.comm.compose(metadata['fmt'], 
-                [metadata['id'], metadata['params_num']])
-        self.send(message)
+        self.command(metadata, metadata['fmt'], [])
 
     def segments(self, *argv):
         color_num = len(argv)
@@ -213,6 +184,4 @@ class Blueled:
             return
         metadata = self.metadata['segments']
         fmt = metadata['fmt'] + 'I'*color_num
-        message = self.comm.compose(fmt, 
-                [metadata['id'], color_num, *argv])
-        self.send(message)
+        self.command(metadata, fmt, [color_num, *argv])
