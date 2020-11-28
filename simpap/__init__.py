@@ -94,7 +94,7 @@ class Blueled:
         self.serial.ser.close()
 
     def command(self, metadata, msg_fmt, msg_data):
-        fmt = header + msg_fmt
+        fmt = self.header + msg_fmt
         data = [metadata['id'], metadata['params_num'], *msg_data]
 
         message = self.comm.compose(fmt, data)
@@ -184,4 +184,4 @@ class Blueled:
             return
         metadata = self.metadata['segments']
         fmt = metadata['fmt'] + 'I'*color_num
-        self.command(metadata, fmt, [color_num, *argv])
+        self.command(metadata, fmt, argv)
