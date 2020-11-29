@@ -30,7 +30,8 @@ def get_borders(img, size, num_segments=5):
 	left = np.flip(np.transpose(img[bw:(img.shape[0] - bw), 0:bw], (1, 0, 2)), 1)
 	final = np.hstack([top, right, bottom, left])
 	
-	gradient = skimage.transform.resize(final, (1, int(size/num_segments)), anti_aliasing=False, order=3)
+	gradient = skimage.transform.resize(final, (1, int(size/num_segments)), 
+            anti_aliasing=False, order=3)
 	
 	return gradient
 
@@ -53,7 +54,7 @@ def loop():
 			sigma = 3
 			blurred = skimage.filters.gaussian(small, sigma=sigma, truncate=3.5, multichannel=True)
 
-			segments = get_borders(small, num_leds, 20)
+			segments = get_borders(small, num_leds, 15)
 
 			colors = [rgb2int(c) for c in segments[0]]
 			c.segments(*colors)
