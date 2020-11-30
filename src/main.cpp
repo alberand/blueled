@@ -49,9 +49,14 @@
 #define COMM_INIT_MSG 0x20
 #define COMM_SET_BRIGHT_MSG 0x21
 
+/*! Communication state */
 static bool in_comm = false;
 
+/*! Heart beat state */
 static int heart_state = HIGH;
+
+/*! Trigger for updating the LEDs */
+static volatile bool update = false;
 
 // Define the array of leds
 CRGB leds[MAX_LEDS];
@@ -311,16 +316,21 @@ void setup()
 	sei(); // allow interrupts
 }
 
-void task(){
+ISR(TIMER1_COMPA_vect){
+    update = true;
+    heart_state = !heart_state;
+}
+
+void loop()
+{
     if((stop - start) > CYCLE_MAX_DURATION) {
         // print("nok (overrun)");
         simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
     digitalWrite(PIN_HEARTBEAT, heart_state);
-    heart_state = !heart_state;
 
-    // Receive input
+    /* Serial input processing */
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         if(ch == START_COMM) {
@@ -332,7 +342,7 @@ void task(){
             int8_t rc = simpap_accept_char(&simpap_ctx, ch);
             // Message is ok and handler was called
             if(rc == 1){
-                break;;
+                break;
             }
             // Parsing error or message is damaged
             if(rc != 0) {
@@ -342,20 +352,14 @@ void task(){
         }
     }
 
-    if(!in_comm) {
+    /* LED update */
+    if(update and !in_comm){
         if(state_update(&state_t)) {
             FastLED.setBrightness(state_t.brightness);
             FastLED.show();
         }
+        update = false;
     }
 
     stop = millis();
-}
-
-ISR(TIMER1_COMPA_vect){
-	task();
-}
-
-void loop()
-{
 }
