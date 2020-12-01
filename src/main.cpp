@@ -49,9 +49,14 @@
 #define COMM_INIT_MSG 0x20
 #define COMM_SET_BRIGHT_MSG 0x21
 
+/*! Communication state */
 static bool in_comm = false;
 
+/*! Heart beat state */
 static int heart_state = HIGH;
+
+/*! Trigger for updating the LEDs */
+static volatile bool update = false;
 
 // Define the array of leds
 CRGB leds[MAX_LEDS];
@@ -293,19 +298,39 @@ void setup()
         state_reset(&state_t);
         state_save(&state_t);
     }
+
+	cli();//stop interrupts
+
+	TCCR1A = 0;// set entire TCCR1A register to 0
+ 	TCCR1B = 0;// same for TCCR1B
+ 	TCNT1  = 0;//initialize counter value to 0
+ 	// set compare match register for 1hz increments
+    // 28 Hz ~ 35 ms
+ 	OCR1A = 557;// = (16*10^6) / (28*1024) - 1 (must be <65536)
+ 	// turn on CTC mode
+ 	TCCR1B |= (1 << WGM12);
+ 	// Set CS10 and CS12 bits for 1024 prescaler
+ 	TCCR1B |= (1 << CS12) | (1 << CS10);  
+ 	// enable timer compare interrupt
+ 	TIMSK1 |= (1 << OCIE1A);
+
+	sei(); // allow interrupts
+}
+
+ISR(TIMER1_COMPA_vect){
+    update = true;
+    heart_state = !heart_state;
 }
 
 void loop()
 {
     if((stop - start) > CYCLE_MAX_DURATION) {
-        // print("nok (overrun)");
         simpap_send(&simpap_ctx, (uint8_t*)"nok (overrun)", 13);
     }
     start = millis();
     digitalWrite(PIN_HEARTBEAT, heart_state);
-    heart_state = !heart_state;
 
-    // Receive input
+    /* Serial input processing */
     while (Serial.available()) {
         uint8_t ch = Serial.read();
         if(ch == START_COMM) {
@@ -317,7 +342,7 @@ void loop()
             int8_t rc = simpap_accept_char(&simpap_ctx, ch);
             // Message is ok and handler was called
             if(rc == 1){
-                break;;
+                break;
             }
             // Parsing error or message is damaged
             if(rc != 0) {
@@ -327,14 +352,14 @@ void loop()
         }
     }
 
-    if(!in_comm) {
+    /* LED update */
+    if(update and !in_comm){
         if(state_update(&state_t)) {
             FastLED.setBrightness(state_t.brightness);
             FastLED.show();
         }
+        update = false;
     }
-
-    delay(BASE_PERIOD);
 
     stop = millis();
 }
