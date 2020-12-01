@@ -958,8 +958,8 @@ $Comp
 L Device:D_Zener_ALT D4
 U 1 1 5FB2573B
 P 2200 1250
-F 0 "D4" H 2350 1350 50  0000 L CNN
-F 1 "D_Zener_ALT" H 2000 1450 50  0000 L CNN
+F 0 "D4" V 2200 1300 50  0000 L CNN
+F 1 "D_Zener_ALT" H 2000 1450 50  0001 L CNN
 F 2 "Diode_SMD:D_SOD-123" H 2200 1250 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_PANJIT-International-MMSZ5240B_C268602.pdf" H 2200 1250 50  0001 C CNN
 F 4 "lcsc.com" H 2200 1250 50  0001 C CNN "Distributor"
@@ -1471,7 +1471,7 @@ Text Label 2200 750  0    50   ~ 0
 PWR_PRT
 Wire Wire Line
 	2200 1000 2200 750 
-Text Label 2800 2400 2    50   ~ 0
+Text Label 2800 2000 2    50   ~ 0
 PWR_PRT
 $Comp
 L power:GND #PWR013
@@ -1651,4 +1651,19 @@ F 3 "~" H 6650 5950 50  0001 C CNN
 $EndComp
 Text Notes 750  5900 0    50   ~ 0
 Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
+$Comp
+L Device:R R12
+U 1 1 5FD06E35
+P 2800 2250
+F 0 "R12" H 2870 2296 50  0000 L CNN
+F 1 "1k" H 2870 2205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2730 2250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 2800 2250 50  0001 C CNN
+F 4 "lcsc.com" H 2800 2250 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 2800 2250 50  0001 C CNN "Manuf. Part"
+	1    2800 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 2000 2800 2100
 $EndSCHEMATC

@@ -139,10 +139,10 @@ U 1 1 5CC5BA14
 P 5800 3800
 F 0 "J2" H 5880 3842 50  0000 L CNN
 F 1 "LED Strip" H 5880 3751 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 5800 3800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811151432_Phoenix-Contact-1729131_C91154.pdf" H 5800 3800 50  0001 C CNN
+F 2 "" H 5800 3800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2004291906_Ningbo-Xinlaiya-Elec-XY2500R-D-5-08-3P_C505825.pdf" H 5800 3800 50  0001 C CNN
 F 4 "lcsc.com" H 5800 3800 50  0001 C CNN "Distributor"
-F 5 "1729131" H 5800 3800 50  0001 C CNN "Manuf. Part"
+F 5 "XY2500R-D-5.08-3P" H 5800 3800 50  0001 C CNN "Manuf. Part"
 	1    5800 3800
 	-1   0    0    -1  
 $EndComp
@@ -1666,4 +1666,6 @@ F 5 "RK73B2ATTD102J" H 2800 2250 50  0001 C CNN "Manuf. Part"
 $EndComp
 Wire Wire Line
 	2800 2000 2800 2100
+Text Notes 5350 3600 0    50   ~ 0
+XY2500F-B-5.08-3P \nfor LED strip\n
 $EndSCHEMATC
