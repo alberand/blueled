@@ -31,26 +31,26 @@ class Blueled:
     header = '<Hb'
 
     metadata = {
-            'set_leds': {'id': 0x20, 'params_num': 1, 'fmt':'I'}, 
-            'set_brightness': {'id': 0x21, 'params_num': 1, 'fmt':'I'}, 
-            'solid': {'id': 0x41, 'params_num': 3, 'fmt':'III'}, 
-            'gradient': {'id': 0x42, 'params_num': 20, 'fmt':'I'}, # this one is modified later
-            'cylon': {'id': 0x43, 'params_num': 0, 'fmt': ''}, 
-            'rainbow': {'id': 0x44, 'params_num': 0, 'fmt':''}, 
-            'stroboscope': {'id': 0x45, 'params_num': 0, 'fmt': ''}, 
-            'confetti': {'id': 0x46, 'params_num': 0, 'fmt': ''}, 
-            'sinelon': {'id': 0x47, 'params_num': 0, 'fmt': ''}, 
-            'bpm': {'id': 0x48, 'params_num': 0, 'fmt': ''}, 
-            'juggle': {'id': 0x49, 'params_num': 0, 'fmt': ''}, 
-            'fadeinout': {'id': 0x4A, 'params_num': 0, 'fmt': 'I'}, 
-            'twinkle': {'id': 0x4B, 'params_num': 0, 'fmt': ''}, 
-            'snowsparkle': {'id': 0x4C, 'params_num': 2, 'fmt': ''}, 
-            'train': {'id': 0x4D, 'params_num': 1, 'fmt': 'I'}, 
-            'wipe': {'id': 0x4E, 'params_num': 1, 'fmt': 'I'}, 
-            'rainbow_classic': {'id': 0x4F, 'params_num': 0, 'fmt': ''}, 
-            'theater_chase': {'id': 0x50, 'params_num': 3, 'fmt': 'III'}, 
-            'fire': {'id': 0x51, 'params_num': 0, 'fmt': ''}, 
-            'segments': {'id': 0x52, 'params_num': 20, 'fmt': ''}, # this one is modified later
+            'set_leds': {'id': 0x20, 'fmt':'I'}, 
+            'set_brightness': {'id': 0x21, 'fmt':'I'}, 
+            'solid': {'id': 0x41, 'fmt':'III'}, 
+            'gradient': {'id': 0x42, 'fmt': ''}, # this one is modified later
+            'cylon': {'id': 0x43, 'fmt': ''}, 
+            'rainbow': {'id': 0x44, 'fmt':''}, 
+            'stroboscope': {'id': 0x45, 'fmt': ''}, 
+            'confetti': {'id': 0x46, 'fmt': ''}, 
+            'sinelon': {'id': 0x47, 'fmt': ''}, 
+            'bpm': {'id': 0x48, 'fmt': ''}, 
+            'juggle': {'id': 0x49, 'fmt': ''}, 
+            'fadeinout': {'id': 0x4A, 'fmt': 'I'}, 
+            'twinkle': {'id': 0x4B, 'fmt': ''}, 
+            'snowsparkle': {'id': 0x4C, 'fmt': ''}, 
+            'train': {'id': 0x4D, 'fmt': 'I'}, 
+            'wipe': {'id': 0x4E, 'fmt': 'I'}, 
+            'rainbow_classic': {'id': 0x4F, 'fmt': ''}, 
+            'theater_chase': {'id': 0x50, 'fmt': 'III'}, 
+            'fire': {'id': 0x51, 'fmt': ''}, 
+            'segments': {'id': 0x52, 'fmt': ''}, # this one is modified later
     }
 
     def __init__(self, port):
@@ -95,7 +95,7 @@ class Blueled:
 
     def command(self, metadata, msg_fmt, msg_data):
         fmt = self.header + msg_fmt
-        data = [metadata['id'], metadata['params_num'], *msg_data]
+        data = [metadata['id'], len(msg_data), *msg_data]
 
         message = self.comm.compose(fmt, data)
         self.send(message)
@@ -113,10 +113,11 @@ class Blueled:
         self.command(metadata, metadata['fmt'], [color, offset, size])
 
     def gradient(self, *argv):
-        color_num = len(argv)
+        if len(argv) > 19:
+            return
         metadata = self.metadata['gradient']
-        fmt = metadata['fmt'] + 'i'*color_num
-        self.command(metadata, fmt, [color_num, *argv])
+        fmt = metadata['fmt'] + 'i'*len(argv)
+        self.command(metadata, fmt, argv)
 
     def rainbow(self):
         metadata = self.metadata['rainbow']
@@ -179,9 +180,8 @@ class Blueled:
         self.command(metadata, metadata['fmt'], [])
 
     def segments(self, *argv):
-        color_num = len(argv)
-        if color_num > 19:
+        if len(argv) > 19:
             return
         metadata = self.metadata['segments']
-        fmt = metadata['fmt'] + 'I'*color_num
+        fmt = metadata['fmt'] + 'I'*len(argv)
         self.command(metadata, fmt, argv)
