@@ -29,21 +29,21 @@ $EndComp
 $Comp
 L power:GND #PWR0101
 U 1 1 5CAFFAEC
-P 5400 2850
-F 0 "#PWR0101" H 5400 2600 50  0001 C CNN
-F 1 "GND" H 5405 2677 50  0000 C CNN
-F 2 "" H 5400 2850 50  0001 C CNN
-F 3 "" H 5400 2850 50  0001 C CNN
-	1    5400 2850
+P 5750 2850
+F 0 "#PWR0101" H 5750 2600 50  0001 C CNN
+F 1 "GND" H 5755 2677 50  0000 C CNN
+F 2 "" H 5750 2850 50  0001 C CNN
+F 3 "" H 5750 2850 50  0001 C CNN
+	1    5750 2850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5400 2500 5400 2600
+	5750 2500 5750 2600
 Wire Wire Line
-	4850 2500 4850 2600
+	5200 2500 5200 2600
 Wire Wire Line
-	4850 2600 5400 2600
-Connection ~ 5400 2600
+	5200 2600 5750 2600
+Connection ~ 5750 2600
 $Comp
 L power:GND #PWR0103
 U 1 1 5CB803CB
@@ -58,14 +58,14 @@ $EndComp
 $Comp
 L Regulator_Linear:LM1117-3.3 U3
 U 1 1 5CB83042
-P 5400 2200
-F 0 "U3" H 5400 2442 50  0000 C CNN
-F 1 "AMS1117-3.3" H 5400 2351 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-223" H 5400 2200 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 5400 2200 50  0001 C CNN
-F 4 "lcsc.com" H 5400 2200 50  0001 C CNN "Distributor"
-F 5 "AMS1117-3.3" H 5400 2200 50  0001 C CNN "Manuf. Part"
-	1    5400 2200
+P 5750 2200
+F 0 "U3" H 5750 2442 50  0000 C CNN
+F 1 "AMS1117-3.3" H 5750 2351 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223" H 5750 2200 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm1117.pdf" H 5750 2200 50  0001 C CNN
+F 4 "lcsc.com" H 5750 2200 50  0001 C CNN "Distributor"
+F 5 "AMS1117-3.3" H 5750 2200 50  0001 C CNN "Manuf. Part"
+	1    5750 2200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -101,36 +101,36 @@ $EndComp
 $Comp
 L Device:R_Small R2
 U 1 1 5CBF3B20
-P 6300 2350
-F 0 "R2" H 6359 2396 50  0000 L CNN
-F 1 "1k" H 6359 2305 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6300 2350 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 6300 2350 50  0001 C CNN
-F 4 "lcsc.com" H 6300 2350 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 6300 2350 50  0001 C CNN "Manuf. Part"
-	1    6300 2350
+P 6650 2350
+F 0 "R2" H 6709 2396 50  0000 L CNN
+F 1 "1k" H 6709 2305 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6650 2350 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 6650 2350 50  0001 C CNN
+F 4 "lcsc.com" H 6650 2350 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 6650 2350 50  0001 C CNN "Manuf. Part"
+	1    6650 2350
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:LED D1
 U 1 1 5CBF4695
-P 6300 2650
-F 0 "D1" V 6339 2533 50  0000 R CNN
-F 1 "LED" V 6248 2533 50  0000 R CNN
-F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6300 2650 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf" H 6300 2650 50  0001 C CNN
-F 4 "lcsc.com" H 6300 2650 50  0001 C CNN "Distributor"
-F 5 "TJ-S1608SW6TGLC2G-A5 " H 6300 2650 50  0001 C CNN "Manuf. Part"
-	1    6300 2650
+P 6650 2650
+F 0 "D1" V 6689 2533 50  0000 R CNN
+F 1 "LED" V 6598 2533 50  0000 R CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6650 2650 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf" H 6650 2650 50  0001 C CNN
+F 4 "lcsc.com" H 6650 2650 50  0001 C CNN "Distributor"
+F 5 "TJ-S1608SW6TGLC2G-A5 " H 6650 2650 50  0001 C CNN "Manuf. Part"
+	1    6650 2650
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6300 2450 6300 2500
+	6650 2450 6650 2500
 Wire Wire Line
-	6300 2250 6300 2200
-Connection ~ 6300 2200
+	6650 2250 6650 2200
+Connection ~ 6650 2200
 Wire Wire Line
-	6300 2200 6400 2200
+	6650 2200 6750 2200
 Text Label 6200 3800 0    50   ~ 0
 DATA
 $Comp
@@ -156,31 +156,31 @@ NoConn ~ 7650 1750
 $Comp
 L Connector:Barrel_Jack J1
 U 1 1 5CDBC439
-P 1050 1100
-F 0 "J1" H 1107 1425 50  0000 C CNN
-F 1 "Barrel_Jack" H 1107 1334 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1100 1060 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_XKB-Enterprise-DC-005-5A-2-0_C381116.pdf" H 1100 1060 50  0001 C CNN
-F 4 "lcsc.com" H 1050 1100 50  0001 C CNN "Distributor"
-F 5 "DC-005-5A-2.0" H 1050 1100 50  0001 C CNN "Manuf. Part"
-	1    1050 1100
+P 950 1100
+F 0 "J1" H 1007 1425 50  0000 C CNN
+F 1 "Barrel_Jack" H 1007 1334 50  0000 C CNN
+F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1000 1060 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_XKB-Enterprise-DC-005-5A-2-0_C381116.pdf" H 1000 1060 50  0001 C CNN
+F 4 "lcsc.com" H 950 1100 50  0001 C CNN "Distributor"
+F 5 "DC-005-5A-2.0" H 950 1100 50  0001 C CNN "Manuf. Part"
+	1    950  1100
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0107
 U 1 1 5CBF586D
-P 6300 2850
-F 0 "#PWR0107" H 6300 2600 50  0001 C CNN
-F 1 "GND" H 6305 2677 50  0000 C CNN
-F 2 "" H 6300 2850 50  0001 C CNN
-F 3 "" H 6300 2850 50  0001 C CNN
-	1    6300 2850
+P 6650 2850
+F 0 "#PWR0107" H 6650 2600 50  0001 C CNN
+F 1 "GND" H 6655 2677 50  0000 C CNN
+F 2 "" H 6650 2850 50  0001 C CNN
+F 3 "" H 6650 2850 50  0001 C CNN
+	1    6650 2850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6300 2800 6300 2850
+	6650 2800 6650 2850
 Wire Wire Line
-	5400 2600 5400 2850
+	5750 2600 5750 2850
 $Comp
 L Connector_Generic:Conn_02x03_Top_Bottom J3
 U 1 1 5D06C568
@@ -217,19 +217,6 @@ Text Label 5950 5200 0    50   ~ 0
 RESET
 Wire Wire Line
 	5950 5200 6200 5200
-$Comp
-L Device:Q_PMOS_SDG Q1
-U 1 1 5D461D8C
-P 1900 1100
-F 0 "Q1" V 2250 1050 50  0000 L CNN
-F 1 "Q_PMOS_SDG" V 2150 850 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 2100 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 1900 1100 50  0001 C CNN
-F 4 "lcsc.com" H 1900 1100 50  0001 C CNN "Distributor"
-F 5 "AOD4185L" H 1900 1100 50  0001 C CNN "Manuf. Part"
-	1    1900 1100
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	6000 3900 6200 3900
 $Comp
@@ -298,7 +285,7 @@ Wire Wire Line
 	7800 5150 7800 5450
 Wire Wire Line
 	7800 5450 7850 5450
-Text Label 1350 1000 0    50   ~ 0
+Text Label 1250 1000 0    50   ~ 0
 VINJACK
 Wire Wire Line
 	7700 5650 7850 5650
@@ -593,14 +580,14 @@ Wire Wire Line
 $Comp
 L Device:C C2
 U 1 1 5E94312D
-P 5950 2350
-F 0 "C2" H 5750 2400 50  0000 L CNN
-F 1 "10uF" H 5650 2300 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5988 2200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 5950 2350 50  0001 C CNN
-F 4 "lcsc.com" H 5950 2350 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 5950 2350 50  0001 C CNN "Manuf. Part"
-	1    5950 2350
+P 6300 2350
+F 0 "C2" H 6100 2400 50  0000 L CNN
+F 1 "10uF" H 6000 2300 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6338 2200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 6300 2350 50  0001 C CNN
+F 4 "lcsc.com" H 6300 2350 50  0001 C CNN "Distributor"
+F 5 "CL21A106MQFNNNE" H 6300 2350 50  0001 C CNN "Manuf. Part"
+	1    6300 2350
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -712,32 +699,32 @@ Text Label 8950 3750 0    50   ~ 0
 HC-RESET
 Wire Wire Line
 	8850 3750 8950 3750
-NoConn ~ 2900 2650
-NoConn ~ 3300 2550
+NoConn ~ 3500 2500
+NoConn ~ 3900 2400
 $Comp
 L power:GND #PWR0110
 U 1 1 5D474D63
-P 1300 1950
-F 0 "#PWR0110" H 1300 1700 50  0001 C CNN
-F 1 "GND" H 1305 1777 50  0000 C CNN
-F 2 "" H 1300 1950 50  0001 C CNN
-F 3 "" H 1300 1950 50  0001 C CNN
-	1    1300 1950
+P 1200 1950
+F 0 "#PWR0110" H 1200 1700 50  0001 C CNN
+F 1 "GND" H 1205 1777 50  0000 C CNN
+F 2 "" H 1200 1950 50  0001 C CNN
+F 3 "" H 1200 1950 50  0001 C CNN
+	1    1200 1950
 	1    0    0    -1  
 $EndComp
-NoConn ~ 2900 2450
+NoConn ~ 3500 2300
 $Comp
 L blueled-rescue:SWITCH-DPDT-PTH-GPI-152-3013-SparkFun-Switches S1
 U 1 1 5EB8E526
-P 3100 2450
-F 0 "S1" H 3100 2000 45  0000 C CNN
-F 1 "SWITCH-DPDT-PTH-GPI-152-3013" H 3100 2926 45  0001 C CNN
-F 2 "blueled:XKB7070-Z" H 3100 2900 20  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf" H 3100 2450 50  0001 C CNN
-F 4 "SWCH-10554" H 3100 2831 60  0001 C CNN "Field4"
-F 5 "lcsc.com" H 3100 2450 50  0001 C CNN "Distributor"
-F 6 "XKB7070-Z" H 3100 2450 50  0001 C CNN "Manuf. Part"
-	1    3100 2450
+P 3700 2300
+F 0 "S1" H 3700 1850 45  0000 C CNN
+F 1 "SWITCH-DPDT-PTH-GPI-152-3013" H 3700 2776 45  0001 C CNN
+F 2 "blueled:XKB7070-Z" H 3700 2750 20  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf" H 3700 2300 50  0001 C CNN
+F 4 "SWCH-10554" H 3700 2681 60  0001 C CNN "Field4"
+F 5 "lcsc.com" H 3700 2300 50  0001 C CNN "Distributor"
+F 6 "XKB7070-Z" H 3700 2300 50  0001 C CNN "Manuf. Part"
+	1    3700 2300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -765,30 +752,30 @@ Wire Wire Line
 $Comp
 L Device:CP1 C1
 U 1 1 5EA4B8BA
-P 4850 2350
-F 0 "C1" H 4965 2396 50  0000 L CNN
-F 1 "10uF" H 4965 2305 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 4850 2350 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 4850 2350 50  0001 C CNN
-F 4 "lcsc.com" H 4850 2350 50  0001 C CNN "Distributor"
-F 5 "TAJA106K016RNJ" H 4850 2350 50  0001 C CNN "Manuf. Part"
-	1    4850 2350
+P 5200 2350
+F 0 "C1" H 5315 2396 50  0000 L CNN
+F 1 "10uF" H 5315 2305 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 5200 2350 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 5200 2350 50  0001 C CNN
+F 4 "lcsc.com" H 5200 2350 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 5200 2350 50  0001 C CNN "Manuf. Part"
+	1    5200 2350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4750 2200 4850 2200
-Connection ~ 4850 2200
+	5100 2200 5200 2200
+Connection ~ 5200 2200
 Wire Wire Line
-	4850 2200 5100 2200
-Connection ~ 5950 2200
+	5200 2200 5450 2200
+Connection ~ 6300 2200
 Wire Wire Line
-	5950 2200 6300 2200
+	6300 2200 6650 2200
 Wire Wire Line
-	5700 2200 5950 2200
+	6050 2200 6300 2200
 Wire Wire Line
-	5950 2600 5950 2500
+	6300 2600 6300 2500
 Wire Wire Line
-	5400 2600 5950 2600
+	5750 2600 6300 2600
 $Comp
 L Device:Jumper_NC_Small JP1
 U 1 1 5EA9BCB4
@@ -876,12 +863,12 @@ Connection ~ 2050 3450
 $Comp
 L power:+3.3V #PWR06
 U 1 1 5EB2DEAF
-P 6400 2200
-F 0 "#PWR06" H 6400 2050 50  0001 C CNN
-F 1 "+3.3V" H 6415 2373 50  0000 C CNN
-F 2 "" H 6400 2200 50  0001 C CNN
-F 3 "" H 6400 2200 50  0001 C CNN
-	1    6400 2200
+P 6750 2200
+F 0 "#PWR06" H 6750 2050 50  0001 C CNN
+F 1 "+3.3V" H 6765 2373 50  0000 C CNN
+F 2 "" H 6750 2200 50  0001 C CNN
+F 3 "" H 6750 2200 50  0001 C CNN
+	1    6750 2200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -912,98 +899,44 @@ Wire Wire Line
 	8850 1550 9150 1550
 NoConn ~ 7650 1650
 Wire Wire Line
-	1200 1850 1300 1850
+	1100 1850 1200 1850
 Wire Wire Line
-	1300 1850 1300 1950
+	1200 1850 1200 1950
 $Comp
 L power:GND #PWR010
 U 1 1 5FAD8A11
-P 1450 1300
-F 0 "#PWR010" H 1450 1050 50  0001 C CNN
-F 1 "GND" H 1455 1127 50  0000 C CNN
-F 2 "" H 1450 1300 50  0001 C CNN
-F 3 "" H 1450 1300 50  0001 C CNN
-	1    1450 1300
+P 1350 1300
+F 0 "#PWR010" H 1350 1050 50  0001 C CNN
+F 1 "GND" H 1355 1127 50  0000 C CNN
+F 2 "" H 1350 1300 50  0001 C CNN
+F 3 "" H 1350 1300 50  0001 C CNN
+	1    1350 1300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1350 1200 1450 1200
+	1250 1200 1350 1200
 Wire Wire Line
-	1450 1200 1450 1300
+	1350 1200 1350 1300
 $Comp
 L Connector:Screw_Terminal_01x02 J4
 U 1 1 5FABC70C
-P 1000 1850
-F 0 "J4" H 918 1525 50  0000 C CNN
-F 1 "Screw_Terminal_01x02" H 918 1616 50  0000 C CNN
-F 2 "" H 1000 1850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1912251632_Ningbo-Kangnex-Elec-WJ15EDGRC-3-81-2P_C8387.pdf" H 1000 1850 50  0001 C CNN
-F 4 "lcsc.com" H 1000 1850 50  0001 C CNN "Distributor"
-F 5 "WJ15EDGRC-3.81-2P" H 1000 1850 50  0001 C CNN "Manuf. Part"
-	1    1000 1850
+P 900 1850
+F 0 "J4" H 818 1525 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 750 1600 50  0000 C CNN
+F 2 "" H 900 1850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912251632_Ningbo-Kangnex-Elec-WJ15EDGRC-3-81-2P_C8387.pdf" H 900 1850 50  0001 C CNN
+F 4 "lcsc.com" H 900 1850 50  0001 C CNN "Distributor"
+F 5 "WJ15EDGRC-3.81-2P" H 900 1850 50  0001 C CNN "Manuf. Part"
+	1    900  1850
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1350 1000 1600 1000
+	1250 1000 1500 1000
 Wire Wire Line
-	1200 1750 1600 1750
+	1100 1750 1500 1750
 Wire Wire Line
-	1600 1750 1600 1000
-Wire Wire Line
-	1600 1000 1700 1000
-Connection ~ 1600 1000
-$Comp
-L Device:D_Zener_ALT D4
-U 1 1 5FB2573B
-P 2200 1250
-F 0 "D4" V 2200 1300 50  0000 L CNN
-F 1 "D_Zener_ALT" H 2000 1450 50  0001 L CNN
-F 2 "Diode_SMD:D_SOD-123" H 2200 1250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_PANJIT-International-MMSZ5240B_C268602.pdf" H 2200 1250 50  0001 C CNN
-F 4 "lcsc.com" H 2200 1250 50  0001 C CNN "Distributor"
-F 5 "MMSZ5240B" H 2200 1250 50  0001 C CNN "Manuf. Part"
-	1    2200 1250
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R8
-U 1 1 5FB27684
-P 2200 1750
-F 0 "R8" H 2270 1796 50  0000 L CNN
-F 1 "1k" H 2270 1705 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2130 1750 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 2200 1750 50  0001 C CNN
-F 4 "lcsc.com" H 2200 1750 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 2200 1750 50  0001 C CNN "Manuf. Part"
-	1    2200 1750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1900 1300 1900 1500
-Wire Wire Line
-	1900 1500 2200 1500
-Wire Wire Line
-	2200 1500 2200 1400
-Wire Wire Line
-	2200 1600 2200 1500
-Connection ~ 2200 1500
-Wire Wire Line
-	2100 1000 2200 1000
-Wire Wire Line
-	2200 1000 2200 1100
-$Comp
-L power:GND #PWR012
-U 1 1 5FB84470
-P 2200 2000
-F 0 "#PWR012" H 2200 1750 50  0001 C CNN
-F 1 "GND" H 2205 1827 50  0000 C CNN
-F 2 "" H 2200 2000 50  0001 C CNN
-F 3 "" H 2200 2000 50  0001 C CNN
-	1    2200 2000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2200 2000 2200 1900
+	1500 1750 1500 1000
+Connection ~ 1500 1000
 $Comp
 L power:GND #PWR022
 U 1 1 5FBC38DC
@@ -1118,328 +1051,140 @@ Wire Wire Line
 Wire Wire Line
 	1600 5300 1850 5300
 $Comp
-L Regulator_Switching:TPS5450 U5
-U 1 1 5FD42637
-P 3950 1200
-F 0 "U5" H 3950 1667 50  0000 C CNN
-F 1 "TPS5450" H 3950 1576 50  0000 C CNN
-F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 3850 1200 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/tps5450.pdf" H 3850 1200 50  0001 C CNN
-F 4 "lcsc.com" H 3950 1200 50  0001 C CNN "Distributor"
-F 5 "TPS5450DDAR" H 3950 1200 50  0001 C CNN "Manuf. Part"
-	1    3950 1200
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR015
 U 1 1 5FD481BA
-P 3900 1800
-F 0 "#PWR015" H 3900 1550 50  0001 C CNN
-F 1 "GND" H 3905 1627 50  0000 C CNN
-F 2 "" H 3900 1800 50  0001 C CNN
-F 3 "" H 3900 1800 50  0001 C CNN
-	1    3900 1800
+P 2700 1900
+F 0 "#PWR015" H 2700 1650 50  0001 C CNN
+F 1 "GND" H 2705 1727 50  0000 C CNN
+F 2 "" H 2700 1900 50  0001 C CNN
+F 3 "" H 2700 1900 50  0001 C CNN
+	1    2700 1900
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:C C8
-U 1 1 5FD507E5
-P 3200 1250
-F 0 "C8" H 3150 950 50  0000 L CNN
-F 1 "4.7uF" H 3100 850 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3238 1100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 3200 1250 50  0001 C CNN
-F 4 "lcsc.com" H 3200 1250 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 3200 1250 50  0001 C CNN "Manuf. Part"
-	1    3200 1250
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:C C7
-U 1 1 5FD56959
-P 2900 1250
-F 0 "C7" H 2850 950 50  0000 L CNN
-F 1 "4.7uF" H 2800 850 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2938 1100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 2900 1250 50  0001 C CNN
-F 4 "lcsc.com" H 2900 1250 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 2900 1250 50  0001 C CNN "Manuf. Part"
-	1    2900 1250
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:C C6
-U 1 1 5FD5C977
-P 2600 1250
-F 0 "C6" H 2550 950 50  0000 L CNN
-F 1 "4.7uF" H 2500 850 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2638 1100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 2600 1250 50  0001 C CNN
-F 4 "lcsc.com" H 2600 1250 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 2600 1250 50  0001 C CNN "Manuf. Part"
-	1    2600 1250
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR014
-U 1 1 5FD9ABC5
-P 2900 1600
-F 0 "#PWR014" H 2900 1350 50  0001 C CNN
-F 1 "GND" H 2905 1427 50  0000 C CNN
-F 2 "" H 2900 1600 50  0001 C CNN
-F 3 "" H 2900 1600 50  0001 C CNN
-	1    2900 1600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2900 1600 2900 1500
-Wire Wire Line
-	2600 1500 2900 1500
-Wire Wire Line
-	2900 1500 3200 1500
-Wire Wire Line
-	3800 1600 3800 1700
-Wire Wire Line
-	3800 1700 3900 1700
-Wire Wire Line
-	3900 1700 3900 1600
-Wire Wire Line
-	3900 1800 3900 1700
-Connection ~ 3900 1700
-Connection ~ 2900 1500
-Wire Wire Line
-	2600 1500 2600 1400
-Wire Wire Line
-	2900 1500 2900 1400
-Wire Wire Line
-	3200 1500 3200 1400
-Wire Wire Line
-	2600 1100 2600 1000
-Wire Wire Line
-	2600 1000 2900 1000
-Wire Wire Line
-	2900 1100 2900 1000
-Connection ~ 2900 1000
-Wire Wire Line
-	2900 1000 3200 1000
-Wire Wire Line
-	3200 1100 3200 1000
-Connection ~ 3200 1000
-Wire Wire Line
-	3200 1000 3450 1000
 $Comp
 L Device:C C9
 U 1 1 5FE1A9BA
-P 4700 1000
-F 0 "C9" V 4550 950 50  0000 L CNN
-F 1 "0.01uF" V 4450 900 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4738 850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 4700 1000 50  0001 C CNN
-F 4 "lcsc.com" H 4700 1000 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 4700 1000 50  0001 C CNN "Manuf. Part"
-	1    4700 1000
-	0    1    1    0   
+P 4600 1300
+F 0 "C9" H 4450 1200 50  0000 L CNN
+F 1 "0.01uF" H 4300 1100 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4638 1150 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 4600 1300 50  0001 C CNN
+F 4 "lcsc.com" H 4600 1300 50  0001 C CNN "Distributor"
+F 5 "CL21A106MQFNNNE" H 4600 1300 50  0001 C CNN "Manuf. Part"
+	1    4600 1300
+	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4450 1000 4550 1000
 $Comp
 L Device:D_Schottky D5
 U 1 1 5FE3F026
-P 5050 1250
-F 0 "D5" V 5004 1330 50  0000 L CNN
-F 1 "B540C" V 5095 1330 50  0000 L CNN
-F 2 "Diode_SMD:D_SMC" H 5050 1250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810101831_Diodes-Incorporated-B540C-13-F_C72264.pdf" H 5050 1250 50  0001 C CNN
-F 4 "lcsc.com" H 5050 1250 50  0001 C CNN "Distributor"
-F 5 "B540C-13-F" H 5050 1250 50  0001 C CNN "Manuf. Part"
-	1    5050 1250
+P 4100 1200
+F 0 "D5" V 4054 1280 50  0000 L CNN
+F 1 "B540C" V 4145 1280 50  0000 L CNN
+F 2 "Diode_SMD:D_SMC" H 4100 1200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810101831_Diodes-Incorporated-B540C-13-F_C72264.pdf" H 4100 1200 50  0001 C CNN
+F 4 "lcsc.com" H 4100 1200 50  0001 C CNN "Distributor"
+F 5 "B540C-13-F" H 4100 1200 50  0001 C CNN "Manuf. Part"
+	1    4100 1200
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	4450 1200 4950 1200
-Wire Wire Line
-	4950 1200 4950 1000
-Wire Wire Line
-	4950 1000 4850 1000
-Wire Wire Line
-	4950 1000 5050 1000
-Wire Wire Line
-	5050 1000 5050 1100
-Connection ~ 4950 1000
 $Comp
 L power:GND #PWR017
 U 1 1 5FE5A73F
-P 5050 1500
-F 0 "#PWR017" H 5050 1250 50  0001 C CNN
-F 1 "GND" H 5055 1327 50  0000 C CNN
-F 2 "" H 5050 1500 50  0001 C CNN
-F 3 "" H 5050 1500 50  0001 C CNN
-	1    5050 1500
+P 4100 1400
+F 0 "#PWR017" H 4100 1150 50  0001 C CNN
+F 1 "GND" H 4100 1250 50  0000 C CNN
+F 2 "" H 4100 1400 50  0001 C CNN
+F 3 "" H 4100 1400 50  0001 C CNN
+	1    4100 1400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5050 1500 5050 1400
-Wire Wire Line
-	5050 1000 5150 1000
-Connection ~ 5050 1000
 $Comp
 L Device:L_Core_Iron L1
 U 1 1 5FE6D6CD
-P 5300 1000
-F 0 "L1" V 5525 1000 50  0000 C CNN
-F 1 "15uH" V 5434 1000 50  0000 C CNN
-F 2 "" H 5300 1000 50  0001 C CNN
-F 3 "~" H 5300 1000 50  0001 C CNN
-	1    5300 1000
+P 4350 1050
+F 0 "L1" V 4575 1050 50  0000 C CNN
+F 1 "15uH" V 4484 1050 50  0000 C CNN
+F 2 "" H 4350 1050 50  0001 C CNN
+F 3 "~" H 4350 1050 50  0001 C CNN
+	1    4350 1050
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:CP1 C10
 U 1 1 5FE853F6
-P 5950 1250
-F 0 "C10" H 6065 1296 50  0000 L CNN
-F 1 "330uF" H 6065 1205 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 5950 1250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 5950 1250 50  0001 C CNN
-F 4 "lcsc.com" H 5950 1250 50  0001 C CNN "Distributor"
-F 5 "TAJA106K016RNJ" H 5950 1250 50  0001 C CNN "Manuf. Part"
-	1    5950 1250
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C11
-U 1 1 5FE8E32E
-P 6450 1250
-F 0 "C11" H 6200 1300 50  0000 L CNN
-F 1 "0.01uF" H 6050 1200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6488 1100 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 6450 1250 50  0001 C CNN
-F 4 "lcsc.com" H 6450 1250 50  0001 C CNN "Distributor"
-F 5 "CL21B104KBCNNNC" H 6450 1250 50  0001 C CNN "Manuf. Part"
-	1    6450 1250
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	5950 1000 5950 1100
-Wire Wire Line
-	6450 1000 6450 1100
-Wire Wire Line
-	5950 1400 5950 1500
-Wire Wire Line
-	6450 1500 6450 1400
-$Comp
-L power:GND #PWR019
-U 1 1 5FED45A4
-P 6200 1600
-F 0 "#PWR019" H 6200 1350 50  0001 C CNN
-F 1 "GND" H 6205 1427 50  0000 C CNN
-F 2 "" H 6200 1600 50  0001 C CNN
-F 3 "" H 6200 1600 50  0001 C CNN
-	1    6200 1600
+P 5250 1300
+F 0 "C10" H 5365 1346 50  0000 L CNN
+F 1 "330uF" H 5365 1255 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 5250 1300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 5250 1300 50  0001 C CNN
+F 4 "lcsc.com" H 5250 1300 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 5250 1300 50  0001 C CNN "Manuf. Part"
+	1    5250 1300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6200 1600 6200 1500
-Wire Wire Line
-	2200 1000 2600 1000
-Connection ~ 2200 1000
-Connection ~ 2600 1000
+	5250 1050 5250 1150
 $Comp
 L Device:R_Small R10
 U 1 1 5FF1BD8E
-P 5650 1500
-F 0 "R10" H 5709 1546 50  0000 L CNN
-F 1 "3.16k" H 5709 1455 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5650 1500 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 5650 1500 50  0001 C CNN
-F 4 "lcsc.com" H 5650 1500 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 5650 1500 50  0001 C CNN "Manuf. Part"
-	1    5650 1500
+P 4800 1450
+F 0 "R10" H 4859 1496 50  0000 L CNN
+F 1 "3.16k" H 4859 1405 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4800 1450 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 4800 1450 50  0001 C CNN
+F 4 "lcsc.com" H 4800 1450 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 4800 1450 50  0001 C CNN "Manuf. Part"
+	1    4800 1450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5650 1000 5650 1100
 $Comp
 L power:GND #PWR018
 U 1 1 5FF4E7C5
-P 5650 1700
-F 0 "#PWR018" H 5650 1450 50  0001 C CNN
-F 1 "GND" H 5655 1527 50  0000 C CNN
-F 2 "" H 5650 1700 50  0001 C CNN
-F 3 "" H 5650 1700 50  0001 C CNN
-	1    5650 1700
+P 5250 1550
+F 0 "#PWR018" H 5250 1300 50  0001 C CNN
+F 1 "GND" H 5255 1377 50  0000 C CNN
+F 2 "" H 5250 1550 50  0001 C CNN
+F 3 "" H 5250 1550 50  0001 C CNN
+	1    5250 1550
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5650 1700 5650 1600
 $Comp
 L Device:R_Small R9
 U 1 1 5FF12D58
-P 5650 1200
-F 0 "R9" H 5709 1246 50  0000 L CNN
-F 1 "10k" H 5709 1155 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5650 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 5650 1200 50  0001 C CNN
-F 4 "lcsc.com" H 5650 1200 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 5650 1200 50  0001 C CNN "Manuf. Part"
-	1    5650 1200
+P 4800 1750
+F 0 "R9" H 4859 1796 50  0000 L CNN
+F 1 "10k" H 4859 1705 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4800 1750 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 4800 1750 50  0001 C CNN
+F 4 "lcsc.com" H 4800 1750 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 4800 1750 50  0001 C CNN "Manuf. Part"
+	1    4800 1750
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR020
 U 1 1 5FF5B0B2
-P 6450 900
-F 0 "#PWR020" H 6450 750 50  0001 C CNN
-F 1 "+5V" H 6465 1073 50  0000 C CNN
-F 2 "" H 6450 900 50  0001 C CNN
-F 3 "" H 6450 900 50  0001 C CNN
-	1    6450 900 
+P 5250 950
+F 0 "#PWR020" H 5250 800 50  0001 C CNN
+F 1 "+5V" H 5265 1123 50  0000 C CNN
+F 2 "" H 5250 950 50  0001 C CNN
+F 3 "" H 5250 950 50  0001 C CNN
+	1    5250 950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6450 1000 6450 900 
 $Comp
 L power:+5V #PWR016
 U 1 1 5FF84E86
-P 4750 2100
-F 0 "#PWR016" H 4750 1950 50  0001 C CNN
-F 1 "+5V" H 4765 2273 50  0000 C CNN
-F 2 "" H 4750 2100 50  0001 C CNN
-F 3 "" H 4750 2100 50  0001 C CNN
-	1    4750 2100
+P 5100 2100
+F 0 "#PWR016" H 5100 1950 50  0001 C CNN
+F 1 "+5V" H 5115 2273 50  0000 C CNN
+F 2 "" H 5100 2100 50  0001 C CNN
+F 3 "" H 5100 2100 50  0001 C CNN
+	1    5100 2100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4750 2200 4750 2100
-Wire Wire Line
-	5650 1300 5650 1350
-Connection ~ 5950 1000
-Wire Wire Line
-	5450 1000 5650 1000
-Connection ~ 5650 1000
-Wire Wire Line
-	5650 1000 5950 1000
-Wire Wire Line
-	5450 1750 5450 1350
-Wire Wire Line
-	5450 1350 5650 1350
-Connection ~ 5650 1350
-Wire Wire Line
-	5650 1350 5650 1400
-Wire Wire Line
-	4450 1400 4550 1400
-Wire Wire Line
-	4550 1400 4550 1750
-Wire Wire Line
-	4550 1750 5450 1750
-Connection ~ 6450 1000
-Wire Wire Line
-	5950 1000 6450 1000
-Connection ~ 6200 1500
-Wire Wire Line
-	5950 1500 6200 1500
-Wire Wire Line
-	6200 1500 6450 1500
+	5100 2200 5100 2100
 $Comp
 L Diode:BAS40-04 D6
 U 1 1 60075247
@@ -1457,29 +1202,21 @@ Wire Wire Line
 	6000 3800 6400 3800
 Wire Wire Line
 	6600 3500 6600 3400
-Text Label 3400 1200 2    50   ~ 0
-ENA
-Wire Wire Line
-	3400 1200 3450 1200
-Text Label 3400 2250 0    50   ~ 0
-ENA
-Wire Wire Line
-	3300 2250 3400 2250
 $Comp
 L power:GND #PWR013
 U 1 1 6017A84C
-P 2800 2450
-F 0 "#PWR013" H 2800 2200 50  0001 C CNN
-F 1 "GND" H 2805 2277 50  0000 C CNN
-F 2 "" H 2800 2450 50  0001 C CNN
-F 3 "" H 2800 2450 50  0001 C CNN
-	1    2800 2450
+P 3400 2100
+F 0 "#PWR013" H 3400 1850 50  0001 C CNN
+F 1 "GND" H 3400 1950 50  0000 C CNN
+F 2 "" H 3400 2100 50  0001 C CNN
+F 3 "" H 3400 2100 50  0001 C CNN
+	1    3400 2100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 2450 2800 2350
+	3400 2100 3400 2000
 Wire Wire Line
-	2800 2350 2900 2350
+	3400 2000 3500 2000
 Wire Notes Line width 12
 	6950 3150 600  3150
 Wire Notes Line width 12
@@ -1574,7 +1311,7 @@ Wire Wire Line
 Connection ~ 5800 5200
 Text Notes 700  3350 0    89   ~ 0
 HC-05 Bluetooth
-Text Notes 900  2900 0    89   ~ 0
+Text Notes 800  2950 0    89   ~ 0
 LED strip & MCU \n     POWER
 $Comp
 L Device:R_Small R11
@@ -1645,6 +1382,212 @@ Text Notes 750  5900 0    50   ~ 0
 Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
-Text Notes 3400 2350 0    50   ~ 0
-Float it to Enable
+$Comp
+L Regulator_Switching:LM25085MM U?
+U 1 1 5FCCD8F3
+P 2700 1300
+F 0 "U?" H 2700 1867 50  0000 C CNN
+F 1 "LM25085MM" H 2700 1776 50  0000 C CNN
+F 2 "Package_SO:MSOP-8_3x3mm_P0.65mm" H 2750 850 50  0001 L CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm25085.pdf" H 2700 1300 50  0001 C CNN
+	1    2700 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 1800 2700 1900
+$Comp
+L Device:CP1 C?
+U 1 1 5FD6E875
+P 1700 1250
+F 0 "C?" H 1815 1296 50  0000 L CNN
+F 1 "330uF" H 1815 1205 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 1700 1250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 1700 1250 50  0001 C CNN
+F 4 "lcsc.com" H 1700 1250 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 1700 1250 50  0001 C CNN "Manuf. Part"
+	1    1700 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 1100 1700 1000
+Wire Wire Line
+	1500 1000 1700 1000
+Wire Wire Line
+	2150 1000 2150 1100
+Wire Wire Line
+	1700 1000 2150 1000
+Connection ~ 1700 1000
+Wire Wire Line
+	2150 1000 2300 1000
+Connection ~ 2150 1000
+$Comp
+L power:GND #PWR?
+U 1 1 5FE3456B
+P 1700 1500
+F 0 "#PWR?" H 1700 1250 50  0001 C CNN
+F 1 "GND" H 1705 1327 50  0000 C CNN
+F 2 "" H 1700 1500 50  0001 C CNN
+F 3 "" H 1700 1500 50  0001 C CNN
+	1    1700 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 1500 1700 1400
+Wire Wire Line
+	2150 1400 2150 1500
+Wire Wire Line
+	2150 1500 2300 1500
+Text Label 2150 1600 3    50   ~ 0
+SHUTDOWN
+Wire Wire Line
+	2150 1600 2150 1500
+Connection ~ 2150 1500
+$Comp
+L Device:CP1 C?
+U 1 1 5FE6F1B7
+P 3200 850
+F 0 "C?" H 3100 1050 50  0000 L CNN
+F 1 "330uF" H 3250 1050 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 3200 850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 3200 850 50  0001 C CNN
+F 4 "lcsc.com" H 3200 850 50  0001 C CNN "Distributor"
+F 5 "TAJA106K016RNJ" H 3200 850 50  0001 C CNN "Manuf. Part"
+	1    3200 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 1000 3200 1000
+Wire Wire Line
+	3200 700  2150 700 
+Wire Wire Line
+	2150 700  2150 1000
+$Comp
+L Device:R R?
+U 1 1 5FEEDDCD
+P 3350 1200
+F 0 "R?" V 3250 1150 50  0000 L CNN
+F 1 "1k" V 3350 1150 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3280 1200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 3350 1200 50  0001 C CNN
+F 4 "lcsc.com" H 3350 1200 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 3350 1200 50  0001 C CNN "Manuf. Part"
+	1    3350 1200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5FF0C6D1
+P 3350 1050
+F 0 "C?" H 3150 1050 50  0000 L CNN
+F 1 "0.01uF" H 3050 1150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3388 900 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 3350 1050 50  0001 C CNN
+F 4 "lcsc.com" H 3350 1050 50  0001 C CNN "Distributor"
+F 5 "CL21A106MQFNNNE" H 3350 1050 50  0001 C CNN "Manuf. Part"
+	1    3350 1050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3100 1200 3200 1200
+Wire Wire Line
+	3200 1200 3200 1050
+Connection ~ 3200 1200
+Wire Wire Line
+	3500 1200 3500 1050
+Wire Wire Line
+	3100 1350 3100 1300
+Wire Wire Line
+	4500 1050 4600 1050
+Wire Wire Line
+	4600 1150 4600 1050
+Connection ~ 4600 1050
+Wire Wire Line
+	3100 1350 3800 1350
+Wire Wire Line
+	3500 1050 3600 1050
+Connection ~ 3500 1050
+Wire Wire Line
+	3500 1050 3500 700 
+Wire Wire Line
+	3500 700  3200 700 
+Connection ~ 3200 700 
+Wire Wire Line
+	5250 1550 5250 1450
+Wire Wire Line
+	5250 1050 5250 950 
+Connection ~ 5250 1050
+Wire Wire Line
+	4000 1050 4100 1050
+Connection ~ 4100 1050
+Wire Wire Line
+	4100 1050 4200 1050
+Wire Wire Line
+	4100 1400 4100 1350
+Wire Wire Line
+	4600 1050 4800 1050
+Wire Wire Line
+	4800 1650 4800 1600
+Wire Wire Line
+	4800 1350 4800 1050
+Connection ~ 4800 1050
+Wire Wire Line
+	4800 1050 5250 1050
+Wire Wire Line
+	4600 1450 4600 1600
+Wire Wire Line
+	4600 1600 4800 1600
+Connection ~ 4800 1600
+Wire Wire Line
+	4800 1600 4800 1550
+Wire Wire Line
+	3100 1600 4600 1600
+Connection ~ 4600 1600
+$Comp
+L power:GND #PWR?
+U 1 1 6067F60F
+P 4800 1950
+F 0 "#PWR?" H 4800 1700 50  0001 C CNN
+F 1 "GND" H 4805 1777 50  0000 C CNN
+F 2 "" H 4800 1950 50  0001 C CNN
+F 3 "" H 4800 1950 50  0001 C CNN
+	1    4800 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 1950 4800 1850
+Wire Wire Line
+	3100 1400 4000 1400
+Wire Wire Line
+	4000 1400 4000 1050
+Connection ~ 4000 1050
+$Comp
+L Device:Q_PMOS_SDG Q1
+U 1 1 5D461D8C
+P 3800 1150
+F 0 "Q1" V 4050 1100 50  0000 L CNN
+F 1 "Q_PMOS_SDG" V 4050 900 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 4000 1250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 3800 1150 50  0001 C CNN
+F 4 "lcsc.com" H 3800 1150 50  0001 C CNN "Distributor"
+F 5 "AOD4185L" H 3800 1150 50  0001 C CNN "Manuf. Part"
+	1    3800 1150
+	0    -1   -1   0   
+$EndComp
+Text Label 4000 2100 0    50   ~ 0
+SHUTDOWN
+Wire Wire Line
+	3900 2100 4000 2100
+$Comp
+L Device:R R?
+U 1 1 5FD7A36B
+P 2150 1250
+F 0 "R?" H 2220 1296 50  0000 L CNN
+F 1 "1k" H 2220 1205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2080 1250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 2150 1250 50  0001 C CNN
+F 4 "lcsc.com" H 2150 1250 50  0001 C CNN "Distributor"
+F 5 "RK73B2ATTD102J" H 2150 1250 50  0001 C CNN "Manuf. Part"
+	1    2150 1250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
