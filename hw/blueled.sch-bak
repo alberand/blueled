@@ -712,10 +712,8 @@ Text Label 8950 3750 0    50   ~ 0
 HC-RESET
 Wire Wire Line
 	8850 3750 8950 3750
-Wire Wire Line
-	2900 2400 2800 2400
-NoConn ~ 2900 2900
-NoConn ~ 3300 2800
+NoConn ~ 2900 2650
+NoConn ~ 3300 2550
 $Comp
 L power:GND #PWR0110
 U 1 1 5D474D63
@@ -727,19 +725,19 @@ F 3 "" H 1300 1950 50  0001 C CNN
 	1    1300 1950
 	1    0    0    -1  
 $EndComp
-NoConn ~ 2900 2700
+NoConn ~ 2900 2450
 $Comp
 L blueled-rescue:SWITCH-DPDT-PTH-GPI-152-3013-SparkFun-Switches S1
 U 1 1 5EB8E526
-P 3100 2700
-F 0 "S1" H 3100 2250 45  0000 C CNN
-F 1 "SWITCH-DPDT-PTH-GPI-152-3013" H 3100 3176 45  0001 C CNN
-F 2 "blueled:XKB7070-Z" H 3100 3150 20  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf" H 3100 2700 50  0001 C CNN
-F 4 "SWCH-10554" H 3100 3081 60  0001 C CNN "Field4"
-F 5 "lcsc.com" H 3100 2700 50  0001 C CNN "Distributor"
-F 6 "XKB7070-Z" H 3100 2700 50  0001 C CNN "Manuf. Part"
-	1    3100 2700
+P 3100 2450
+F 0 "S1" H 3100 2000 45  0000 C CNN
+F 1 "SWITCH-DPDT-PTH-GPI-152-3013" H 3100 2926 45  0001 C CNN
+F 2 "blueled:XKB7070-Z" H 3100 2900 20  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf" H 3100 2450 50  0001 C CNN
+F 4 "SWCH-10554" H 3100 2831 60  0001 C CNN "Field4"
+F 5 "lcsc.com" H 3100 2450 50  0001 C CNN "Distributor"
+F 6 "XKB7070-Z" H 3100 2450 50  0001 C CNN "Manuf. Part"
+	1    3100 2450
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -1463,31 +1461,25 @@ Text Label 3400 1200 2    50   ~ 0
 ENA
 Wire Wire Line
 	3400 1200 3450 1200
-Text Label 3400 2500 0    50   ~ 0
+Text Label 3400 2250 0    50   ~ 0
 ENA
 Wire Wire Line
-	3300 2500 3400 2500
-Text Label 2200 750  0    50   ~ 0
-PWR_PRT
-Wire Wire Line
-	2200 1000 2200 750 
-Text Label 2800 2000 2    50   ~ 0
-PWR_PRT
+	3300 2250 3400 2250
 $Comp
 L power:GND #PWR013
 U 1 1 6017A84C
-P 2800 2700
-F 0 "#PWR013" H 2800 2450 50  0001 C CNN
-F 1 "GND" H 2805 2527 50  0000 C CNN
-F 2 "" H 2800 2700 50  0001 C CNN
-F 3 "" H 2800 2700 50  0001 C CNN
-	1    2800 2700
+P 2800 2450
+F 0 "#PWR013" H 2800 2200 50  0001 C CNN
+F 1 "GND" H 2805 2277 50  0000 C CNN
+F 2 "" H 2800 2450 50  0001 C CNN
+F 3 "" H 2800 2450 50  0001 C CNN
+	1    2800 2450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 2700 2800 2600
+	2800 2450 2800 2350
 Wire Wire Line
-	2800 2600 2900 2600
+	2800 2350 2900 2350
 Wire Notes Line width 12
 	6950 3150 600  3150
 Wire Notes Line width 12
@@ -1651,21 +1643,8 @@ F 3 "~" H 6650 5950 50  0001 C CNN
 $EndComp
 Text Notes 750  5900 0    50   ~ 0
 Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
-$Comp
-L Device:R R12
-U 1 1 5FD06E35
-P 2800 2250
-F 0 "R12" H 2870 2296 50  0000 L CNN
-F 1 "1k" H 2870 2205 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2730 2250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 2800 2250 50  0001 C CNN
-F 4 "lcsc.com" H 2800 2250 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 2800 2250 50  0001 C CNN "Manuf. Part"
-	1    2800 2250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2800 2000 2800 2100
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
+Text Notes 3400 2350 0    50   ~ 0
+Float it to Enable
 $EndSCHEMATC
