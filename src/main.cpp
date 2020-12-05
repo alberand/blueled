@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+#include <avr/wdt.h>
 #include <avr/interrupt.h>
 #include <Arduino.h>
 #include <EEPROM.h>
@@ -269,6 +270,12 @@ void state_reset(struct state* state_t)
     ledfx_state_reset();
 }
 
+ISR(WDT_vect)
+{
+	simpap_send(&simpap_ctx, (uint8_t*)"wdt fired", 10);
+	digitalWrite(LED_BUILTIN, HIGH);
+}
+
 void setup()
 {
     Serial.begin(115200, SERIAL_8E1);
@@ -301,6 +308,7 @@ void setup()
 
 	cli();//stop interrupts
 
+	// Configure main cycle timer
 	TCCR1A = 0;// set entire TCCR1A register to 0
  	TCCR1B = 0;// same for TCCR1B
  	TCNT1  = 0;//initialize counter value to 0
@@ -313,6 +321,12 @@ void setup()
  	TCCR1B |= (1 << CS12) | (1 << CS10);  
  	// enable timer compare interrupt
  	TIMSK1 |= (1 << OCIE1A);
+
+	// Configure Watchdog
+	wdt_disable();
+	wdt_enable(WDTO_1S);
+	// Enable WDT interrupt and WDT system reset
+	WDTCSR |= (1 << WDE) | (1 << WDIE);
 
 	sei(); // allow interrupts
 }
@@ -329,6 +343,8 @@ void loop()
     }
     start = millis();
     digitalWrite(PIN_HEARTBEAT, heart_state);
+    heart_state = !heart_state;
+    wdt_reset();
 
     /* Serial input processing */
     while (Serial.available()) {
