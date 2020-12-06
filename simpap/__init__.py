@@ -51,6 +51,7 @@ class Blueled:
             'theater_chase': {'id': 0x50, 'fmt': 'III'}, 
             'fire': {'id': 0x51, 'fmt': ''}, 
             'segments': {'id': 0x52, 'fmt': ''}, # this one is modified later
+            'gradient_pos': {'id': 0x53, 'fmt': 'IIII'},
     }
 
     def __init__(self, port):
@@ -111,6 +112,10 @@ class Blueled:
     def solid(self, color, offset=0, size=0):
         metadata = self.metadata['solid']
         self.command(metadata, metadata['fmt'], [color, offset, size])
+
+    def clear(self):
+        metadata = self.metadata['solid']
+        self.command(metadata, metadata['fmt'], [0, 0, 0])
 
     def gradient(self, *argv):
         if len(argv) > 19:
@@ -185,3 +190,7 @@ class Blueled:
         metadata = self.metadata['segments']
         fmt = metadata['fmt'] + 'I'*len(argv)
         self.command(metadata, fmt, argv)
+
+    def gradient_pos(self, offset, length, c1, c2):
+        metadata = self.metadata['gradient_pos']
+        self.command(metadata, metadata['fmt'], [offset, length, c1, c2])
