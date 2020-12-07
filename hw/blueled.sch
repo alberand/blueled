@@ -542,21 +542,6 @@ Wire Wire Line
 	7850 5550 7700 5550
 Wire Wire Line
 	7700 5550 7700 5650
-Text Label 6250 5750 2    50   ~ 0
-VIN
-Wire Wire Line
-	6250 5950 6250 5750
-$Comp
-L power:PWR_FLAG #FLG0101
-U 1 1 5D4A1496
-P 6250 5950
-F 0 "#FLG0101" H 6250 6200 50  0000 C CNN
-F 1 "PWR_FLAG" H 6250 6123 50  0000 C CNN
-F 2 "" H 6250 5950 50  0001 C CNN
-F 3 "~" H 6250 5950 50  0001 C CNN
-	1    6250 5950
-	-1   0    0    1   
-$EndComp
 $Comp
 L Device:R_Small R7
 U 1 1 5EFA213D
@@ -1348,21 +1333,6 @@ Buck capacitor near LED strinp terminal \nblock to smooth output voltage\n
 Connection ~ 1850 5300
 Wire Wire Line
 	1850 5300 2300 5300
-Text Label 6650 5750 2    50   ~ 0
-PWR_PRT
-Wire Wire Line
-	6650 5950 6650 5750
-$Comp
-L power:PWR_FLAG #FLG01
-U 1 1 607AA1D3
-P 6650 5950
-F 0 "#FLG01" H 6650 6200 50  0000 C CNN
-F 1 "PWR_FLAG" H 6650 6123 50  0000 C CNN
-F 2 "" H 6650 5950 50  0001 C CNN
-F 3 "~" H 6650 5950 50  0001 C CNN
-	1    6650 5950
-	-1   0    0    1   
-$EndComp
 Text Notes 750  5900 0    50   ~ 0
 Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
@@ -1664,4 +1634,20 @@ Wire Wire Line
 	6000 1575 6000 1500
 Text Notes 2825 2775 0    50   ~ 0
 Button to \nswitch off \npower
+NoConn ~ 2300 2550
+Text Label 6675 5750 2    50   ~ 0
+VINJACK
+Wire Wire Line
+	6675 5950 6675 5750
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5FD3734B
+P 6675 5950
+F 0 "#FLG0102" H 6675 6200 50  0000 C CNN
+F 1 "PWR_FLAG" H 6675 6123 50  0000 C CNN
+F 2 "" H 6675 5950 50  0001 C CNN
+F 3 "~" H 6675 5950 50  0001 C CNN
+	1    6675 5950
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
