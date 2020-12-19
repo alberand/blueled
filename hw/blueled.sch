@@ -107,7 +107,7 @@ F 1 "1k" H 5159 2255 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5100 2300 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 5100 2300 50  0001 C CNN
 F 4 "lcsc.com" H 5100 2300 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 5100 2300 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 5100 2300 50  0001 C CNN "Manuf. Part"
 	1    5100 2300
 	1    0    0    -1  
 $EndComp
@@ -272,7 +272,7 @@ F 1 "1k" H 7859 5005 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7800 5050 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 7800 5050 50  0001 C CNN
 F 4 "lcsc.com" H 7800 5050 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 7800 5050 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 7800 5050 50  0001 C CNN "Manuf. Part"
 	1    7800 5050
 	1    0    0    -1  
 $EndComp
@@ -429,7 +429,7 @@ F 1 "1k" H 1700 3950 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1850 4000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 1850 4000 50  0001 C CNN
 F 4 "lcsc.com" H 1850 4000 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 1850 4000 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 1850 4000 50  0001 C CNN "Manuf. Part"
 	1    1850 4000
 	1    0    0    -1  
 $EndComp
@@ -483,7 +483,7 @@ F 1 "1k" H 2100 3950 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2050 4000 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 2050 4000 50  0001 C CNN
 F 4 "lcsc.com" H 2050 4000 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 2050 4000 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 2050 4000 50  0001 C CNN "Manuf. Part"
 	1    2050 4000
 	1    0    0    -1  
 $EndComp
@@ -551,7 +551,7 @@ F 1 "1k" H 7759 5005 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7700 5050 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 7700 5050 50  0001 C CNN
 F 4 "lcsc.com" H 7700 5050 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 7700 5050 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 7700 5050 50  0001 C CNN "Manuf. Part"
 	1    7700 5050
 	-1   0    0    1   
 $EndComp
@@ -567,11 +567,11 @@ L Device:C C2
 U 1 1 5E94312D
 P 4750 2300
 F 0 "C2" H 4550 2350 50  0000 L CNN
-F 1 "10uF" H 4450 2250 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4788 2150 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf" H 4750 2300 50  0001 C CNN
+F 1 "22uF" H 4450 2250 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 4788 2150 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1809131544_Vishay-Intertech-593D226X9004A2TE3_C215881.pdf" H 4750 2300 50  0001 C CNN
 F 4 "lcsc.com" H 4750 2300 50  0001 C CNN "Distributor"
-F 5 "CL21A106MQFNNNE" H 4750 2300 50  0001 C CNN "Manuf. Part"
+F 5 "593D226X9004A2TE3" H 4750 2300 50  0001 C CNN "Manuf. Part"
 	1    4750 2300
 	-1   0    0    1   
 $EndComp
@@ -618,7 +618,7 @@ F 1 "1k" H 9159 2705 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9100 2750 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 9100 2750 50  0001 C CNN
 F 4 "lcsc.com" H 9100 2750 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 9100 2750 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 9100 2750 50  0001 C CNN "Manuf. Part"
 	1    9100 2750
 	1    0    0    -1  
 $EndComp
@@ -739,7 +739,7 @@ L Device:CP1 C1
 U 1 1 5EA4B8BA
 P 3650 2300
 F 0 "C1" H 3765 2346 50  0000 L CNN
-F 1 "x" H 3765 2255 50  0000 L CNN
+F 1 "10uF" H 3765 2255 50  0000 L CNN
 F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 3650 2300 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 3650 2300 50  0001 C CNN
 F 4 "lcsc.com" H 3650 2300 50  0001 C CNN "Distributor"
@@ -951,9 +951,11 @@ L Device:C C5
 U 1 1 5FC19A9D
 P 1850 5550
 F 0 "C5" H 1965 5596 50  0000 L CNN
-F 1 "330uF" H 1965 5505 50  0000 L CNN
-F 2 "" H 1888 5400 50  0001 C CNN
-F 3 "" H 1850 5550 50  0001 C CNN
+F 1 "22uF" H 1965 5505 50  0000 L CNN
+F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 1888 5400 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1809131544_Vishay-Intertech-593D226X9004A2TE3_C215881.pdf" H 1850 5550 50  0001 C CNN
+F 4 "593D226X9004A2TE3" H 1850 5550 50  0001 C CNN "Manuf. Part"
+F 5 "lcsc.com" H 1850 5550 50  0001 C CNN "Distributor"
 	1    1850 5550
 	1    0    0    -1  
 $EndComp
@@ -983,7 +985,7 @@ F 1 "1k" H 1459 4755 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1400 4800 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 1400 4800 50  0001 C CNN
 F 4 "lcsc.com" H 1400 4800 50  0001 C CNN "Distributor"
-F 5 " 	RC0805FR-071KL" H 1400 4800 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-071KL" H 1400 4800 50  0001 C CNN "Manuf. Part"
 	1    1400 4800
 	1    0    0    -1  
 $EndComp
@@ -1089,10 +1091,10 @@ U 1 1 5FE6D6CD
 P 5000 1200
 F 0 "L1" V 5225 1200 50  0000 C CNN
 F 1 "15uH" V 5134 1200 50  0000 C CNN
-F 2 "" H 5000 1200 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1809291526_SXN-Shun-Xiang-Nuo-Elec-SMMS1040-150M_C149596.pdf" H 5000 1200 50  0001 C CNN
+F 2 "blueled:SMMS1350-150M" H 5000 1200 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_Sunlord-MWSA1004S-150MT_C408488.pdf" H 5000 1200 50  0001 C CNN
 F 4 "lcsc.com" H 5000 1200 50  0001 C CNN "Distributor"
-F 5 "SMMS1040-150M" H 5000 1200 50  0001 C CNN "Manuf. Part"
+F 5 "MWSA1004S-150MT" H 5000 1200 50  0001 C CNN "Manuf. Part"
 	1    5000 1200
 	0    -1   -1   0   
 $EndComp
@@ -1292,9 +1294,9 @@ P 9050 3850
 F 0 "R11" V 8950 3800 50  0000 L CNN
 F 1 "470" V 8850 3800 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9050 3850 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf" H 9050 3850 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810311431_YAGEO-RC0805FR-07470RL_C114564.pdf" H 9050 3850 50  0001 C CNN
 F 4 "lcsc.com" H 9050 3850 50  0001 C CNN "Distributor"
-F 5 "RK73B2ATTD102J" H 9050 3850 50  0001 C CNN "Manuf. Part"
+F 5 "RC0805FR-07470RL" H 9050 3850 50  0001 C CNN "Manuf. Part"
 	1    9050 3850
 	0    -1   -1   0   
 $EndComp
@@ -1306,10 +1308,10 @@ U 1 1 6068EAC3
 P 5800 4250
 F 0 "C12" V 6050 4250 50  0000 L CNN
 F 1 "1000uF" V 5950 4150 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder" H 5800 4250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/AVX-TAJA106K016RNJ_C7171.pdf" H 5800 4250 50  0001 C CNN
+F 2 "Capacitor_SMD:CP_Elec_10x10" H 5800 4250 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_Lelon-VEU102M0JTR-1010_C249735.pdf" H 5800 4250 50  0001 C CNN
 F 4 "lcsc.com" H 5800 4250 50  0001 C CNN "Distributor"
-F 5 "TAJA106K016RNJ" H 5800 4250 50  0001 C CNN "Manuf. Part"
+F 5 "VEU102M0JTR-1010" H 5800 4250 50  0001 C CNN "Manuf. Part"
 	1    5800 4250
 	0    -1   -1   0   
 $EndComp
