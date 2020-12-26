@@ -1404,11 +1404,7 @@ Wire Wire Line
 	4750 1550 4750 1500
 Wire Wire Line
 	5650 1800 5650 1750
-Wire Wire Line
-	5650 1500 5650 1200
 Connection ~ 5650 1750
-Wire Wire Line
-	5650 1750 5650 1700
 $Comp
 L power:GND #PWR019
 U 1 1 6067F60F
@@ -1458,14 +1454,14 @@ $EndComp
 $Comp
 L Device:R_Small R10
 U 1 1 5FF1BD8E
-P 5650 1600
-F 0 "R10" H 5709 1646 50  0000 L CNN
-F 1 "10k" H 5709 1555 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5650 1600 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810201611_YAGEO-RC0805FR-0710KL_C84376.pdf" H 5650 1600 50  0001 C CNN
-F 4 "lcsc.com" H 5650 1600 50  0001 C CNN "Distributor"
-F 5 "RC0805FR-0710KL" H 5650 1600 50  0001 C CNN "Manuf. Part"
-	1    5650 1600
+P 5650 1400
+F 0 "R10" H 5709 1446 50  0000 L CNN
+F 1 "10k" H 5709 1355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5650 1400 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810201611_YAGEO-RC0805FR-0710KL_C84376.pdf" H 5650 1400 50  0001 C CNN
+F 4 "lcsc.com" H 5650 1400 50  0001 C CNN "Distributor"
+F 5 "RC0805FR-0710KL" H 5650 1400 50  0001 C CNN "Manuf. Part"
+	1    5650 1400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1522,11 +1518,6 @@ F 5 "AOD4185L" H 4450 1300 50  0001 C CNN "Manuf. Part"
 $EndComp
 Wire Wire Line
 	6450 1100 6450 1200
-Wire Wire Line
-	5250 1200 5650 1200
-Wire Wire Line
-	5650 1200 6000 1200
-Connection ~ 5650 1200
 Wire Wire Line
 	6000 1200 6000 1300
 $Comp
@@ -1611,7 +1602,7 @@ $EndComp
 Wire Wire Line
 	6000 1575 6000 1500
 Text Notes 2825 2775 0    50   ~ 0
-Button to \nswitch off \npower
+Switch off \npower
 NoConn ~ 2300 2550
 Text Label 6675 5750 2    50   ~ 0
 VINJACK
@@ -1708,4 +1699,13 @@ Text Label 7600 5450 2    50   ~ 0
 Wire Wire Line
 	7600 5450 7800 5450
 Connection ~ 7800 5450
+Wire Wire Line
+	5250 1200 5650 1200
+Wire Wire Line
+	5650 1300 5650 1200
+Connection ~ 5650 1200
+Wire Wire Line
+	5650 1200 6000 1200
+Wire Wire Line
+	5650 1500 5650 1750
 $EndSCHEMATC
