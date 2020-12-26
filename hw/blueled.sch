@@ -235,16 +235,14 @@ VIN
 $Comp
 L Connector:TestPoint DBG0
 U 1 1 5D573650
-P 9150 1450
-F 0 "DBG0" V 9100 1350 50  0000 L CNN
-F 1 "Debug" V 9150 1650 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9350 1450 50  0001 C CNN
-F 3 "~" H 9350 1450 50  0001 C CNN
-	1    9150 1450
+P 9275 1450
+F 0 "DBG0" V 9225 1350 50  0000 L CNN
+F 1 "Debug" V 9275 1650 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9475 1450 50  0001 C CNN
+F 3 "~" H 9475 1450 50  0001 C CNN
+	1    9275 1450
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	8850 1450 9150 1450
 $Comp
 L Memory_Flash:AT25SF081-SSHF-X U4
 U 1 1 5D593F0F
@@ -659,7 +657,6 @@ $EndComp
 Wire Wire Line
 	9100 2950 9450 2950
 Connection ~ 9100 2950
-NoConn ~ 8850 1650
 $Comp
 L blueled-rescue:MOUDLE-BLUETOOTH-HC-05(34P-27X13MM)-MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_ U2
 U 1 1 5CB7CCE4
@@ -850,16 +847,14 @@ Connection ~ 7500 1050
 $Comp
 L Connector:TestPoint HRT1
 U 1 1 5FA7C739
-P 9150 1550
-F 0 "HRT1" V 9100 1450 50  0000 L CNN
-F 1 "Heartbeat" V 9150 1750 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9350 1550 50  0001 C CNN
-F 3 "~" H 9350 1550 50  0001 C CNN
-	1    9150 1550
+P 9275 1550
+F 0 "HRT1" V 9225 1450 50  0000 L CNN
+F 1 "Heartbeat" V 9275 1750 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9475 1550 50  0001 C CNN
+F 3 "~" H 9475 1550 50  0001 C CNN
+	1    9275 1550
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	8850 1550 9150 1550
 NoConn ~ 7650 1650
 Wire Wire Line
 	1100 1850 1200 1850
@@ -1700,4 +1695,17 @@ Wire Wire Line
 Wire Wire Line
 	3650 2150 3900 2150
 Connection ~ 3650 2150
+Text Label 8950 1650 0    50   ~ 0
+~CS-FLASH
+Wire Wire Line
+	8850 1650 8950 1650
+Wire Wire Line
+	8850 1450 9275 1450
+Wire Wire Line
+	8850 1550 9275 1550
+Text Label 7600 5450 2    50   ~ 0
+~CS-FLASH
+Wire Wire Line
+	7600 5450 7800 5450
+Connection ~ 7800 5450
 $EndSCHEMATC
