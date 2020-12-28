@@ -137,7 +137,7 @@ U 1 1 5CC5BA14
 P 5800 3800
 F 0 "J2" H 5880 3842 50  0000 L CNN
 F 1 "LED Strip" H 5880 3751 50  0000 L CNN
-F 2 "" H 5800 3800 50  0001 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 5800 3800 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/2004291906_Ningbo-Xinlaiya-Elec-XY2500R-D-5-08-3P_C505825.pdf" H 5800 3800 50  0001 C CNN
 F 4 "lcsc.com" H 5800 3800 50  0001 C CNN "Distributor"
 F 5 "XY2500R-D-5.08-3P" H 5800 3800 50  0001 C CNN "Manuf. Part"
@@ -881,7 +881,7 @@ U 1 1 5FABC70C
 P 900 1850
 F 0 "J4" H 818 1525 50  0000 C CNN
 F 1 "Screw_Terminal_01x02" H 750 1600 50  0000 C CNN
-F 2 "" H 900 1850 50  0001 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 900 1850 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1912251632_Ningbo-Kangnex-Elec-WJ15EDGRC-3-81-2P_C8387.pdf" H 900 1850 50  0001 C CNN
 F 4 "lcsc.com" H 900 1850 50  0001 C CNN "Distributor"
 F 5 "WJ15EDGRC-3.81-2P" H 900 1850 50  0001 C CNN "Manuf. Part"

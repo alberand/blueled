@@ -230,8 +230,6 @@ F 3 "" H 6200 3900 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6200 3700 6000 3700
-Text Label 6200 3700 0    50   ~ 0
-VIN
 $Comp
 L Connector:TestPoint DBG0
 U 1 1 5D573650
@@ -1708,4 +1706,15 @@ Wire Wire Line
 	5650 1200 6000 1200
 Wire Wire Line
 	5650 1500 5650 1750
+$Comp
+L power:+5V #PWR?
+U 1 1 5FEDEB2A
+P 6200 3700
+F 0 "#PWR?" H 6200 3550 50  0001 C CNN
+F 1 "+5V" H 6215 3873 50  0000 C CNN
+F 2 "" H 6200 3700 50  0001 C CNN
+F 3 "" H 6200 3700 50  0001 C CNN
+	1    6200 3700
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
