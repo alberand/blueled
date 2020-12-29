@@ -1038,7 +1038,7 @@ U 1 1 5FE3F026
 P 4750 1350
 F 0 "D5" V 4700 1425 50  0000 L CNN
 F 1 "MBRB2060" V 4775 1425 50  0000 L CNN
-F 2 "Diode_SMD:D_Powermite3" H 4750 1350 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:TO-263-3_TabPin2" H 4750 1350 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/Sangdest-Microelectronicstronic-Nanjing-MBRB2060CT_C260296.pdf" H 4750 1350 50  0001 C CNN
 F 4 "lcsc.com" H 4750 1350 50  0001 C CNN "Distributor"
 F 5 "MBRB2060CT" H 4750 1350 50  0001 C CNN "Manuf. Part"
@@ -1277,8 +1277,8 @@ $Comp
 L Device:CP1 C12
 U 1 1 6068EAC3
 P 5800 4250
-F 0 "C12" V 6050 4250 50  0000 L CNN
-F 1 "1000uF" V 5950 4150 50  0000 L CNN
+F 0 "C12" V 6030 4160 50  0000 L CNN
+F 1 "1000uF" V 5950 4025 50  0000 L CNN
 F 2 "Capacitor_SMD:CP_Elec_10x10" H 5800 4250 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_Lelon-VEU102M0JTR-1010_C249735.pdf" H 5800 4250 50  0001 C CNN
 F 4 "lcsc.com" H 5800 4250 50  0001 C CNN "Distributor"
@@ -1286,8 +1286,6 @@ F 5 "VEU102M0JTR-1010" H 5800 4250 50  0001 C CNN "Manuf. Part"
 	1    5800 4250
 	0    -1   -1   0   
 $EndComp
-Text Label 5550 4250 2    50   ~ 0
-VIN
 Wire Wire Line
 	5550 4250 5650 4250
 $Comp
@@ -1393,8 +1391,6 @@ Wire Wire Line
 Connection ~ 3450 1200
 Wire Wire Line
 	6000 1975 6000 1900
-Wire Wire Line
-	4650 1200 4750 1200
 Connection ~ 4750 1200
 Wire Wire Line
 	4750 1200 4850 1200
@@ -1501,19 +1497,6 @@ Wire Wire Line
 	2200 1000 2400 1000
 Wire Wire Line
 	2200 1400 2200 1500
-$Comp
-L Device:Q_PMOS_SDG Q1
-U 1 1 5D461D8C
-P 4450 1300
-F 0 "Q1" V 4700 1250 50  0000 L CNN
-F 1 "Q_PMOS_SDG" V 4700 1050 50  0001 L CNN
-F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 4650 1400 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 4450 1300 50  0001 C CNN
-F 4 "lcsc.com" H 4450 1300 50  0001 C CNN "Distributor"
-F 5 "AOD4185L" H 4450 1300 50  0001 C CNN "Manuf. Part"
-	1    4450 1300
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	6000 1200 6000 1300
 $Comp
@@ -1744,4 +1727,30 @@ Connection ~ 6000 1200
 Wire Wire Line
 	6575 1200 6575 1075
 Connection ~ 6575 1200
+$Comp
+L power:+5V #PWR0112
+U 1 1 6006B235
+P 5550 4250
+F 0 "#PWR0112" H 5550 4100 50  0001 C CNN
+F 1 "+5V" H 5565 4423 50  0000 C CNN
+F 2 "" H 5550 4250 50  0001 C CNN
+F 3 "" H 5550 4250 50  0001 C CNN
+	1    5550 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 1200 4750 1200
+$Comp
+L Device:Q_PMOS_SDG Q1
+U 1 1 5D461D8C
+P 4450 1300
+F 0 "Q1" V 4700 1250 50  0000 L CNN
+F 1 "Q_PMOS_SDG" V 4700 1050 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:TO-252-3_TabPin4" H 4650 1400 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf" H 4450 1300 50  0001 C CNN
+F 4 "lcsc.com" H 4450 1300 50  0001 C CNN "Distributor"
+F 5 "AOD4185L" H 4450 1300 50  0001 C CNN "Manuf. Part"
+	1    4450 1300
+	0    1    -1   0   
+$EndComp
 $EndSCHEMATC
