@@ -301,7 +301,7 @@ Text Label 8950 3550 0    50   ~ 0
 ~HC-POWER-EN
 Text Label 8950 3650 0    50   ~ 0
 HC-DISCNCT
-Text Label 9250 3850 0    50   ~ 0
+Text Label 10310 3850 0    50   ~ 0
 DATA
 Wire Wire Line
 	8850 3350 8950 3350
@@ -570,7 +570,7 @@ F 5 "593D226X9004A2TE3" H 4750 2300 50  0001 C CNN "Manuf. Part"
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	9750 3050 9750 2950
+	9840 3050 9840 2950
 $Comp
 L blueled-rescue:PUSH-_electromech SW2
 U 1 1 5D576BAE
@@ -587,12 +587,12 @@ $EndComp
 $Comp
 L power:GND #PWR0105
 U 1 1 5CBEBE63
-P 9750 3050
-F 0 "#PWR0105" H 9750 2800 50  0001 C CNN
-F 1 "GND" H 9755 2877 50  0000 C CNN
-F 2 "" H 9750 3050 50  0001 C CNN
-F 3 "" H 9750 3050 50  0001 C CNN
-	1    9750 3050
+P 9840 3050
+F 0 "#PWR0105" H 9840 2800 50  0001 C CNN
+F 1 "GND" H 9845 2877 50  0000 C CNN
+F 2 "" H 9840 3050 50  0001 C CNN
+F 3 "" H 9840 3050 50  0001 C CNN
+	1    9840 3050
 	1    0    0    -1  
 $EndComp
 Text Label 9200 2950 0    50   ~ 0
@@ -1177,7 +1177,7 @@ Wire Notes Line width 12
 Wire Notes Line width 12
 	6950 600  6950 6300
 Wire Notes Line width 12
-	9900 600  9900 6300
+	11080 600  11080 6300
 Wire Notes Line width 12
 	5300 6300 9900 6300
 $Comp
@@ -1271,8 +1271,6 @@ F 5 "RC0805FR-07470RL" H 9050 3850 50  0001 C CNN "Manuf. Part"
 	1    9050 3850
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	9150 3850 9250 3850
 $Comp
 L Device:CP1 C12
 U 1 1 6068EAC3
@@ -1753,4 +1751,102 @@ F 5 "AOD4185L" H 4450 1300 50  0001 C CNN "Manuf. Part"
 	1    4450 1300
 	0    1    -1   0   
 $EndComp
+$Comp
+L Transistor_FET:BSS138 Q3
+U 1 1 5FF0D3AD
+P 9890 3750
+F 0 "Q3" V 10139 3750 50  0000 C CNN
+F 1 "BSS138" V 10230 3750 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10090 3675 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf" H 9890 3750 50  0001 L CNN
+F 4 "lcsc.com" H 9890 3750 50  0001 C CNN "Distributor"
+F 5 "BSS138" H 9890 3750 50  0001 C CNN "Manuf. Part"
+	1    9890 3750
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R16
+U 1 1 5FF1EEFC
+P 9600 3650
+F 0 "R16" H 9659 3696 50  0000 L CNN
+F 1 "1k" H 9659 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9600 3650 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 9600 3650 50  0001 C CNN
+F 4 "lcsc.com" H 9600 3650 50  0001 C CNN "Distributor"
+F 5 "RC0805FR-071KL" H 9600 3650 50  0001 C CNN "Manuf. Part"
+	1    9600 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R17
+U 1 1 5FF2B507
+P 10190 3650
+F 0 "R17" H 10249 3696 50  0000 L CNN
+F 1 "1k" H 10249 3605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 10190 3650 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 10190 3650 50  0001 C CNN
+F 4 "lcsc.com" H 10190 3650 50  0001 C CNN "Distributor"
+F 5 "RC0805FR-071KL" H 10190 3650 50  0001 C CNN "Manuf. Part"
+	1    10190 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR026
+U 1 1 5FFE7891
+P 10190 3400
+F 0 "#PWR026" H 10190 3250 50  0001 C CNN
+F 1 "+5V" H 10205 3573 50  0000 C CNN
+F 2 "" H 10190 3400 50  0001 C CNN
+F 3 "" H 10190 3400 50  0001 C CNN
+	1    10190 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 2950 9840 2950
+Wire Wire Line
+	9150 3850 9600 3850
+$Comp
+L power:+3.3V #PWR025
+U 1 1 60161DE9
+P 9600 3400
+F 0 "#PWR025" H 9600 3250 50  0001 C CNN
+F 1 "+3.3V" H 9615 3573 50  0000 C CNN
+F 2 "" H 9600 3400 50  0001 C CNN
+F 3 "" H 9600 3400 50  0001 C CNN
+	1    9600 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 3750 9600 3850
+Connection ~ 9600 3850
+Wire Wire Line
+	9600 3850 9690 3850
+Wire Wire Line
+	9600 3400 9600 3470
+Wire Wire Line
+	9600 3470 9890 3470
+Wire Wire Line
+	9890 3470 9890 3550
+Connection ~ 9600 3470
+Wire Wire Line
+	9600 3470 9600 3550
+Wire Notes Line width 12
+	9910 600  11090 600 
+Wire Notes Line width 12
+	9910 4550 11090 4550
+Wire Notes Line width 12
+	9910 6300 11090 6300
+Wire Notes Line
+	11080 6300 11080 6290
+Text Notes 10170 4210 0    50   ~ 0
+Level shifter as\nMCU is 3.3V but\nWS2812B needs 5V
+Wire Wire Line
+	10090 3850 10190 3850
+Wire Wire Line
+	10190 3750 10190 3850
+Connection ~ 10190 3850
+Wire Wire Line
+	10190 3850 10310 3850
+Wire Wire Line
+	10190 3400 10190 3550
 $EndSCHEMATC
