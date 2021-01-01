@@ -2708,7 +2708,7 @@
   (gr_arc (start 123 66) (end 123 63) (angle -90) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 174 66) (end 174 145.6) (layer Edge.Cuts) (width 0.05) (tstamp 5FE74F7D))
   (gr_line (start 123 148.6) (end 171 148.6) (layer Edge.Cuts) (width 0.05) (tstamp 5FE74F78))
-  (gr_text "Blueled\n19/04/2020 rev 2\nalberand" (at 145.4197 125.5395 90) (layer B.SilkS) (tstamp 5EA9EA15)
+  (gr_text "Blueled\n01/01/2021 rev 2\nalberand" (at 163.5 70.75) (layer B.SilkS) (tstamp 5EA9EA15)
     (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
   )
   (gr_line (start 120 66) (end 120 145.6) (layer Edge.Cuts) (width 0.05) (tstamp 5CD8888C))
