@@ -33,7 +33,7 @@ L Connector:Barrel_Jack J1
 U 1 1 5CDBC439
 P 950 1100
 F 0 "J1" H 1007 1425 50  0000 C CNN
-F 1 "Barrel_Jack" H 1007 1334 50  0000 C CNN
+F 1 "DC 5.5 - 42V" H 1007 1334 50  0000 C CNN
 F 2 "Connector_BarrelJack:BarrelJack_Horizontal" H 1000 1060 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_XKB-Enterprise-DC-005-5A-2-0_C381116.pdf" H 1000 1060 50  0001 C CNN
 F 4 "lcsc.com" H 950 1100 50  0001 C CNN "Distributor"
@@ -120,7 +120,7 @@ L Device:LED D3
 U 1 1 5ED22AF5
 P 1850 3700
 F 0 "D3" V 1900 3900 50  0000 R CNN
-F 1 "LED" V 1800 3900 50  0000 R CNN
+F 1 "TX" V 1800 3900 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1850 3700 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf" H 1850 3700 50  0001 C CNN
 F 4 "lcsc.com" H 1850 3700 50  0001 C CNN "Distributor"
@@ -174,7 +174,7 @@ L Device:LED D2
 U 1 1 5D08942B
 P 2050 3700
 F 0 "D2" V 2100 3600 50  0000 R CNN
-F 1 "LED" V 2000 3600 50  0000 R CNN
+F 1 "RX" V 2000 3600 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2050 3700 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf" H 2050 3700 50  0001 C CNN
 F 4 "lcsc.com" H 2050 3700 50  0001 C CNN "Distributor"
@@ -372,7 +372,7 @@ L Connector:Screw_Terminal_01x02 J4
 U 1 1 5FABC70C
 P 900 1850
 F 0 "J4" H 818 1525 50  0000 C CNN
-F 1 "Screw_Terminal_01x02" H 750 1600 50  0000 C CNN
+F 1 "DC 5.5 - 42V" H 750 1600 50  0000 C CNN
 F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 900 1850 50  0001 C CNN
 F 3 "https://datasheet.lcsc.com/szlcsc/1912251632_Ningbo-Kangnex-Elec-WJ15EDGRC-3-81-2P_C8387.pdf" H 900 1850 50  0001 C CNN
 F 4 "lcsc.com" H 900 1850 50  0001 C CNN "Distributor"
