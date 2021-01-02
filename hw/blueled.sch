@@ -1849,4 +1849,15 @@ F 5 "ATmega328P-AU" H 8250 2650 50  0001 C CNN "Manuf. Part"
 $EndComp
 Text Notes 10170 4210 0    50   ~ 0
 Level shifter as\nMCU is 3.3V but\nWS2812B needs 5V
+$Comp
+L Graphic:Logo_Open_Hardware_Small #LOGO1
+U 1 1 5FF1B0E3
+P 10940 6875
+F 0 "#LOGO1" H 10940 7150 50  0001 C CNN
+F 1 "Logo_Open_Hardware_Small" H 10940 6650 50  0001 C CNN
+F 2 "" H 10940 6875 50  0001 C CNN
+F 3 "~" H 10940 6875 50  0001 C CNN
+	1    10940 6875
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
