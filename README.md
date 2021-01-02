@@ -13,6 +13,8 @@ Features:
 * Save latest state between power on/off
 * Up to 100 LEDs on full brightness (WS2812B)
 
+[![PCB 3D Render](./blueled-3dmodel.png)](./blueled-3dmodel.png)
+
 #### Notes (to refactor)
 
 Be careful with connection between programmer Arduino and target Arduino. I had
