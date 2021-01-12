@@ -2,16 +2,16 @@
 <export version="D">
   <design>
     <source>/home/alberand/Projects/blueled/hw/blueled.sch</source>
-    <date>Thu 23 Apr 2020 05:36:25 PM CEST</date>
-    <tool>Eeschema 5.1.5</tool>
+    <date>Tue 12 Jan 2021 11:33:44 AM CET</date>
+    <tool>Eeschema 5.1.9</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
-        <title/>
-        <company/>
-        <rev/>
-        <date/>
+        <title>Blueled - LED strip controller</title>
+        <company>alberand</company>
+        <rev>3.0</rev>
+        <date>2020-11-07</date>
         <source>blueled.sch</source>
-        <comment number="1" value=""/>
+        <comment number="1" value="Simple bluetooth controller based around cheap bluetooth module HC-05"/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
         <comment number="4" value=""/>
@@ -19,80 +19,20 @@
     </sheet>
   </design>
   <components>
-    <comp ref="U1">
-      <value>ATmega328P-AU</value>
-      <footprint>Package_QFP:TQFP-32_7x7mm_P0.8mm</footprint>
-      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">ATmega328P-AU</field>
-      </fields>
-      <libsource lib="MCU_Microchip_ATmega" part="ATmega328P-AU" description="20MHz, 32kB Flash, 2kB SRAM, 1kB EEPROM, TQFP-32"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CAE668A</tstamp>
-    </comp>
-    <comp ref="U3">
-      <value>AMS1117-3.3</value>
-      <footprint>Package_TO_SOT_SMD:SOT-223</footprint>
-      <datasheet>http://www.ti.com/lit/ds/symlink/lm1117.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">AMS1117-3.3</field>
-      </fields>
-      <libsource lib="Regulator_Linear" part="LM1117-3.3" description="800mA Low-Dropout Linear Regulator, 3.3V fixed output, TO-220/TO-252/TO-263/SOT-223"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CB83042</tstamp>
-    </comp>
-    <comp ref="C3">
-      <value>100n</value>
-      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810191215_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">CL21B104KBCNNNC</field>
-      </fields>
-      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CBEE490</tstamp>
-    </comp>
-    <comp ref="R2">
-      <value>1k</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CBF3B20</tstamp>
-    </comp>
-    <comp ref="D1">
-      <value>LED</value>
-      <footprint>LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">TJ-S1608SW6TGLC2G-A5 </field>
-      </fields>
-      <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CBF4695</tstamp>
-    </comp>
     <comp ref="J2">
       <value>LED Strip</value>
       <footprint>TerminalBlock:TerminalBlock_bornier-3_P5.08mm</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1811151432_Phoenix-Contact-1729131_C91154.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2004291906_Ningbo-Xinlaiya-Elec-XY2500R-D-5-08-3P_C505825.pdf</datasheet>
       <fields>
         <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">1729131</field>
+        <field name="Manuf. Part">XY2500R-D-5.08-3P</field>
       </fields>
       <libsource lib="Connector" part="Screw_Terminal_01x03" description="Generic screw terminal, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CC5BA14</tstamp>
     </comp>
     <comp ref="J1">
-      <value>Barrel_Jack</value>
+      <value>DC 5.5 - 42V</value>
       <footprint>Connector_BarrelJack:BarrelJack_Horizontal</footprint>
       <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_XKB-Enterprise-DC-005-5A-2-0_C381116.pdf</datasheet>
       <fields>
@@ -111,66 +51,10 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5D06C568</tstamp>
     </comp>
-    <comp ref="Q1">
-      <value>Q_PMOS_SDG</value>
-      <footprint>Package_TO_SOT_SMD:TO-252-3_TabPin4</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">AOD4185L</field>
-      </fields>
-      <libsource lib="Device" part="Q_PMOS_SDG" description="P-MOSFET transistor, source/drain/gate"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D461D8C</tstamp>
-    </comp>
-    <comp ref="DBG0">
-      <value>Debug</value>
-      <footprint>TestPoint:TestPoint_Pad_D1.0mm</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Connector" part="TestPoint" description="test point"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D573650</tstamp>
-    </comp>
-    <comp ref="U4">
-      <value>AT25SF081</value>
-      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
-      <datasheet>https://www.adestotech.com/wp-content/uploads/DS-AT25SF081_045.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">AT25SF081-SHD-T</field>
-      </fields>
-      <libsource lib="Memory_Flash" part="AT25SF081-SSHF-X" description="8-Mbit, 2.3V Minimum SPI Serial Flash Memory with Dual-I/O and Quad-I/O Support, SOIC-8"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D593F0F</tstamp>
-    </comp>
-    <comp ref="R4">
-      <value>1k</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D5C158E</tstamp>
-    </comp>
-    <comp ref="C4">
-      <value>100n</value>
-      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810191215_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">CL21B104KBCNNNC</field>
-      </fields>
-      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D615393</tstamp>
-    </comp>
     <comp ref="D3">
-      <value>LED</value>
+      <value>TX</value>
       <footprint>LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2R-A5_C192315.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf</datasheet>
       <fields>
         <field name="Distributor">lcsc.com</field>
         <field name="Manuf. Part">TJ-S1608SW6TGLC2R-A5 </field>
@@ -180,21 +64,21 @@
       <tstamp>5ED22AF5</tstamp>
     </comp>
     <comp ref="R6">
-      <value>1k</value>
+      <value>150</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/YAGEO-RC0805FR-07150RL_C114523.pdf</datasheet>
       <fields>
         <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
+        <field name="Manuf. Part">RC0805FR-07150RL</field>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5ED22AEB</tstamp>
     </comp>
     <comp ref="D2">
-      <value>LED</value>
+      <value>RX</value>
       <footprint>LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2R-A5_C192315.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf</datasheet>
       <fields>
         <field name="Distributor">lcsc.com</field>
         <field name="Manuf. Part">TJ-S1608SW6TGLC2R-A5 </field>
@@ -204,100 +88,16 @@
       <tstamp>5D08942B</tstamp>
     </comp>
     <comp ref="R3">
-      <value>1k</value>
+      <value>150</value>
       <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/YAGEO-RC0805FR-07150RL_C114523.pdf</datasheet>
       <fields>
         <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
+        <field name="Manuf. Part">RC0805FR-07150RL</field>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5D089425</tstamp>
-    </comp>
-    <comp ref="R5">
-      <value>1k</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5E8E07EF</tstamp>
-    </comp>
-    <comp ref="Q2">
-      <value>Q_PNP_EBC</value>
-      <footprint>Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">UMT2907A</field>
-      </fields>
-      <libsource lib="Device" part="Q_PNP_EBC" description="PNP transistor, emitter/base/collector"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5E8AAEF6</tstamp>
-    </comp>
-    <comp ref="R7">
-      <value>1k</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5EFA213D</tstamp>
-    </comp>
-    <comp ref="C2">
-      <value>10uF</value>
-      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810191226_Samsung-Electro-Mechanics-CL21A106MQFNNNE_C41893.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">CL21A106MQFNNNE</field>
-      </fields>
-      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5E94312D</tstamp>
-    </comp>
-    <comp ref="SW2">
-      <value>PUSH</value>
-      <footprint>Button_Switch_SMD:SW_SPST_FSMSM</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1811082126_Korean-Hroparts-Elec-K2-1107ST-A4SW-06_C118141.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">K2-1107ST-A4SW-06</field>
-      </fields>
-      <libsource lib="blueled-rescue" part="PUSH-_electromech" description=""/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5D576BAE</tstamp>
-    </comp>
-    <comp ref="R1">
-      <value>1k</value>
-      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">RK73B2ATTD102J</field>
-      </fields>
-      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CBE0D3A</tstamp>
-    </comp>
-    <comp ref="X1">
-      <value>RESON-MURATA-CSTCE</value>
-      <footprint>blueled:Resonator_SMD_muRata_CSTNE_3Pin_3.2x1.3mm</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_Murata-Electronics-CSTNE8M00G55Z000R0_C341524.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Manuf. Part">CSTNE8M00G55Z000R0</field>
-      </fields>
-      <libsource lib="blueled-rescue" part="RESON-MURATA-CSTCE-pasv-xtal" description=""/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5CBDC71D</tstamp>
     </comp>
     <comp ref="U2">
       <value>HC-05</value>
@@ -314,19 +114,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CB7CCE4</tstamp>
     </comp>
-    <comp ref="S1">
-      <value>SWITCH-DPDT-PTH-GPI-152-3013</value>
-      <footprint>blueled:XKB7070-Z</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf</datasheet>
-      <fields>
-        <field name="Distributor">lcsc.com</field>
-        <field name="Field4">SWCH-10554</field>
-        <field name="Manuf. Part">XKB7070-Z</field>
-      </fields>
-      <libsource lib="SparkFun-Switches" part="SWITCH-DPDT-PTH-GPI-152-3013" description="Double-Pole, Double-Throw (DPDT) Switch Double-pole, double-throw switches. &lt;h4&gt;Variant Overview&lt;/h4&gt;&lt;h5&gt;PTH-GPI-152-3013&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;Used on &lt;a href=&quot;https://www.sparkfun.com/products/11345&quot;&gt;SparkFun Geiger Counter&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h5&gt;SMD-AY0202&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.sparkfun.com/products/597&quot;&gt;Surface Mount DPDT Switch&lt;/a&gt; (COM-00597)&lt;/li&gt;&lt;li&gt;Used on e.g. &lt;a href=&quot;https://www.sparkfun.com/products/12049&quot;&gt;LilyPad Arduino USB - ATmega32U4 Board&lt;/a&gt;&lt;/ul&gt;"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5EB8E526</tstamp>
-    </comp>
     <comp ref="DBG1">
       <value>DBG-HC-PWR</value>
       <footprint>TestPoint:TestPoint_Pad_D1.0mm</footprint>
@@ -334,6 +121,58 @@
       <libsource lib="Connector" part="TestPoint" description="test point"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5EA875B4</tstamp>
+    </comp>
+    <comp ref="JP1">
+      <value>Jumper_NC_Small</value>
+      <footprint>Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="blueled-rescue" part="Jumper_NC_Small-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EA9BCB4</tstamp>
+    </comp>
+    <comp ref="JP2">
+      <value>Jumper_NC_Small</value>
+      <footprint>Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="blueled-rescue" part="Jumper_NC_Small-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EAABDED</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>DC 5.5 - 42V</value>
+      <footprint>TerminalBlock:TerminalBlock_bornier-2_P5.08mm</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912251632_Ningbo-Kangnex-Elec-WJ15EDGRC-3-81-2P_C8387.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">WJ15EDGRC-3.81-2P</field>
+      </fields>
+      <libsource lib="Connector" part="Screw_Terminal_01x02" description="Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FABC70C</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>22uF</value>
+      <footprint>Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1809131544_Vishay-Intertech-593D226X9004A2TE3_C215881.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">593D226X9004A2TE3</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FC19A9D</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8E07EF</tstamp>
     </comp>
     <comp ref="DBG2">
       <value>DBG-HC-RST</value>
@@ -343,6 +182,110 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5EAA6065</tstamp>
     </comp>
+    <comp ref="Q2">
+      <value>Q_PNP_EBC</value>
+      <footprint>Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">UMT2907A</field>
+      </fields>
+      <libsource lib="Device" part="Q_PNP_EBC" description="PNP transistor, emitter/base/collector"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E8AAEF6</tstamp>
+    </comp>
+    <comp ref="D6">
+      <value>BAS40-04</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>http://www.vishay.com/docs/85701/bas40v.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">BAS40-04</field>
+      </fields>
+      <libsource lib="Diode" part="BAS40-04" description="40V 0.2A Dual Small Signal Schottky Diodes"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60075247</tstamp>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>60599C2F</tstamp>
+    </comp>
+    <comp ref="H2">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6059B45E</tstamp>
+    </comp>
+    <comp ref="H3">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>605A5A4D</tstamp>
+    </comp>
+    <comp ref="H4">
+      <value>MountingHole_Pad</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole_Pad" description="Mounting Hole with connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>605AFFEA</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>1000uF</value>
+      <footprint>Capacitor_SMD:CP_Elec_10x10</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_Lelon-VEU102M0JTR-1010_C249735.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">VEU102M0JTR-1010</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6068EAC3</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>33uF</value>
+      <footprint>Capacitor_SMD:CP_Elec_10x10</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1809291341_Lelon-VZH330M2ATR-1010_C249899.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">VZH330M2ATR-1010</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FD6E875</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>Q_PMOS_SDG</value>
+      <footprint>Package_TO_SOT_SMD:TO-252-3_TabPin4</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/Alpha-Omega-Semicon-AOS-AOD4185_C77993.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">AOD4185L</field>
+      </fields>
+      <libsource lib="Device" part="Q_PMOS_SDG" description="P-MOSFET transistor, source/drain/gate"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D461D8C</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>47uF</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_TDK-C3225X5R0J476MT000N_C338024.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C3225X5R0J476MT000N</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FEE1E45</tstamp>
+    </comp>
     <comp ref="C1">
       <value>10uF</value>
       <footprint>Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder</footprint>
@@ -351,9 +294,434 @@
         <field name="Distributor">lcsc.com</field>
         <field name="Manuf. Part">TAJA106K016RNJ</field>
       </fields>
-      <libsource lib="Device" part="CP1" description="Polarized capacitor, US symbol"/>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5EA4B8BA</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>+5V</value>
+      <footprint>LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">TJ-S1608SW6TGLC2G-A5 </field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF22C5C</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>470</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810311431_YAGEO-RC0805FR-07470RL_C114564.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-07470RL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF22C54</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>0.27</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2009282237_YAGEO-RL0805JR-070R27L_C705550.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RL0805JR-070R27L</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>601C65C3</tstamp>
+    </comp>
+    <comp ref="R13">
+      <value>0.01</value>
+      <footprint>Resistor_SMD:R_2512_6332Metric_Pad1.52x3.35mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2008171235_YAGEO-RL2512JK-070R01L_C705618.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RL2512JK-070R01L</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FEAD2F6</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>680nF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2004221632_TDK-C2012X7S2A684KT000N_C516764.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C2012X7S2A684KT000N</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FD91410</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>LM25085MM</value>
+      <footprint>Package_SO:VSSOP-8_3.0x3.0mm_P0.65mm</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/lm25085.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">LM25085MM/NOPB</field>
+      </fields>
+      <libsource lib="Regulator_Switching" part="LM25085MM" description="42V Constant On-Time PFET Buck Switching Controller, MSOP-8"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FCCD8F3</tstamp>
+    </comp>
+    <comp ref="R10">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810201611_YAGEO-RC0805FR-0710KL_C84376.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-0710KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF1BD8E</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>0.47uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2009111606_TDK-C2012X7R1C474KT000N_C694187.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C2012X7R1C474KT000N</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE6F1B7</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>90.9</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810301711_KOA-Speer-Elec-RK73B2ATTD102J_C159911.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RK73B2ATTD102J</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FD7A36B</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>1nF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_TDK-C2012X7R2A102KT020S_C415298.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C2012X7R2A102KT020S</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF0C6D1</tstamp>
+    </comp>
+    <comp ref="R12">
+      <value>2.1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2001062136_YAGEO-RC0805FR-072K1L_C273922.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-072K1L</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FEEDDCD</tstamp>
+    </comp>
+    <comp ref="R9">
+      <value>3.4k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/YAGEO-AC0805FR-073K4L_C228795.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-073K4L </field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF12D58</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>47uF</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_TDK-C3225X5R0J476MT000N_C338024.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C3225X5R0J476MT000N</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="CP1-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE853F6</tstamp>
+    </comp>
+    <comp ref="L1">
+      <value>15uH</value>
+      <footprint>blueled:SMMS1350-150M</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_Sunlord-MWSA1004S-150MT_C408488.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">MWSA1004S-150MT</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="L_Core_Iron-Device" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE6D6CD</tstamp>
+    </comp>
+    <comp ref="D5">
+      <value>MBRB2060</value>
+      <footprint>Package_TO_SOT_SMD:TO-263-3_TabPin2</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/Sangdest-Microelectronicstronic-Nanjing-MBRB2060CT_C260296.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">MBRB2060CT</field>
+      </fields>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE3F026</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>4700pF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_TDK-C2012C0G1H472JT0H0N_C342964.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">C2012C0G1H472JT0H0N</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FE1A9BA</tstamp>
+    </comp>
+    <comp ref="S1">
+      <value>SWITCH-DPDT-PTH-GPI-152-3013</value>
+      <footprint>blueled:XKB7070-Z</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/2002271810_XKB-Enterprise-XKB7070-Z_C318863.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Field4">SWCH-10554</field>
+        <field name="Manuf. Part">XKB7070-Z</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="SWITCH-DPDT-PTH-GPI-152-3013-SparkFun-Switches" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EB8E526</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>22uF</value>
+      <footprint>Capacitor_Tantalum_SMD:CP_EIA-3216-18_Kemet-A_Pad1.58x1.35mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1809131544_Vishay-Intertech-593D226X9004A2TE3_C215881.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">593D226X9004A2TE3</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5E94312D</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>+3.3V</value>
+      <footprint>LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1811141223_TOGIALED-TJ-S1608SW6TGLC2G-A5_C192316.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">TJ-S1608SW6TGLC2G-A5 </field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBF4695</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>150</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/YAGEO-RC0805FR-07150RL_C114523.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-07150RL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBF3B20</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>AMS1117-3.3</value>
+      <footprint>Package_TO_SOT_SMD:SOT-223</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/lm1117.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">AMS1117-3.3</field>
+      </fields>
+      <libsource lib="Regulator_Linear" part="LM1117-3.3" description="800mA Low-Dropout Linear Regulator, 3.3V fixed output, TO-220/TO-252/TO-263/SOT-223"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CB83042</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EFA213D</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810191215_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">CL21B104KBCNNNC</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D615393</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D5C158E</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>AT25SF081</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <datasheet>https://www.adestotech.com/wp-content/uploads/DS-AT25SF081_045.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">AT25SF081-SHD-T</field>
+      </fields>
+      <libsource lib="Memory_Flash" part="AT25SF081-SSHF-X" description="8-Mbit, 2.3V Minimum SPI Serial Flash Memory with Dual-I/O and Quad-I/O Support, SOIC-8"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D593F0F</tstamp>
+    </comp>
+    <comp ref="R17">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF2B507</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF1EEFC</tstamp>
+    </comp>
+    <comp ref="Q3">
+      <value>BSS138</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">BSS138</field>
+      </fields>
+      <libsource lib="Transistor_FET" part="BSS138" description="50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FF0D3AD</tstamp>
+    </comp>
+    <comp ref="R11">
+      <value>470</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810311431_YAGEO-RC0805FR-07470RL_C114564.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-07470RL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>606543FF</tstamp>
+    </comp>
+    <comp ref="HRT1">
+      <value>Heartbeat</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5FA7C739</tstamp>
+    </comp>
+    <comp ref="X1">
+      <value>CSTCE</value>
+      <footprint>blueled:Resonator_SMD_muRata_CSTNE_3Pin_3.2x1.3mm</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_Murata-Electronics-CSTNE8M00G55Z000R0_C341524.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">CSTNE8M00G55Z000R0</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="RESON-MURATA-CSTCE-pasv-xtal" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBDC71D</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">RC0805FR-071KL</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBE0D3A</tstamp>
+    </comp>
+    <comp ref="SW2">
+      <value>PUSH</value>
+      <footprint>Button_Switch_SMD:SW_SPST_FSMSM</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1811082126_Korean-Hroparts-Elec-K2-1107ST-A4SW-06_C118141.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">K2-1107ST-A4SW-06</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="PUSH-_electromech" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D576BAE</tstamp>
+    </comp>
+    <comp ref="DBG0">
+      <value>Debug</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5D573650</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>100n</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder</footprint>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1810191215_Samsung-Electro-Mechanics-CL21B104KBCNNNC_C1711.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">CL21B104KBCNNNC</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CBEE490</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>ATmega328P-AU</value>
+      <footprint>Package_QFP:TQFP-32_7x7mm_P0.8mm</footprint>
+      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf</datasheet>
+      <fields>
+        <field name="Distributor">lcsc.com</field>
+        <field name="Manuf. Part">ATmega328P-AU</field>
+      </fields>
+      <libsource lib="blueled-rescue" part="ATmega328P-AU-MCU_Microchip_ATmega" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5CAE668A</tstamp>
     </comp>
   </components>
   <libparts>
@@ -373,6 +741,21 @@
       <pins>
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector" part="Screw_Terminal_01x02">
+      <description>Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TerminalBlock*:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Screw_Terminal_01x02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="Connector" part="Screw_Terminal_01x03">
@@ -440,19 +823,22 @@
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Device" part="CP1">
-      <description>Polarized capacitor, US symbol</description>
+    <libpart lib="Device" part="D_Schottky">
+      <description>Schottky diode</description>
       <docs>~</docs>
       <footprints>
-        <fp>CP_*</fp>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
       </footprints>
       <fields>
-        <field name="Reference">C</field>
-        <field name="Value">CP1</field>
+        <field name="Reference">D</field>
+        <field name="Value">D_Schottky</field>
       </fields>
       <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="Device" part="LED">
@@ -498,6 +884,21 @@
         <pin num="3" name="C" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="Device" part="R_Small">
       <description>Resistor, small symbol</description>
       <docs>~</docs>
@@ -513,65 +914,35 @@
         <pin num="2" name="~" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="MCU_Microchip_ATmega" part="ATmega48PV-10AU">
-      <aliases>
-        <alias>ATmega48P-20AU</alias>
-        <alias>ATmega48A-AU</alias>
-        <alias>ATmega48PA-AU</alias>
-        <alias>ATmega88PV-10AU</alias>
-        <alias>ATmega88P-20AU</alias>
-        <alias>ATmega88A-AU</alias>
-        <alias>ATmega88PA-AU</alias>
-        <alias>ATmega168PV-10AU</alias>
-        <alias>ATmega168P-20AU</alias>
-        <alias>ATmega168A-AU</alias>
-        <alias>ATmega168PA-AU</alias>
-        <alias>ATmega328-AU</alias>
-        <alias>ATmega328P-AU</alias>
-      </aliases>
-      <description>10MHz, 4kB Flash, 512B SRAM, 256B EEPROM, TQFP-32</description>
-      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8025-8-bit-AVR-Microcontroller-ATmega48P-88P-168P_Datasheet.pdf</docs>
+    <libpart lib="Diode" part="BAS40-04">
+      <description>40V 0.2A Dual Small Signal Schottky Diodes</description>
+      <docs>http://www.vishay.com/docs/85701/bas40v.pdf</docs>
       <footprints>
-        <fp>TQFP*7x7mm*P0.8mm*</fp>
+        <fp>SOT?23*</fp>
       </footprints>
       <fields>
-        <field name="Reference">U</field>
-        <field name="Value">ATmega48PV-10AU</field>
-        <field name="Footprint">Package_QFP:TQFP-32_7x7mm_P0.8mm</field>
+        <field name="Reference">D</field>
+        <field name="Value">BAS40-04</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
       </fields>
       <pins>
-        <pin num="1" name="PD3" type="BiDi"/>
-        <pin num="2" name="PD4" type="BiDi"/>
-        <pin num="3" name="GND" type="power_in"/>
-        <pin num="4" name="VCC" type="power_in"/>
-        <pin num="5" name="GND" type="passive"/>
-        <pin num="6" name="VCC" type="passive"/>
-        <pin num="7" name="XTAL1/PB6" type="BiDi"/>
-        <pin num="8" name="XTAL2/PB7" type="BiDi"/>
-        <pin num="9" name="PD5" type="BiDi"/>
-        <pin num="10" name="PD6" type="BiDi"/>
-        <pin num="11" name="PD7" type="BiDi"/>
-        <pin num="12" name="PB0" type="BiDi"/>
-        <pin num="13" name="PB1" type="BiDi"/>
-        <pin num="14" name="PB2" type="BiDi"/>
-        <pin num="15" name="PB3" type="BiDi"/>
-        <pin num="16" name="PB4" type="BiDi"/>
-        <pin num="17" name="PB5" type="BiDi"/>
-        <pin num="18" name="AVCC" type="power_in"/>
-        <pin num="19" name="ADC6" type="input"/>
-        <pin num="20" name="AREF" type="passive"/>
-        <pin num="21" name="GND" type="passive"/>
-        <pin num="22" name="ADC7" type="input"/>
-        <pin num="23" name="PC0" type="BiDi"/>
-        <pin num="24" name="PC1" type="BiDi"/>
-        <pin num="25" name="PC2" type="BiDi"/>
-        <pin num="26" name="PC3" type="BiDi"/>
-        <pin num="27" name="PC4" type="BiDi"/>
-        <pin num="28" name="PC5" type="BiDi"/>
-        <pin num="29" name="~RESET~/PC6" type="BiDi"/>
-        <pin num="30" name="PD0" type="BiDi"/>
-        <pin num="31" name="PD1" type="BiDi"/>
-        <pin num="32" name="PD2" type="BiDi"/>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole_Pad">
+      <description>Mounting Hole with connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*Pad*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole_Pad</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
       </pins>
     </libpart>
     <libpart lib="Memory_Flash" part="AT25SF081-SSHD-X">
@@ -628,24 +999,196 @@
         <pin num="3" name="VI" type="power_in"/>
       </pins>
     </libpart>
-    <libpart lib="SparkFun-Switches" part="SWITCH-DPDT-PTH-GPI-152-3013">
-      <description>Double-Pole, Double-Throw (DPDT) Switch Double-pole, double-throw switches. &lt;h4&gt;Variant Overview&lt;/h4&gt;&lt;h5&gt;PTH-GPI-152-3013&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;Used on &lt;a href="https://www.sparkfun.com/products/11345"&gt;SparkFun Geiger Counter&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h5&gt;SMD-AY0202&lt;/h5&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/597"&gt;Surface Mount DPDT Switch&lt;/a&gt; (COM-00597)&lt;/li&gt;&lt;li&gt;Used on e.g. &lt;a href="https://www.sparkfun.com/products/12049"&gt;LilyPad Arduino USB - ATmega32U4 Board&lt;/a&gt;&lt;/ul&gt;</description>
+    <libpart lib="Regulator_Switching" part="LM25085MM">
+      <description>42V Constant On-Time PFET Buck Switching Controller, MSOP-8</description>
+      <docs>http://www.ti.com/lit/ds/symlink/lm25085.pdf</docs>
       <footprints>
-        <fp>*SWITCH_DPDT_PTH_GPI-152-3013*</fp>
+        <fp>MSOP*3x3mm*P0.65mm*</fp>
       </footprints>
       <fields>
-        <field name="Reference">S</field>
-        <field name="Value">SWITCH-DPDT-PTH-GPI-152-3013</field>
-        <field name="Footprint">SWITCH_DPDT_PTH_GPI-152-3013</field>
-        <field name="Field4">SWCH-10554</field>
+        <field name="Reference">U</field>
+        <field name="Value">LM25085MM</field>
+        <field name="Footprint">Package_SO:MSOP-8_3x3mm_P0.65mm</field>
       </fields>
       <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-        <pin num="5" name="5" type="BiDi"/>
-        <pin num="6" name="6" type="BiDi"/>
+        <pin num="1" name="ADJ" type="input"/>
+        <pin num="2" name="RT" type="input"/>
+        <pin num="3" name="FB" type="input"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="ISEN" type="input"/>
+        <pin num="6" name="PGATE" type="output"/>
+        <pin num="7" name="VCC" type="power_out"/>
+        <pin num="8" name="VIN" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Transistor_FET" part="BSS138">
+      <aliases>
+        <alias>2N7002</alias>
+        <alias>2N7002E</alias>
+        <alias>2N7002H</alias>
+        <alias>2N7002K</alias>
+        <alias>BS170F</alias>
+        <alias>BS870</alias>
+        <alias>BSN20</alias>
+        <alias>BSS123</alias>
+        <alias>BSS127S</alias>
+        <alias>DMG2302U</alias>
+        <alias>DMG3402L</alias>
+        <alias>DMG3404L</alias>
+        <alias>DMG3406L</alias>
+        <alias>DMG3414U</alias>
+        <alias>DMG3418L</alias>
+        <alias>DMN10H220L</alias>
+        <alias>DMN10H700S</alias>
+        <alias>DMN13H750S</alias>
+        <alias>DMN2041L</alias>
+        <alias>DMN2050L</alias>
+        <alias>DMN2056U</alias>
+        <alias>DMN2058U</alias>
+        <alias>DMN2075U</alias>
+        <alias>DMN2230U</alias>
+        <alias>DMN24H11DS</alias>
+        <alias>DMN24H3D5L</alias>
+        <alias>DMN3042L</alias>
+        <alias>DMN3051L</alias>
+        <alias>DMN30H4D0L</alias>
+        <alias>DMN3110S</alias>
+        <alias>DMN3150L</alias>
+        <alias>DMN3300U</alias>
+        <alias>DMN3404L</alias>
+        <alias>DMN6075S</alias>
+        <alias>DMN6140L</alias>
+        <alias>DMN67D7L</alias>
+        <alias>DMN67D8L</alias>
+        <alias>MMBF170</alias>
+        <alias>VN10LF</alias>
+        <alias>ZVN3306F</alias>
+        <alias>ZVN3310F</alias>
+        <alias>ZVN3320F</alias>
+        <alias>ZVN4106F</alias>
+        <alias>ZXM61N02F</alias>
+        <alias>ZXM61N03F</alias>
+        <alias>ZXMN10A07F</alias>
+        <alias>ZXMN2A01F</alias>
+        <alias>ZXMN2A14F</alias>
+        <alias>ZXMN2B01F</alias>
+        <alias>ZXMN2B14FH</alias>
+        <alias>ZXMN2F30FH</alias>
+        <alias>ZXMN2F34FH</alias>
+        <alias>ZXMN3A01F</alias>
+        <alias>ZXMN3A14F</alias>
+        <alias>ZXMN3B01F</alias>
+        <alias>ZXMN3B14F</alias>
+        <alias>ZXMN3F30FH</alias>
+        <alias>ZXMN6A07F</alias>
+        <alias>IRLML0030</alias>
+        <alias>IRLML2060</alias>
+        <alias>TSM2302CX</alias>
+        <alias>AO3400A</alias>
+      </aliases>
+      <description>50V Vds, 0.22A Id, N-Channel MOSFET, SOT-23</description>
+      <docs>https://www.onsemi.com/pub/Collateral/BSS138-D.PDF</docs>
+      <footprints>
+        <fp>SOT?23*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">BSS138</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="blueled-rescue" part="ATmega328P-AU-MCU_Microchip_ATmega">
+      <footprints>
+        <fp>TQFP*7x7mm*P0.8mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATmega328P-AU-MCU_Microchip_ATmega</field>
+        <field name="Footprint">Package_QFP:TQFP-32_7x7mm_P0.8mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="PD3" type="BiDi"/>
+        <pin num="2" name="PD4" type="BiDi"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="VCC" type="power_in"/>
+        <pin num="5" name="GND" type="passive"/>
+        <pin num="6" name="VCC" type="passive"/>
+        <pin num="7" name="XTAL1/PB6" type="BiDi"/>
+        <pin num="8" name="XTAL2/PB7" type="BiDi"/>
+        <pin num="9" name="PD5" type="BiDi"/>
+        <pin num="10" name="PD6" type="BiDi"/>
+        <pin num="11" name="PD7" type="BiDi"/>
+        <pin num="12" name="PB0" type="BiDi"/>
+        <pin num="13" name="PB1" type="BiDi"/>
+        <pin num="14" name="PB2" type="BiDi"/>
+        <pin num="15" name="PB3" type="BiDi"/>
+        <pin num="16" name="PB4" type="BiDi"/>
+        <pin num="17" name="PB5" type="BiDi"/>
+        <pin num="18" name="AVCC" type="power_in"/>
+        <pin num="19" name="ADC6" type="input"/>
+        <pin num="20" name="AREF" type="passive"/>
+        <pin num="21" name="GND" type="passive"/>
+        <pin num="22" name="ADC7" type="input"/>
+        <pin num="23" name="PC0" type="BiDi"/>
+        <pin num="24" name="PC1" type="BiDi"/>
+        <pin num="25" name="PC2" type="BiDi"/>
+        <pin num="26" name="PC3" type="BiDi"/>
+        <pin num="27" name="PC4" type="BiDi"/>
+        <pin num="28" name="PC5" type="BiDi"/>
+        <pin num="29" name="~RESET~/PC6" type="BiDi"/>
+        <pin num="30" name="PD0" type="BiDi"/>
+        <pin num="31" name="PD1" type="BiDi"/>
+        <pin num="32" name="PD2" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="blueled-rescue" part="CP1-Device">
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP1-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="blueled-rescue" part="Jumper_NC_Small-Device">
+      <footprints>
+        <fp>SolderJumper*Bridged*</fp>
+        <fp>Jumper*</fp>
+        <fp>TestPoint*2Pads*</fp>
+        <fp>TestPoint*Bridge*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">JP</field>
+        <field name="Value">Jumper_NC_Small-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="blueled-rescue" part="L_Core_Iron-Device">
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L_Core_Iron-Device</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
       </pins>
     </libpart>
     <libpart lib="blueled-rescue" part="MOUDLE-BLUETOOTH-HC-05(34P-27X13MM)-MOUDLE-BLUETOOTH-HC-05_34P-27X13MM_">
@@ -718,6 +1261,25 @@
         <pin num="3" name="~" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="blueled-rescue" part="SWITCH-DPDT-PTH-GPI-152-3013-SparkFun-Switches">
+      <footprints>
+        <fp>*SWITCH_DPDT_PTH_GPI-152-3013*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">SWITCH-DPDT-PTH-GPI-152-3013-SparkFun-Switches</field>
+        <field name="Footprint">SWITCH_DPDT_PTH_GPI-152-3013</field>
+        <field name="Field4">SWCH-10554</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+        <pin num="5" name="5" type="BiDi"/>
+        <pin num="6" name="6" type="BiDi"/>
+      </pins>
+    </libpart>
   </libparts>
   <libraries>
     <library logical="Connector">
@@ -729,8 +1291,11 @@
     <library logical="Device">
       <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Device.lib</uri>
     </library>
-    <library logical="MCU_Microchip_ATmega">
-      <uri>/home/alberand/Documents/KiCAD/kicad-symbols/MCU_Microchip_ATmega.lib</uri>
+    <library logical="Diode">
+      <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Diode.lib</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Mechanical.lib</uri>
     </library>
     <library logical="Memory_Flash">
       <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Memory_Flash.lib</uri>
@@ -738,275 +1303,371 @@
     <library logical="Regulator_Linear">
       <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Regulator_Linear.lib</uri>
     </library>
-    <library logical="SparkFun-Switches">
-      <uri>/home/alberand/Documents/KiCAD/SparkFun-KiCad-Libraries/Libraries/SparkFun-Switches.lib</uri>
+    <library logical="Regulator_Switching">
+      <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Regulator_Switching.lib</uri>
+    </library>
+    <library logical="Transistor_FET">
+      <uri>/home/alberand/Documents/KiCAD/kicad-symbols/Transistor_FET.lib</uri>
     </library>
     <library logical="blueled-rescue">
       <uri>/home/alberand/Projects/blueled/hw/blueled-rescue.lib</uri>
     </library>
   </libraries>
   <nets>
-    <net code="1" name="/+3V3">
-      <node ref="U1" pin="18"/>
-      <node ref="U1" pin="20"/>
-      <node ref="C3" pin="2"/>
-      <node ref="J3" pin="4"/>
-      <node ref="R2" pin="1"/>
-      <node ref="U3" pin="2"/>
-      <node ref="D3" pin="2"/>
-      <node ref="D2" pin="2"/>
-      <node ref="U4" pin="8"/>
-      <node ref="R4" pin="1"/>
-      <node ref="C4" pin="1"/>
-      <node ref="U1" pin="4"/>
-      <node ref="U1" pin="6"/>
-      <node ref="C2" pin="2"/>
-      <node ref="R1" pin="1"/>
-      <node ref="R7" pin="2"/>
-      <node ref="Q2" pin="1"/>
+    <net code="1" name="Net-(D1-Pad2)">
+      <node ref="R2" pin="2"/>
+      <node ref="D1" pin="2"/>
     </net>
-    <net code="2" name="/VIN">
-      <node ref="U3" pin="3"/>
-      <node ref="C1" pin="1"/>
-      <node ref="J2" pin="1"/>
-      <node ref="Q1" pin="1"/>
-    </net>
-    <net code="3" name="Net-(Q2-Pad2)">
-      <node ref="Q2" pin="2"/>
-      <node ref="R5" pin="2"/>
-    </net>
-    <net code="4" name="/RESET">
-      <node ref="U1" pin="29"/>
-      <node ref="J3" pin="3"/>
-      <node ref="SW2" pin="1"/>
-      <node ref="R1" pin="2"/>
-    </net>
-    <net code="5" name="GND">
-      <node ref="J1" pin="2"/>
-      <node ref="C1" pin="2"/>
-      <node ref="J2" pin="3"/>
-      <node ref="U2" pin="21"/>
-      <node ref="SW2" pin="2"/>
-      <node ref="U2" pin="22"/>
+    <net code="2" name="GND">
       <node ref="U2" pin="13"/>
+      <node ref="U2" pin="21"/>
       <node ref="U2" pin="14"/>
-      <node ref="J3" pin="6"/>
-      <node ref="X1" pin="2"/>
-      <node ref="D1" pin="1"/>
-      <node ref="C4" pin="2"/>
-      <node ref="U4" pin="4"/>
+      <node ref="U2" pin="22"/>
+      <node ref="J1" pin="2"/>
+      <node ref="J2" pin="3"/>
+      <node ref="C3" pin="1"/>
+      <node ref="C10" pin="2"/>
+      <node ref="D5" pin="2"/>
+      <node ref="SW2" pin="2"/>
       <node ref="U1" pin="3"/>
       <node ref="U1" pin="21"/>
-      <node ref="C3" pin="1"/>
-      <node ref="C2" pin="1"/>
-      <node ref="U3" pin="1"/>
-      <node ref="S1" pin="4"/>
       <node ref="U1" pin="5"/>
+      <node ref="U4" pin="4"/>
+      <node ref="X1" pin="2"/>
+      <node ref="H1" pin="1"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="H2" pin="1"/>
+      <node ref="H3" pin="1"/>
+      <node ref="H4" pin="1"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="J3" pin="6"/>
+      <node ref="D4" pin="1"/>
+      <node ref="D6" pin="1"/>
+      <node ref="J4" pin="1"/>
+      <node ref="S1" pin="6"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="U5" pin="4"/>
+      <node ref="R9" pin="2"/>
+      <node ref="D1" pin="1"/>
+      <node ref="U3" pin="1"/>
     </net>
-    <net code="6" name="Net-(D2-Pad1)">
-      <node ref="R3" pin="1"/>
-      <node ref="D2" pin="1"/>
+    <net code="3" name="+3V3">
+      <node ref="R1" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="D2" pin="2"/>
+      <node ref="U3" pin="2"/>
+      <node ref="U1" pin="6"/>
+      <node ref="U1" pin="4"/>
+      <node ref="U4" pin="8"/>
+      <node ref="D3" pin="2"/>
+      <node ref="Q3" pin="1"/>
+      <node ref="R16" pin="1"/>
+      <node ref="J3" pin="4"/>
+      <node ref="U1" pin="20"/>
+      <node ref="R7" pin="2"/>
+      <node ref="U1" pin="18"/>
+      <node ref="R4" pin="1"/>
+      <node ref="Q2" pin="1"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C4" pin="1"/>
+      <node ref="C3" pin="2"/>
     </net>
-    <net code="7" name="/HC-DISCNCT">
+    <net code="4" name="Net-(S1-Pad4)">
+      <node ref="S1" pin="4"/>
+    </net>
+    <net code="5" name="Net-(S1-Pad1)">
+      <node ref="S1" pin="1"/>
+    </net>
+    <net code="6" name="Net-(S1-Pad2)">
+      <node ref="S1" pin="2"/>
+    </net>
+    <net code="7" name="Net-(S1-Pad3)">
+      <node ref="S1" pin="3"/>
+    </net>
+    <net code="8" name="/SHUTDOWN">
+      <node ref="S1" pin="5"/>
+      <node ref="R8" pin="2"/>
+      <node ref="U5" pin="2"/>
+    </net>
+    <net code="9" name="/SCK">
+      <node ref="U4" pin="6"/>
+      <node ref="U1" pin="17"/>
+      <node ref="J3" pin="2"/>
+    </net>
+    <net code="10" name="/MOSI">
+      <node ref="J3" pin="5"/>
+      <node ref="U1" pin="15"/>
+      <node ref="U4" pin="5"/>
+    </net>
+    <net code="11" name="/MISO">
+      <node ref="J3" pin="1"/>
+      <node ref="U4" pin="2"/>
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="12" name="/~CS-FLASH">
+      <node ref="U1" pin="14"/>
+      <node ref="R4" pin="2"/>
+      <node ref="U4" pin="1"/>
+    </net>
+    <net code="13" name="Net-(R7-Pad1)">
+      <node ref="U4" pin="3"/>
+      <node ref="U4" pin="7"/>
+      <node ref="R7" pin="1"/>
+    </net>
+    <net code="14" name="Net-(C11-Pad2)">
+      <node ref="R12" pin="1"/>
+      <node ref="C11" pin="2"/>
+      <node ref="U5" pin="1"/>
+    </net>
+    <net code="15" name="Net-(Q1-Pad1)">
+      <node ref="Q1" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="U5" pin="5"/>
+    </net>
+    <net code="16" name="Net-(C9-Pad2)">
+      <node ref="R9" pin="1"/>
+      <node ref="R10" pin="2"/>
+      <node ref="U5" pin="3"/>
+      <node ref="C9" pin="2"/>
+    </net>
+    <net code="17" name="Net-(C8-Pad2)">
+      <node ref="U5" pin="7"/>
+      <node ref="C8" pin="2"/>
+    </net>
+    <net code="18" name="+5V">
+      <node ref="R17" pin="1"/>
+      <node ref="D6" pin="2"/>
+      <node ref="J2" pin="1"/>
+      <node ref="U3" pin="3"/>
+      <node ref="C9" pin="1"/>
+      <node ref="C1" pin="1"/>
+      <node ref="R10" pin="1"/>
+      <node ref="C12" pin="1"/>
+      <node ref="L1" pin="2"/>
+      <node ref="R15" pin="1"/>
+      <node ref="R14" pin="1"/>
+    </net>
+    <net code="19" name="Net-(U1-Pad23)">
+      <node ref="U1" pin="23"/>
+    </net>
+    <net code="20" name="/DATA">
+      <node ref="D6" pin="3"/>
+      <node ref="J2" pin="2"/>
+      <node ref="Q3" pin="3"/>
+      <node ref="R17" pin="2"/>
+    </net>
+    <net code="21" name="/HC-DISCNCT">
       <node ref="U1" pin="9"/>
       <node ref="U2" pin="23"/>
     </net>
-    <net code="8" name="/HC-ATMODE">
-      <node ref="U1" pin="1"/>
-      <node ref="U2" pin="34"/>
-    </net>
-    <net code="9" name="Net-(U2-Pad32)">
-      <node ref="U2" pin="32"/>
-    </net>
-    <net code="10" name="/RX">
-      <node ref="R3" pin="2"/>
-      <node ref="U2" pin="1"/>
-      <node ref="U1" pin="30"/>
-    </net>
-    <net code="11" name="/HC-STATE">
-      <node ref="U1" pin="32"/>
-      <node ref="U2" pin="24"/>
-    </net>
-    <net code="12" name="/TX">
-      <node ref="R6" pin="2"/>
-      <node ref="U2" pin="2"/>
-      <node ref="U1" pin="31"/>
-    </net>
-    <net code="13" name="Net-(U2-Pad29)">
-      <node ref="U2" pin="29"/>
-    </net>
-    <net code="14" name="Net-(U2-Pad3)">
-      <node ref="U2" pin="3"/>
-    </net>
-    <net code="15" name="Net-(U2-Pad4)">
-      <node ref="U2" pin="4"/>
-    </net>
-    <net code="16" name="Net-(U2-Pad5)">
-      <node ref="U2" pin="5"/>
-    </net>
-    <net code="17" name="Net-(U2-Pad6)">
-      <node ref="U2" pin="6"/>
-    </net>
-    <net code="18" name="Net-(U2-Pad7)">
-      <node ref="U2" pin="7"/>
-    </net>
-    <net code="19" name="Net-(U2-Pad8)">
-      <node ref="U2" pin="8"/>
-    </net>
-    <net code="20" name="Net-(U2-Pad9)">
-      <node ref="U2" pin="9"/>
-    </net>
-    <net code="21" name="Net-(U2-Pad10)">
-      <node ref="U2" pin="10"/>
-    </net>
-    <net code="22" name="Net-(U2-Pad33)">
-      <node ref="U2" pin="33"/>
-    </net>
-    <net code="23" name="Net-(U2-Pad31)">
-      <node ref="U2" pin="31"/>
-    </net>
-    <net code="24" name="Net-(U2-Pad30)">
-      <node ref="U2" pin="30"/>
-    </net>
-    <net code="25" name="Net-(U2-Pad28)">
-      <node ref="U2" pin="28"/>
-    </net>
-    <net code="26" name="Net-(U2-Pad27)">
-      <node ref="U2" pin="27"/>
-    </net>
-    <net code="27" name="Net-(U2-Pad26)">
-      <node ref="U2" pin="26"/>
-    </net>
-    <net code="28" name="Net-(U2-Pad25)">
-      <node ref="U2" pin="25"/>
-    </net>
-    <net code="29" name="Net-(U2-Pad15)">
-      <node ref="U2" pin="15"/>
-    </net>
-    <net code="30" name="Net-(U2-Pad16)">
-      <node ref="U2" pin="16"/>
-    </net>
-    <net code="31" name="Net-(U2-Pad17)">
-      <node ref="U2" pin="17"/>
-    </net>
-    <net code="32" name="Net-(U2-Pad18)">
-      <node ref="U2" pin="18"/>
-    </net>
-    <net code="33" name="Net-(U2-Pad19)">
-      <node ref="U2" pin="19"/>
-    </net>
-    <net code="34" name="Net-(U2-Pad20)">
-      <node ref="U2" pin="20"/>
-    </net>
-    <net code="35" name="Net-(Q1-Pad3)">
-      <node ref="Q1" pin="3"/>
-      <node ref="S1" pin="5"/>
-    </net>
-    <net code="36" name="Net-(S1-Pad3)">
-      <node ref="S1" pin="3"/>
-    </net>
-    <net code="37" name="Net-(S1-Pad2)">
-      <node ref="S1" pin="2"/>
-    </net>
-    <net code="38" name="Net-(S1-Pad1)">
-      <node ref="S1" pin="1"/>
-    </net>
-    <net code="39" name="/HC-RESET">
-      <node ref="U2" pin="11"/>
-      <node ref="U1" pin="10"/>
-    </net>
-    <net code="40" name="/~HC-POWER-EN">
+    <net code="22" name="/~HC-POWER-EN">
       <node ref="DBG2" pin="1"/>
       <node ref="U1" pin="2"/>
       <node ref="R5" pin="1"/>
     </net>
-    <net code="41" name="Net-(DBG1-Pad1)">
-      <node ref="DBG1" pin="1"/>
-      <node ref="U2" pin="12"/>
-      <node ref="Q2" pin="3"/>
+    <net code="23" name="/HC-ATMODE">
+      <node ref="U2" pin="34"/>
+      <node ref="U1" pin="1"/>
     </net>
-    <net code="42" name="Net-(U1-Pad14)">
-      <node ref="U1" pin="14"/>
+    <net code="24" name="/HC-STATE">
+      <node ref="U1" pin="32"/>
+      <node ref="U2" pin="24"/>
     </net>
-    <net code="43" name="Net-(U1-Pad7)">
-      <node ref="U1" pin="7"/>
-      <node ref="X1" pin="3"/>
+    <net code="25" name="/TX">
+      <node ref="R6" pin="2"/>
+      <node ref="U1" pin="31"/>
+      <node ref="JP2" pin="1"/>
     </net>
-    <net code="44" name="Net-(U1-Pad8)">
-      <node ref="X1" pin="1"/>
-      <node ref="U1" pin="8"/>
+    <net code="26" name="/RX">
+      <node ref="R3" pin="2"/>
+      <node ref="JP1" pin="1"/>
+      <node ref="U1" pin="30"/>
     </net>
-    <net code="45" name="Net-(D3-Pad1)">
-      <node ref="R6" pin="1"/>
-      <node ref="D3" pin="1"/>
-    </net>
-    <net code="46" name="Net-(U1-Pad24)">
-      <node ref="U1" pin="24"/>
-    </net>
-    <net code="47" name="Net-(U1-Pad25)">
-      <node ref="U1" pin="25"/>
-    </net>
-    <net code="48" name="Net-(U1-Pad26)">
-      <node ref="U1" pin="26"/>
-    </net>
-    <net code="49" name="Net-(U1-Pad27)">
-      <node ref="U1" pin="27"/>
-    </net>
-    <net code="50" name="Net-(U1-Pad28)">
-      <node ref="U1" pin="28"/>
-    </net>
-    <net code="51" name="/DATA">
-      <node ref="J2" pin="2"/>
-      <node ref="U1" pin="11"/>
-    </net>
-    <net code="52" name="Net-(U1-Pad23)">
-      <node ref="U1" pin="23"/>
-    </net>
-    <net code="53" name="Net-(D1-Pad2)">
-      <node ref="D1" pin="2"/>
-      <node ref="R2" pin="2"/>
-    </net>
-    <net code="54" name="Net-(U1-Pad22)">
+    <net code="27" name="Net-(U1-Pad22)">
       <node ref="U1" pin="22"/>
     </net>
-    <net code="55" name="Net-(U1-Pad19)">
+    <net code="28" name="Net-(U1-Pad24)">
+      <node ref="U1" pin="24"/>
+    </net>
+    <net code="29" name="Net-(U1-Pad25)">
+      <node ref="U1" pin="25"/>
+    </net>
+    <net code="30" name="Net-(U1-Pad26)">
+      <node ref="U1" pin="26"/>
+    </net>
+    <net code="31" name="Net-(U1-Pad27)">
+      <node ref="U1" pin="27"/>
+    </net>
+    <net code="32" name="Net-(U1-Pad28)">
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="33" name="Net-(R11-Pad1)">
+      <node ref="R11" pin="1"/>
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="34" name="Net-(U1-Pad8)">
+      <node ref="U1" pin="8"/>
+      <node ref="X1" pin="1"/>
+    </net>
+    <net code="35" name="Net-(HRT1-Pad1)">
+      <node ref="U1" pin="13"/>
+      <node ref="HRT1" pin="1"/>
+    </net>
+    <net code="36" name="/HC-RESET">
+      <node ref="U2" pin="11"/>
+      <node ref="U1" pin="10"/>
+    </net>
+    <net code="37" name="Net-(DBG0-Pad1)">
+      <node ref="U1" pin="12"/>
+      <node ref="DBG0" pin="1"/>
+    </net>
+    <net code="38" name="Net-(U1-Pad19)">
       <node ref="U1" pin="19"/>
     </net>
-    <net code="56" name="Net-(U1-Pad13)">
-      <node ref="U1" pin="13"/>
+    <net code="39" name="Net-(Q3-Pad2)">
+      <node ref="Q3" pin="2"/>
+      <node ref="R16" pin="2"/>
+      <node ref="R11" pin="2"/>
     </net>
-    <net code="57" name="Net-(DBG0-Pad1)">
-      <node ref="DBG0" pin="1"/>
-      <node ref="U1" pin="12"/>
+    <net code="40" name="Net-(U1-Pad7)">
+      <node ref="X1" pin="3"/>
+      <node ref="U1" pin="7"/>
     </net>
-    <net code="58" name="/MISO">
-      <node ref="U1" pin="16"/>
-      <node ref="U4" pin="2"/>
-      <node ref="J3" pin="1"/>
+    <net code="41" name="/RESET">
+      <node ref="R1" pin="2"/>
+      <node ref="SW2" pin="1"/>
+      <node ref="J3" pin="3"/>
+      <node ref="U1" pin="29"/>
     </net>
-    <net code="59" name="Net-(R7-Pad1)">
-      <node ref="U4" pin="7"/>
-      <node ref="U4" pin="3"/>
-      <node ref="R7" pin="1"/>
+    <net code="42" name="Net-(U2-Pad15)">
+      <node ref="U2" pin="15"/>
     </net>
-    <net code="60" name="/SCK">
-      <node ref="U4" pin="6"/>
-      <node ref="J3" pin="2"/>
-      <node ref="U1" pin="17"/>
+    <net code="43" name="Net-(U2-Pad16)">
+      <node ref="U2" pin="16"/>
     </net>
-    <net code="61" name="/MOSI">
-      <node ref="U4" pin="5"/>
-      <node ref="U1" pin="15"/>
-      <node ref="J3" pin="5"/>
+    <net code="44" name="Net-(U2-Pad17)">
+      <node ref="U2" pin="17"/>
     </net>
-    <net code="62" name="Net-(R4-Pad2)">
-      <node ref="R4" pin="2"/>
-      <node ref="U4" pin="1"/>
+    <net code="45" name="Net-(U2-Pad18)">
+      <node ref="U2" pin="18"/>
     </net>
-    <net code="63" name="/VINJACK">
-      <node ref="J1" pin="1"/>
+    <net code="46" name="Net-(U2-Pad19)">
+      <node ref="U2" pin="19"/>
+    </net>
+    <net code="47" name="Net-(U2-Pad20)">
+      <node ref="U2" pin="20"/>
+    </net>
+    <net code="48" name="Net-(U2-Pad25)">
+      <node ref="U2" pin="25"/>
+    </net>
+    <net code="49" name="Net-(U2-Pad26)">
+      <node ref="U2" pin="26"/>
+    </net>
+    <net code="50" name="Net-(U2-Pad27)">
+      <node ref="U2" pin="27"/>
+    </net>
+    <net code="51" name="Net-(U2-Pad28)">
+      <node ref="U2" pin="28"/>
+    </net>
+    <net code="52" name="Net-(U2-Pad29)">
+      <node ref="U2" pin="29"/>
+    </net>
+    <net code="53" name="Net-(U2-Pad3)">
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="54" name="Net-(U2-Pad6)">
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="55" name="Net-(U2-Pad5)">
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="56" name="Net-(U2-Pad4)">
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="57" name="Net-(U2-Pad30)">
+      <node ref="U2" pin="30"/>
+    </net>
+    <net code="58" name="Net-(U2-Pad10)">
+      <node ref="U2" pin="10"/>
+    </net>
+    <net code="59" name="Net-(JP1-Pad2)">
+      <node ref="U2" pin="1"/>
+      <node ref="JP1" pin="2"/>
+    </net>
+    <net code="60" name="Net-(JP2-Pad2)">
+      <node ref="U2" pin="2"/>
+      <node ref="JP2" pin="2"/>
+    </net>
+    <net code="61" name="Net-(U2-Pad9)">
+      <node ref="U2" pin="9"/>
+    </net>
+    <net code="62" name="Net-(U2-Pad31)">
+      <node ref="U2" pin="31"/>
+    </net>
+    <net code="63" name="Net-(U2-Pad32)">
+      <node ref="U2" pin="32"/>
+    </net>
+    <net code="64" name="Net-(U2-Pad33)">
+      <node ref="U2" pin="33"/>
+    </net>
+    <net code="65" name="Net-(U2-Pad7)">
+      <node ref="U2" pin="7"/>
+    </net>
+    <net code="66" name="Net-(U2-Pad8)">
+      <node ref="U2" pin="8"/>
+    </net>
+    <net code="67" name="Net-(D3-Pad1)">
+      <node ref="D3" pin="1"/>
+      <node ref="R6" pin="1"/>
+    </net>
+    <net code="68" name="Net-(D2-Pad1)">
+      <node ref="R3" pin="1"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="69" name="Net-(C10-Pad1)">
+      <node ref="C10" pin="1"/>
+      <node ref="R14" pin="2"/>
+      <node ref="C13" pin="1"/>
+    </net>
+    <net code="70" name="Net-(D5-Pad1)">
       <node ref="Q1" pin="2"/>
-      <node ref="S1" pin="6"/>
+      <node ref="L1" pin="1"/>
+      <node ref="D5" pin="1"/>
+    </net>
+    <net code="71" name="Net-(Q1-Pad3)">
+      <node ref="U5" pin="6"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="72" name="Net-(D4-Pad2)">
+      <node ref="R15" pin="2"/>
+      <node ref="D4" pin="2"/>
+    </net>
+    <net code="73" name="Net-(Q2-Pad2)">
+      <node ref="R5" pin="2"/>
+      <node ref="Q2" pin="2"/>
+    </net>
+    <net code="74" name="Net-(C5-Pad1)">
+      <node ref="C5" pin="1"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="DBG1" pin="1"/>
+      <node ref="U2" pin="12"/>
+    </net>
+    <net code="75" name="/VINJACK">
+      <node ref="J1" pin="1"/>
+      <node ref="C11" pin="1"/>
+      <node ref="R12" pin="2"/>
+      <node ref="C7" pin="1"/>
+      <node ref="R8" pin="1"/>
+      <node ref="J4" pin="2"/>
+      <node ref="R13" pin="2"/>
+      <node ref="U5" pin="8"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C8" pin="1"/>
     </net>
   </nets>
 </export>

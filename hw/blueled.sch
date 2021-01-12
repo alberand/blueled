@@ -290,7 +290,7 @@ Connection ~ 2300 5300
 Wire Wire Line
 	2300 5300 2450 5300
 $Comp
-L Device:Jumper_NC_Small JP1
+L blueled-rescue:Jumper_NC_Small-Device JP1
 U 1 1 5EA9BCB4
 P 2250 4200
 F 0 "JP1" H 2400 4250 50  0000 C CNN
@@ -301,7 +301,7 @@ F 3 "~" H 2250 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Jumper_NC_Small JP2
+L blueled-rescue:Jumper_NC_Small-Device JP2
 U 1 1 5EAABDED
 P 2250 4300
 F 0 "JP2" H 2400 4350 50  0000 C CNN
@@ -610,7 +610,7 @@ HC-05 Bluetooth
 Text Notes 800  2950 0    89   ~ 0
 LED strip & MCU \n     POWER
 $Comp
-L Device:CP1 C12
+L blueled-rescue:CP1-Device C12
 U 1 1 6068EAC3
 P 5800 4250
 F 0 "C12" V 6030 4160 50  0000 L CNN
@@ -647,7 +647,7 @@ Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
 $Comp
-L Device:CP1 C6
+L blueled-rescue:CP1-Device C6
 U 1 1 5FD6E875
 P 1625 1250
 F 0 "C6" H 1725 1300 50  0000 L CNN
@@ -756,7 +756,7 @@ Wire Wire Line
 Wire Wire Line
 	6000 1550 6275 1550
 $Comp
-L Device:CP1 C13
+L blueled-rescue:CP1-Device C13
 U 1 1 5FEE1E45
 P 6275 1725
 F 0 "C13" H 6300 1825 50  0000 L CNN
@@ -783,7 +783,7 @@ Wire Wire Line
 Wire Wire Line
 	4200 2550 4750 2550
 $Comp
-L Device:CP1 C1
+L blueled-rescue:CP1-Device C1
 U 1 1 5EA4B8BA
 P 3650 2300
 F 0 "C1" H 3765 2346 50  0000 L CNN
@@ -976,7 +976,7 @@ F 5 "RC0805FR-0710KL" H 5650 1400 50  0001 C CNN "Manuf. Part"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP1 C8
+L blueled-rescue:CP1-Device C8
 U 1 1 5FE6F1B7
 P 3450 850
 F 0 "C8" H 3325 1050 50  0000 L CNN
@@ -1146,7 +1146,7 @@ F 3 "" H 6000 1975 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP1 C10
+L blueled-rescue:CP1-Device C10
 U 1 1 5FE853F6
 P 6000 1725
 F 0 "C10" H 6025 1825 50  0000 L CNN
@@ -1159,7 +1159,7 @@ F 5 "C3225X5R0J476MT000N" H 6000 1725 50  0001 C CNN "Manuf. Part"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:L_Core_Iron L1
+L blueled-rescue:L_Core_Iron-Device L1
 U 1 1 5FE6D6CD
 P 5000 1200
 F 0 "L1" V 5225 1200 50  0000 C CNN
@@ -1835,7 +1835,7 @@ F 3 "" H 8250 4250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MCU_Microchip_ATmega:ATmega328P-AU U1
+L blueled-rescue:ATmega328P-AU-MCU_Microchip_ATmega U1
 U 1 1 5CAE668A
 P 8250 2650
 F 0 "U1" H 8250 1700 50  0000 C CNN
