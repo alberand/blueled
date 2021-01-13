@@ -439,69 +439,32 @@ Wire Wire Line
 	1850 5800 1850 5700
 Wire Wire Line
 	1850 5400 1850 5300
-Text Label 1400 4500 0    50   ~ 0
+Text Label 1400 5000 2    50   ~ 0
 ~HC-POWER-EN
 $Comp
 L Device:R_Small R5
 U 1 1 5E8E07EF
-P 1400 4800
-F 0 "R5" H 1459 4846 50  0000 L CNN
-F 1 "1k" H 1459 4755 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1400 4800 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 1400 4800 50  0001 C CNN
-F 4 "lcsc.com" H 1400 4800 50  0001 C CNN "Distributor"
-F 5 "RC0805FR-071KL" H 1400 4800 50  0001 C CNN "Manuf. Part"
-	1    1400 4800
+P 1500 4800
+F 0 "R5" H 1559 4846 50  0000 L CNN
+F 1 "1k" H 1559 4755 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1500 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1810010118_YAGEO-RC0805FR-071KL_C95781.pdf" H 1500 4800 50  0001 C CNN
+F 4 "lcsc.com" H 1500 4800 50  0001 C CNN "Distributor"
+F 5 "RC0805FR-071KL" H 1500 4800 50  0001 C CNN "Manuf. Part"
+	1    1500 4800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1400 4500 1400 4600
-Wire Wire Line
-	1400 4900 1400 5000
-Wire Wire Line
-	1400 4600 1400 4700
-Connection ~ 1400 4600
 $Comp
 L Connector:TestPoint DBG2
 U 1 1 5EAA6065
-P 1400 4600
-F 0 "DBG2" V 1400 4800 50  0000 L CNN
-F 1 "DBG-HC-RST" V 1300 4800 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1600 4600 50  0001 C CNN
-F 3 "~" H 1600 4600 50  0001 C CNN
-	1    1400 4600
-	0    -1   -1   0   
+P 1500 5000
+F 0 "DBG2" V 1500 5200 50  0000 L CNN
+F 1 "DBG-HC-RST" V 1400 5200 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1700 5000 50  0001 C CNN
+F 3 "~" H 1700 5000 50  0001 C CNN
+	1    1500 5000
+	-1   0    0    1   
 $EndComp
-$Comp
-L Device:Q_PNP_EBC Q2
-U 1 1 5E8AAEF6
-P 1400 5200
-F 0 "Q2" V 1600 5150 50  0000 L CNN
-F 1 "Q_PNP_EBC" V 1700 4850 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-323_SC-70_Handsoldering" H 1600 5300 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/szlcsc/1808280000_ROHM-Semicon-UMT2907A_C122972.pdf" H 1400 5200 50  0001 C CNN
-F 4 "lcsc.com" H 1400 5200 50  0001 C CNN "Distributor"
-F 5 "UMT2907A" H 1400 5200 50  0001 C CNN "Manuf. Part"
-	1    1400 5200
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	1100 5300 1100 5200
-$Comp
-L power:+3.3V #PWR02
-U 1 1 5EB1E141
-P 1100 5200
-F 0 "#PWR02" H 1100 5050 50  0001 C CNN
-F 1 "+3.3V" H 1115 5373 50  0000 C CNN
-F 2 "" H 1100 5200 50  0001 C CNN
-F 3 "" H 1100 5200 50  0001 C CNN
-	1    1100 5200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1100 5300 1200 5300
-Wire Wire Line
-	1600 5300 1850 5300
 $Comp
 L Diode:BAS40-04 D6
 U 1 1 60075247
@@ -642,8 +605,8 @@ Buck capacitor near LED strinp terminal \nblock to smooth output voltage\n
 Connection ~ 1850 5300
 Wire Wire Line
 	1850 5300 2300 5300
-Text Notes 750  5900 0    50   ~ 0
-Transistor is used to \nreset HC-05\nIt's need to switch to \nAT mode
+Text Notes 750  5950 0    50   ~ 0
+Circuit for\nresetting of HC-05\nIt's need to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
 $Comp
@@ -1566,7 +1529,7 @@ P 9890 3750
 F 0 "Q3" V 10139 3750 50  0000 C CNN
 F 1 "BSS138" V 10230 3750 50  0000 C CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 10090 3675 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/BS/BSS138.pdf" H 9890 3750 50  0001 L CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/AnBon-BSS138_C193019.pdf" H 9890 3750 50  0001 L CNN
 F 4 "lcsc.com" H 9890 3750 50  0001 C CNN "Distributor"
 F 5 "BSS138" H 9890 3750 50  0001 C CNN "Manuf. Part"
 	1    9890 3750
@@ -1860,4 +1823,52 @@ F 3 "~" H 10940 6875 50  0001 C CNN
 	1    10940 6875
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:Q_PMOS_GSD Q4
+U 1 1 600573C9
+P 1750 5000
+F 0 "Q4" V 2000 4850 50  0000 L CNN
+F 1 "Q_PMOS_GSD" V 2100 4550 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 1950 5100 50  0001 C CNN
+F 3 "" H 1750 5000 50  0001 C CNN
+F 4 "lcsc.com" H 1750 5000 50  0001 C CNN "Distributor"
+F 5 "" H 1750 5000 50  0001 C CNN "Manuf. Part"
+	1    1750 5000
+	1    0    0    1   
+$EndComp
+$Comp
+L power:+3.3V #PWR0113
+U 1 1 6008BB44
+P 1850 4700
+F 0 "#PWR0113" H 1850 4550 50  0001 C CNN
+F 1 "+3.3V" H 1865 4873 50  0000 C CNN
+F 2 "" H 1850 4700 50  0001 C CNN
+F 3 "" H 1850 4700 50  0001 C CNN
+	1    1850 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 4700 1850 4800
+Wire Wire Line
+	1850 5300 1850 5200
+Wire Wire Line
+	1550 5000 1500 5000
+Connection ~ 1500 5000
+Wire Wire Line
+	1500 5000 1400 5000
+Wire Wire Line
+	1500 5000 1500 4900
+$Comp
+L power:+3.3V #PWR0114
+U 1 1 60117B41
+P 1500 4600
+F 0 "#PWR0114" H 1500 4450 50  0001 C CNN
+F 1 "+3.3V" H 1515 4773 50  0000 C CNN
+F 2 "" H 1500 4600 50  0001 C CNN
+F 3 "" H 1500 4600 50  0001 C CNN
+	1    1500 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 4600 1500 4700
 $EndSCHEMATC
