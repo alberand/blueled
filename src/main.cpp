@@ -42,12 +42,13 @@
 // #define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
 // #define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
-#define MAX_LEDS 10
+#define MAX_LEDS 256
 
 #define START_COMM 0xAA
 #define ACK 0xBB
 #define COMM_INIT_MSG 0x20
 #define COMM_SET_BRIGHT_MSG 0x21
+#define COMM_SET_SPEED_MSG 0x22
 
 /*! Communication state */
 static bool in_comm = false;
@@ -71,6 +72,7 @@ static struct state
     uint16_t iteration;
     uint16_t num_leds;
     uint8_t brightness;
+    uint16_t speed;
     uint8_t animation;
     struct animation_config* config;
 } state_t;
@@ -110,6 +112,14 @@ bool state_check(const struct state* state_t)
             // valid_id = true;
         // }
     // }
+    if(state_t->speed < SPEED_MIN || state_t->speed > SPEED_MAX){
+        return false;
+    }
+
+    if(state_t->brightness < BRIGHTNESS_MIN || state_t->brightness > BRIGHTNESS_MAX){
+        return false;
+    }
+
     if(!valid_id){
         return false;
     }
@@ -123,11 +133,9 @@ bool state_check(const struct state* state_t)
 
 void state_print(const struct state* state_t)
 {
-    // print("ok (anim: %X)", state_t->animation);
     simpap_send(&simpap_ctx, (uint8_t*)"ok (anim)", 9);
 }
 
-// SoftwareSerial toSlave(10, 11);
 void simpap_send_char(uint8_t ch)
 {
     Serial.write(ch);
@@ -171,8 +179,26 @@ void simpap_handler(uint8_t* data, uint8_t len)
         return;
     }
 
+    if(cmd == COMM_SET_SPEED_MSG) {
+        uint32_t speed = get_u32((data + PAYLOAD_OFFSET));
+
+        if(speed > 255){
+            speed = 255;
+        }
+
+        state_t.speed = static_cast<uint16_t>(speed);
+        ws2812fx.setSpeed(state_t.speed);
+
+        state_save(&state_t);
+
+        return;
+    }
+
     // Set animation (animation with parameters)
     if(true) {
+        uint8_t params_num = get_u8(data + PARAMS_NUM_OFFSET);
+        uint32_t value = get_u32((data + PAYLOAD_OFFSET));
+        ws2812fx.setMode((uint8_t)value);
         /* Apply animation */
         // for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
             // if(configs[i]->id != cmd) {
@@ -203,7 +229,8 @@ bool state_update(struct state* state_t)
 {
     state_t->iteration++;
 
-    // ledfx_effect(state_t->animation, leds, state_t->num_leds);
+    ws2812fx.service();
+
     return true;
 }
 
@@ -307,18 +334,18 @@ void setup()
 	cli();//stop interrupts
 
 	// Configure main cycle timer
-	/*TCCR1A = 0;// set entire TCCR1A register to 0
+	TCCR1A = 0;// set entire TCCR1A register to 0
  	TCCR1B = 0;// same for TCCR1B
  	TCNT1  = 0;//initialize counter value to 0
  	// set compare match register for 1hz increments
     // 28 Hz ~ 35 ms
- 	OCR1A = 557;// = (16*10^6) / (28*1024) - 1 (must be <65536)
+ 	OCR1A = 323;// = (16*10^6) / (28*1024) - 1 (must be <65536)
  	// turn on CTC mode
  	TCCR1B |= (1 << WGM12);
  	// Set CS10 and CS12 bits for 1024 prescaler
  	TCCR1B |= (1 << CS12) | (1 << CS10);  
  	// enable timer compare interrupt
- 	TIMSK1 |= (1 << OCIE1A);*/
+ 	TIMSK1 |= (1 << OCIE1A);
 
 	// Configure Watchdog
 	wdt_disable();
@@ -329,10 +356,11 @@ void setup()
 	sei(); // allow interrupts
 }
 
-/*ISR(TIMER1_COMPA_vect){
+ISR(TIMER1_COMPA_vect){
     update = true;
     heart_state = !heart_state;
-}*/
+    ws2812fx.trigger();
+}
 
 void loop()
 {
@@ -368,12 +396,9 @@ void loop()
 
     /* LED update */
     if(update and !in_comm){
-        if(state_update(&state_t)) {
-            ;
-        }
+        state_update(&state_t);
         update = false;
     }
-    ws2812fx.service();
 
     stop = millis();
 }
