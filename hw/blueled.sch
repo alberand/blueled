@@ -439,8 +439,6 @@ Wire Wire Line
 	1850 5800 1850 5700
 Wire Wire Line
 	1850 5400 1850 5300
-Text Label 1400 5000 2    50   ~ 0
-~HC-POWER-EN
 $Comp
 L Device:R_Small R5
 U 1 1 5E8E07EF
@@ -606,7 +604,7 @@ Connection ~ 1850 5300
 Wire Wire Line
 	1850 5300 2300 5300
 Text Notes 750  5950 0    50   ~ 0
-Circuit for\nresetting of HC-05\nIt's need to switch to \nAT mode
+Circuit for\nresetting HC-05\nIt's needed to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
 $Comp
@@ -1830,9 +1828,9 @@ P 1750 5000
 F 0 "Q4" V 2000 4850 50  0000 L CNN
 F 1 "Q_PMOS_GSD" V 2100 4550 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 1950 5100 50  0001 C CNN
-F 3 "" H 1750 5000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/1912111437_UMW-Youtai-Semiconductor-Co-Ltd-IRLML6402_C347504.pdf" H 1750 5000 50  0001 C CNN
 F 4 "lcsc.com" H 1750 5000 50  0001 C CNN "Distributor"
-F 5 "" H 1750 5000 50  0001 C CNN "Manuf. Part"
+F 5 "IRLML6402" H 1750 5000 50  0001 C CNN "Manuf. Part"
 	1    1750 5000
 	1    0    0    1   
 $EndComp
@@ -1871,4 +1869,6 @@ F 3 "" H 1500 4600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1500 4600 1500 4700
+Text Label 1400 5000 2    50   ~ 0
+~HC-POWER-EN
 $EndSCHEMATC

@@ -8,7 +8,7 @@ Title "Blueled - LED strip controller"
 Date "2020-11-07"
 Rev "3.0"
 Comp "alberand"
-Comment1 "Simple bluetooth controller based around cheap bluetooth module HC-05"
+Comment1 "Bluetooth controller based on cheap bluetooth module HC-05"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -606,7 +606,7 @@ Connection ~ 1850 5300
 Wire Wire Line
 	1850 5300 2300 5300
 Text Notes 750  5950 0    50   ~ 0
-Circuit for\nresetting of HC-05\nIt's need to switch to \nAT mode
+Circuit for\nresetting HC-05\nIt's needed to switch to \nAT mode
 Text Notes 5350 3600 0    50   ~ 0
 XY2500F-B-5.08-3P \nfor LED strip\n
 $Comp
