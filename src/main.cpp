@@ -43,7 +43,7 @@
 #define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
 #define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
-#define MAX_LEDS 10
+#define MAX_LEDS 256
 
 #define START_COMM 0xAA
 #define ACK 0xBB
@@ -110,14 +110,6 @@ bool state_check(const struct state* state_t)
         if(state_t->animation == configs[i]->id){
             valid_id = true;
         }
-    }
-
-    if(state_t->speed < SPEED_MIN || state_t->speed > SPEED_MAX){
-        return false;
-    }
-
-    if(state_t->brightness < BRIGHTNESS_MIN || state_t->brightness > BRIGHTNESS_MAX){
-        return false;
     }
 
     if(!valid_id){
@@ -318,7 +310,7 @@ void setup()
 	cli();//stop interrupts
 
 	// Configure main cycle timer
-	/*TCCR1A = 0;// set entire TCCR1A register to 0
+	TCCR1A = 0;// set entire TCCR1A register to 0
  	TCCR1B = 0;// same for TCCR1B
  	TCNT1  = 0;//initialize counter value to 0
  	// set compare match register for 1hz increments
@@ -329,7 +321,7 @@ void setup()
  	// Set CS10 and CS12 bits for 1024 prescaler
  	TCCR1B |= (1 << CS12) | (1 << CS10);  
  	// enable timer compare interrupt
- 	TIMSK1 |= (1 << OCIE1A);*/
+ 	TIMSK1 |= (1 << OCIE1A);
 
 	// Configure Watchdog
 	wdt_disable();
@@ -385,7 +377,6 @@ void loop()
         }
         update = false;
     }
-    ws2812fx.service();
 
     stop = millis();
 }
