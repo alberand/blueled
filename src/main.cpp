@@ -111,6 +111,7 @@ bool state_check(const struct state* state_t)
             valid_id = true;
         }
     }
+
     if(!valid_id){
         return false;
     }
