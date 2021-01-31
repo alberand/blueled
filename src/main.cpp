@@ -5,7 +5,8 @@
 #include <avr/interrupt.h>
 #include <Arduino.h>
 #include <EEPROM.h>
-#include <WS2812FX.h>
+#include <FastLED.h>
+#include <ledfx.h>
 
 #include "simpap.hpp"
 #include "common.hpp"
@@ -39,8 +40,8 @@
 #define MEM_BASE_ADDRESS 0x0
 #define MEM_NEW_STATE_ADDRESS (MEM_BASE_ADDRESS + 0x0)
 #define MEM_STATE_ADDRESS (MEM_NEW_STATE_ADDRESS + sizeof(bool))
-// #define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
-// #define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
+#define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
+#define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
 #define MAX_LEDS 256
 
@@ -60,7 +61,7 @@ static int heart_state = HIGH;
 static volatile bool update = false;
 
 // Define the array of leds
-WS2812FX ws2812fx = WS2812FX(MAX_LEDS, DATA_PIN, NEO_GRB + NEO_KHZ800);
+CRGB leds[MAX_LEDS];
 
 uint16_t NUM_LEDS;
 
@@ -107,11 +108,12 @@ bool state_check(const struct state* state_t)
     }
 
     bool valid_id = false;
-    // for(uint8_t i = 0; i < CONFIGS_SIZE; i++){
-        // if(state_t->animation == configs[i]->id){
-            // valid_id = true;
-        // }
-    // }
+    for(uint8_t i = 0; i < CONFIGS_SIZE; i++){
+        if(state_t->animation == configs[i]->id){
+            valid_id = true;
+        }
+    }
+
     if(state_t->speed < SPEED_MIN || state_t->speed > SPEED_MAX){
         return false;
     }
@@ -159,7 +161,6 @@ void simpap_handler(uint8_t* data, uint8_t len)
 
         state_t.num_leds = NUM_LEDS;
         state_save(&state_t);
-        ws2812fx.setLength(state_t.num_leds);
 
         return;
     }
@@ -172,7 +173,7 @@ void simpap_handler(uint8_t* data, uint8_t len)
         }
 
         state_t.brightness = static_cast<uint8_t>(brightness);
-        ws2812fx.setBrightness(state_t.brightness);
+        FastLED.setBrightness(state_t.brightness);
 
         state_save(&state_t);
 
@@ -200,22 +201,23 @@ void simpap_handler(uint8_t* data, uint8_t len)
         uint32_t value = get_u32((data + PAYLOAD_OFFSET));
         ws2812fx.setMode((uint8_t)value);
         /* Apply animation */
-        // for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
-            // if(configs[i]->id != cmd) {
-                // continue;
-            // }
+        for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
+            if(configs[i]->id != cmd) {
+                continue;
+            }
 
-            // state_t.animation = configs[i]->id;
-            // state_t.config = configs[i];
+            state_t.animation = configs[i]->id;
+            state_t.config = configs[i];
+            ledfx_state_reset();
 
-            // uint8_t params_num = get_u8(data + PARAMS_NUM_OFFSET);
-            // for(uint8_t i = 0; i < params_num; i++){
-                // uint32_t value = get_u32((data + PAYLOAD_OFFSET + i*sizeof(uint32_t)));
-                // ledfx_set_param(i, value);
-            // }
+            uint8_t params_num = get_u8(data + PARAMS_NUM_OFFSET);
+            for(uint8_t i = 0; i < params_num; i++){
+                uint32_t value = get_u32((data + PAYLOAD_OFFSET + i*sizeof(uint32_t)));
+                ledfx_set_param(i, value);
+            }
 
-            // state_save(&state_t);
-        // }
+            state_save(&state_t);
+        }
 
         return;
     }
@@ -229,8 +231,7 @@ bool state_update(struct state* state_t)
 {
     state_t->iteration++;
 
-    ws2812fx.service();
-
+    ledfx_effect(state_t->animation, leds, state_t->num_leds);
     return true;
 }
 
@@ -241,11 +242,11 @@ void state_save(const struct state* state_t)
     }
 
     EEPROM.put(MEM_STATE_ADDRESS, *state_t);
-    // EEPROM.put(MEM_ANIMATION_STATE_ADDRESS, animation_t);
-    // for(int i = 0; i < state_t->config->num; i++) {
-        // uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
-        // EEPROM.put(address, animation_t.params[i]);
-    // }
+    EEPROM.put(MEM_ANIMATION_STATE_ADDRESS, animation_t);
+    for(int i = 0; i < state_t->config->num; i++) {
+        uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+        EEPROM.put(address, animation_t.params[i]);
+    }
     // This flag is used only to check that config was saved
     bool state_new = true;
     EEPROM.put(MEM_NEW_STATE_ADDRESS, state_new);
@@ -258,23 +259,23 @@ bool state_load(struct state* state_t)
     if(EEPROM.get(MEM_NEW_STATE_ADDRESS, is_config_new)) {
         state_reset(state_t);
         EEPROM.get(MEM_STATE_ADDRESS, *state_t);
-        // EEPROM.get(MEM_ANIMATION_STATE_ADDRESS, animation_t);
+        EEPROM.get(MEM_ANIMATION_STATE_ADDRESS, animation_t);
 
         // Assign config based on state_t->animation
-        // for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
-            // if(configs[i]->id != state_t->animation) {
-                // continue;
-            // }
+        for(uint16_t i = 0; i < COUNT_OF(configs); i++) {
+            if(configs[i]->id != state_t->animation) {
+                continue;
+            }
 
-            // state_t->config = configs[i];
-        // }
+            state_t->config = configs[i];
+        }
 
         // Read config params
-        // animation_t.params = (uint32_t*)malloc(state_t->config->num*sizeof(uint32_t));
-        // for(int i = 0; i < state_t->config->num; i++) {
-            // uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
-            // EEPROM.get(address, animation_t.params[i]);
-        // }
+        animation_t.params = (uint32_t*)malloc(state_t->config->num*sizeof(uint32_t));
+        for(int i = 0; i < state_t->config->num; i++) {
+            uint32_t address = MEM_ANIMATION_PARAMS_ADDRESS + sizeof(uint32_t)*i;
+            EEPROM.get(address, animation_t.params[i]);
+        }
     }
 
     if(!state_check(state_t)) {
@@ -292,7 +293,8 @@ void state_reset(struct state* state_t)
     state_t->num_leds = 10;
     state_t->brightness = 0xFF;
     state_t->animation = 0x44;
-    // state_t->config = configs[3];
+    state_t->config = configs[3];
+    ledfx_state_reset();
 }
 
 ISR(WDT_vect)
@@ -315,13 +317,13 @@ void setup()
     digitalWrite(PIN_DEBUG, LOW);
     digitalWrite(PIN_HEARTBEAT, HIGH);
 
+    // Configure LED strip
+    set_max_power_in_volts_and_milliamps(MAX_VOLTS, MAX_AMPS*1000);
+    FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, MAX_LEDS);
+
     simpap_init(&simpap_ctx);
 
-    ws2812fx.init();
-    ws2812fx.setBrightness(100);
-    ws2812fx.setSpeed(200);
-    ws2812fx.setMode(FX_MODE_RAINBOW_CYCLE);
-    ws2812fx.start();
+    ledfx_init();
 
     // Read configuration from EEPROM if exist
     if(digitalRead(PIN_RESET) || !state_load(&state_t)) {
@@ -359,7 +361,6 @@ void setup()
 ISR(TIMER1_COMPA_vect){
     update = true;
     heart_state = !heart_state;
-    ws2812fx.trigger();
 }
 
 void loop()
@@ -396,7 +397,10 @@ void loop()
 
     /* LED update */
     if(update and !in_comm){
-        state_update(&state_t);
+        if(state_update(&state_t)) {
+            FastLED.setBrightness(state_t.brightness);
+            FastLED.show();
+        }
         update = false;
     }
 
