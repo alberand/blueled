@@ -1,3 +1,4 @@
+#define F_CPU 8000000L
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -13,7 +14,7 @@
 
 #define DEBUG
 
-// Software-Hardoware configuration
+// Software-Hardware configuration
 // Always 5V
 #define MAX_VOLTS 5
 #define MAX_AMPS 5
@@ -43,7 +44,7 @@
 #define MEM_ANIMATION_STATE_ADDRESS (MEM_STATE_ADDRESS + sizeof(state))
 #define MEM_ANIMATION_PARAMS_ADDRESS (MEM_ANIMATION_STATE_ADDRESS + sizeof(ledfx_state))
 
-#define MAX_LEDS 256
+#define MAX_LEDS 50
 
 #define START_COMM 0xAA
 #define ACK 0xBB
@@ -279,7 +280,7 @@ ISR(WDT_vect)
 
 void setup()
 {
-    Serial.begin(115200, SERIAL_8E1);
+    Serial.begin(9600);
     while (!Serial) { ; }
     Serial.flush();
 
